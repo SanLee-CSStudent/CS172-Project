@@ -93,6 +93,7 @@ public class Crawler {
 			LinkNode curr = frontier.poll();
 			numPages++;
 			try {
+				// before doing any operation make sure to normalize the link
 				// if the current page is already visited, skip it
 				if(visited.contains(curr.getLink())) {
 					continue;
@@ -122,7 +123,7 @@ public class Crawler {
 				for(Element e: links) {
 					// if current page reaches max depth
 					//	or link is not .edu format
-					if(curr.getDepth() >= MAX_DEPTH || !e.absUrl("href").contains(".edu")) {
+					if(curr.getDepth() >= MAX_DEPTH || !e.absUrl("href").contains(".edu") || !e.absUrl("href").contains("https://")) {
 						continue;
 					}
 					LinkNode next = new LinkNode(e.absUrl("href"), curr.getDepth() + 1);
