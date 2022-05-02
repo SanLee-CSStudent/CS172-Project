@@ -1,9 +1,12 @@
 package Crawler;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.HashSet;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,24 +18,41 @@ public class Crawler {
 	
 	public Crawler() {
 		this.frontier = new ArrayDeque<LinkNode>();
+		this.visited = new HashSet<String>();
+		
+		// loadExistingPages();
 	}
 	
 	public Crawler(int depth) {
 		this.MAX_DEPTH = depth;
 	}
+	
+	// load names of pages that are downloaded to check redundant pages
+	// not precise due to the presence of skipping of "www." in URL
+	private void loadExistingPages() {
+		File pages = new File(dest);
+		File[] list = pages.listFiles();
+		
+		for(int i = 0; i < list.length; i++) {
+			visited.add(list[i].getName().replace(".html", ""));
+		}
+	}
+	
 	// create html file named as paramterized filename
 	private String createTitle(String filename) {
 		StringBuilder title = new StringBuilder(dest);
+		StringBuilder link = new StringBuilder();
 		if(filename.contains("http://")) {
-			title.append(filename.replace("http://", "")); 
+			link.append(filename.replace("http://", "")); 
 		}
 		else if(filename.contains("https://")) {
-			title.append(filename.replace("https://", "")); 
+			link.append(filename.replace("https://", "")); 
 		}
 		else {
 			return "";
 		}
-		title.append(".html");
+		link.append(".html");
+		title.append(link.toString().replace("/", "-"));
 		
 		return title.toString();
 	}
@@ -42,10 +62,15 @@ public class Crawler {
 		LinkNode seed = new LinkNode("http://alaska.edu");
 		frontier.add(seed);
 		// run as long as frontier has some links to crawl
-		for(int i = 0; i < 1; i++){
-		// while(!frontier.isEmpty()) {
+		// for(int i = 0; i < 15; i++){
+		while(!frontier.isEmpty()) {
 			LinkNode curr = frontier.poll();
 			try {
+				// if the current page is already visited, skip it
+				if(visited.contains(curr.getLink())) {
+					continue;
+				}
+				visited.add(curr.getLink());
 				// fetch pages from URL
 				Document doc = Jsoup.connect(curr.getLink()).get();
 				Connection.Response html = Jsoup.connect(curr.getLink()).execute();
@@ -53,8 +78,11 @@ public class Crawler {
 				Elements links = doc.select("a[href]");
 				
 				String title = createTitle(curr.getLink());
+				// check title
+				// System.out.println("Title: " + title);
+				
 				if(title.equals("")) {
-					// current link is not appropriate URL
+					// current link is not appropriate URL missing http:// or https://
 					continue;
 				}
 				String htmlText = html.body();
@@ -67,15 +95,19 @@ public class Crawler {
 				for(Element e: links) {
 					// if current page reaches max depth
 					//	or link is not .edu format
-					if(curr.getDepth() >= MAX_DEPTH || !curr.getLink().contains(".edu")) {
+					if(curr.getDepth() >= MAX_DEPTH || !e.absUrl("href").contains(".edu")) {
 						continue;
 					}
-					LinkNode next = new LinkNode(e.attr("abs:href"), curr.getDepth() + 1);
+					LinkNode next = new LinkNode(e.absUrl("href"), curr.getDepth() + 1);
 					frontier.add(next);
 				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				System.out.println(curr.getLink() + " cannot be found.");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.out.println(curr.getLink() + "is not a proper URL.");
+				System.out.println(curr.getLink() + " is not a proper URL.");
+				// e.printStackTrace();
 			}
 		}
 	}
@@ -84,4 +116,5 @@ public class Crawler {
 	private ArrayDeque<LinkNode> frontier;
 	private int MAX_DEPTH = 5;
 	private final String dest = "src/pages/";
+	private HashSet<String> visited;
 }
