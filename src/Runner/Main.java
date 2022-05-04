@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Crawler crawler = new Crawler();
+		Crawler crawler = new Crawler(10);
 		crawler.crawl();
 	}
 }
