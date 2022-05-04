@@ -23,6 +23,7 @@ public class Crawler {
 	// empty constructor
 	// initialize frontier deque and visited set
 	public Crawler() {
+		this.seeds = new ArrayDeque<LinkNode>();
 		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
 	}
@@ -30,6 +31,7 @@ public class Crawler {
 	// constructor with one parameter: depth
 	// initialize frontier and visited, set MAX DEPTH to depth input
 	public Crawler(int depth) {
+		this.seeds = new ArrayDeque<LinkNode>();
 		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
 		this.MAX_DEPTH = depth;
@@ -38,6 +40,7 @@ public class Crawler {
 	// constructor with two parameters: depth, pages
 	// initialize frontier and visited, set MAX DEPTH and MAX PAGES to inputs
 	public Crawler(int depth, int numPages) {
+		this.seeds = new ArrayDeque<LinkNode>();
 		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
 		this.MAX_DEPTH = depth;
@@ -107,7 +110,7 @@ public class Crawler {
 				LinkNode node = new LinkNode(s.nextLine());
 				// if seed page is from .edu, add it to the frontier
 				if(node.checkHost()) {
-					frontier.add(node);
+					seeds.add(node);
 				}
 			}
 			s.close();
@@ -123,27 +126,33 @@ public class Crawler {
 		loadSeeds();
 		
 		// run as long as frontier has some links to crawl
-		while(!frontier.isEmpty()) {
+		while(!seeds.isEmpty()) {
 			try {
 				if(numPages > MAX_NUM_PAGES) {
 					// crawler reached page number limit
 					return;
 				}
+				if(frontier.isEmpty()) {
+					frontier.add(seeds.poll());
+				}
+				
 				LinkNode curr = frontier.poll();
 				numPages++;
 				
-				// check if the current page is already visited
-				// check if current page is in file formats to prevent download them
-				// i.e. .pdf .jpg .png ...
-				if(visited.contains(curr.getLink()) || curr.isInvalidFiles()) {
-					continue;
-				}
 				
 				// root domain will contain robots.txt
 				if(curr.getDepth() == 1) {
 					readRobots(curr);
 				}
+				
 				String title = createUniqueTitle(curr);
+				
+				// check if the current page is already visited
+				// check if current page is in file formats to prevent download them
+				// i.e. .pdf .jpg .png ...
+				if(visited.contains(title) || curr.isInvalidFiles()) {
+					continue;
+				}
 				
 				// fetch pages from URL
 				Document doc = Jsoup.connect(curr.getLink()).get();
@@ -180,7 +189,7 @@ public class Crawler {
 					// pass down domain's robots access list to child nodes
 					next.setDisallow(curr.getRobots());
 					// if next node is part of robots disallow list, ignore it
-					if(next.checkURL()) {
+					if(next.checkURL() && next.checkHost()) {
 						frontier.add(next);
 					}
 				}
@@ -200,6 +209,7 @@ public class Crawler {
 	}
 	
 	// any data structure implementing Queue should work
+	private ArrayDeque<LinkNode> seeds;
 	private ArrayDeque<LinkNode> frontier;
 	private int numPages = 0;
 	private int MAX_DEPTH = 5;
