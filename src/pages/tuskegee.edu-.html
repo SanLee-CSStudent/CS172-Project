@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | Tuskegee University</title>
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    
+    
+    <!-- css,js block -->	
+    <!-- Bootstrap css and normalize css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- More 3rd party plug-ins -->  
+    <script src='/Scripts/fullcalendar/moment.min.js'></script>
+
+    <link href='/Scripts/fullcalendar/fullcalendar.css' rel='stylesheet'>    
+    <script src='/Scripts/fullcalendar/fullcalendar.min.js'></script>
+    <link href='/Scripts/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print'>
+
+    <script src='/Scripts/fullcalendar/jquery.qtip.min.js'></script>
+    <link href='/Scripts/fullcalendar/jquery.qtip.min.css' rel='stylesheet'>    
+    
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/superfish.css" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js" integrity="sha512-gdhtclwUZCkHSSb/Q79++RssWL4eDLKHO15TC7kR/XnvlNyzcvZDRLn4BIuxadMWGIxPuj/IbFBInMpYockVCA==" crossorigin="anonymous"  referrerpolicy="no-referrer" ></script>
+
+
+    <script>if (typeof window.JSON === 'undefined') { document.write('<script src="/Scripts/history/uncompressed/json2.js"><\/script>'); }</script>
+    <script src='/Scripts/history/bundled/html4html5/jquery.history.js'></script>
+	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveSlides.js/1.55/responsiveslides.min.js" integrity="sha512-xLb7JAM9BNykuzMmlFtHHgQQAwFMiPVf9IhLV6g/IgQInWqxECLrlqBo64ytFPZH7qeZjahD1TOvl/wp8dL6LA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/galleria/1.6.1/galleria.min.js" integrity="sha512-vRKUU1GOjCKOTRhNuhQelz4gmhy6NPpB8N41c7a36Cxl5QqKeB9VowP8S7x8Lf3B8vZVURBxGlPpvyiRHh+CKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script type="text/javascript" src="/Page/Import/livequery.js"></script>
+
+	
+	<link rel="stylesheet" type="text/css" href="/Page/Import/slick.css" />
+
+	<link rel="stylesheet" type="text/css" href="/Page/Import/slick-theme.css" />
+	
+	<script type="text/javascript" src="/Page/Import/slick.js"></script>
+
+	
+    <link rel="stylesheet" type="text/css" href="/Page/Import/tools.css" />
+
+    <link rel="stylesheet" type="text/css" href="/Page/Import/site.css" />
+
+ 	<script type="text/javascript" src="/Page/Import/site.js"></script>
+   
+    <!-- End of css,js block -->
+
+    
+	<!-- Innovate Template Items -->
+	<script type="text/javascript" src="/Page/Import/twitterpostfetcher.js"></script>
+
+    <script type="text/javascript" src="/Page/Import/instafeed.min.js"></script>
+	
+    
+	<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "0276d3d2-2129-435a-954d-0f4954bf5a32", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+	<!-- /Innovate Template Items -->
+
+    
+	
+	<!-- Favicon Here -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Content/Uploads/Tuskegee/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/Content/Uploads/Tuskegee/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/Content/Uploads/Tuskegee/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/Content/Uploads/Tuskegee/images/favicons/manifest.json">
+    <link rel="mask-icon" href="/Content/Uploads/Tuskegee/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    
+	
+                <!-- Global Site Tag (gtag.js) - Google Analytics -->
+                <script async src='https://www.googletagmanager.com/gtag/js?id=UA-20997820-1\'></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments)};
+                    gtag('js', new Date());
+                    gtag('config', 'UA-20997820-1');
+                </script >
+    
+
+<!-- ENROLLMENTFUEL Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1278366609224742'); 
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1278366609224742&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End ENROLLMENTFUEL Facebook Pixel Code -->
+
+<!-- enrollmentFUEL clickCAPTURE 21-22: Begin -->
+<script async type="text/javascript">(function(){var q=/pid=([^&]+)/g.exec(location.href),c=/pid=([^;]+)/g.exec(document.cookie),e=/evt=([^&]+)/g.exec(location.href),p,d,x,a;if(!c&&!q){console.log('ef:failed.');return;}if(!c&&q){p=q[1];document.cookie="pid="+p+";samesite=strict;path=/;domain="+location.host+";expires="+new Date(new Date().getTime()+1000*60*60*24*365).toGMTString();}if(c){p=c[1];}d={"eventid":e?e[1]:"201912","eventoption":location.href,"dedup":p,"date":(new Date()).toISOString()};x=new XMLHttpRequest();x.open('POST',"https://studio.afw.mdl.io/api/OutboundApp/AppCallback?serviceTypeId=2019&identifier=34372_3_637848534745197099&accountId=34372&outboundId=12",true);x.onreadystatechange=function(){if(x.readyState==4&&x.status==200){console.log('status:success');}if(x.readyState==4&&x.status!=200){console.log('status:failed');}};x.setRequestHeader('X-Requested-With','XMLHttpRequest');x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(d));})()</script>
+<!-- enrollmentFUEL clickCAPTURE 21-22: End -->
+
+<!-- enrollmentFUEL matchBACK: Begin -->
+<script async="" type="text/javascript">var d=document,s="https://a.smtrk.net/trk?t=s&i=624f2b7b3436e80e713ff08f&p=t,i,x&s=7ed34bac6fd9f7feb9e48b102e6600ef&r="+escape(d.referrer)+"&u="+escape(d.URL),n=d.createElement("script"),e=d.getElementsByTagName("script")[0];n.async=!0,n.src=s,e.parentNode.insertBefore(n,e);</script>
+<!-- enrollmentFUEL matchBACK: End -->
+    
+</head>
+<body>
+    
+    <html lang="en-US">
+    <!-- BEGIN HEADER-->
+<body>
+<!-- Header Start -->
+
+<!-- Alert Start -->
+	<div class='alert-block'><div class='content'><aside class='rt-block'><p><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size:18px;"><strong>COVID-19 Update: </strong>The university has modified its COVID-19 protocols for the opening of the Spring 2022 semester.&nbsp;<a href="http://tuskegee.edu/coronavirus-resources">Click here</a>&nbsp;to read our latest updates.</span></span></p>
+
+<p></p>
+</aside><figure class='cross-block'><h3>Close this Alert</h3><img src='/Content/Uploads/Tuskegee/Images/close-icon.png' alt='Close this Alert'></figure><div class='clear'></div></div></div>
+<!-- Alert End -->
+
+	<header id="header">
+    	<div class="header-top-block">
+        	<div class="content">
+            	<aside class="lt-block">
+                	<ul>
+	<li class="icon1"><a href="/admissions-aid/apply-now" target="_blank">Apply</a></li>
+	<li class="icon2"><a href="/support-tu/give" target="_self">Give</a></li>
+	<li class="icon3"><a href="/tours" target="_self">Visit</a></li>
+	<li class="icon4"><a href="/programs-courses/bursar" target="_self">Pay</a></li>
+</ul>
+
+                    <div class="clear"></div>
+                </aside>
+                 <aside class="search-block">
+                    <label for="search" class="ada_label">Search Site</label>
+                    <div class="search">
+                        <form method='POST' action='/Page/SearchSite'> <fieldset>         <input type='text' id='search' name='search' class='site-search-icon' value='' placeholder='' title=''>         <input type='submit' class='' value=''>     </fieldset></form>
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+                <aside class="rt-block">
+                    <ul>
+	<li><a href="https://webadv-prod.ec.tuskegee.edu/WAPROD/WAPROD" target="_blank">TigerWeb</a></li>
+	<li><a href="/marketing">Media</a></li>
+	<li><a href="http://www.goldentigersports.com/" target="_blank">Athletics</a></li>
+	<li><a href="/resources">Resources</a></li>
+</ul>
+
+                    <div class="clear"></div>
+                </aside>
+               
+            <div class="clear"></div>
+            </div>
+        </div>
+        <!-- BEGIN QUICK LINKS-->
+<div class="content">
+    <div class="quick-links-mega" id="quick-links-one">
+        <div class="block">
+            <div class="quick-links-section1">
+                <h3>Tools</h3>
+                <div class="clear"></div>
+                <div class="quick-links-column">
+                    <ul>
+	<li><a href="/programs-courses/academic-calendar">Academic Calendar</a></li>
+	<li><a href="https://tuskegee.blackboard.com" target="_blank">Blackboard</a></li>
+	<li><a href="http://www.bkstr.com/tuskegeestore/home/en" target="_blank">Bookstore</a></li>
+	<li><a href="https://directory.tuskegee.edu/" target="_blank">Campus Directory</a></li>
+	<li><a href="https://tuskegee.campuslabs.com" target="_blank">Campus Labs</a></li>
+	<li><a href="/tours/visiting-tuskegee/campus-map">Campus Map</a></li>
+	<li><a href="/programs-courses/course-catalog">Course Catalog</a></li>
+	<li><a href="https://login.microsoftonline.com" target="_blank">Email</a></li>
+	<li><a href="http://www.trumba.com/calendars/tuskegee-university-events" target="_blank">Events Calendar</a></li>
+	<li><a href="http://goldentigergear.com" target="_blank">Golden Tiger Gear</a></li>
+	<li><a href="https://goldentigerhealthcheck.powerappsportals.com/en-US/home/" target="_blank">Golden Tiger Health Check</a></li>
+	<li><a href="/libraries">Libraries</a></li>
+	<li><a href="https://mytuphoto.tuskegee.edu" target="_blank">MyTUphoto</a></li>
+	<li><a href="https://tuskegee.campus.eab.com" target="_blank">NAVIGATE (EAB)</a></li>
+	<li><a href="http://tuskegee.university-tour.com/map.php" target="_blank">Online Virtual Tour</a></li>
+	<li><a href="https://www.tuskegee.edu/REACH">REACH</a></li>
+	<li><a href="https://www.tuskegee.edu/rotc">ROTC</a></li>
+	<li><a href="/student-life/alert">TigerAlert</a></li>
+	<li><a href="https://webadv-prod.ec.tuskegee.edu/WAPROD/WAPROD" target="_blank">TigerWeb</a></li>
+</ul>
+
+                </div>
+            </div>
+            <div class="quick-links-section2">
+                <h3>Quick Links</h3>
+                <div class="clear"></div>
+                <div class="quick-links-column">
+                    <ul>
+	<li><a href="/programs-courses/provost">Academic Affairs - Provost</a></li>
+	<li><a href="https://www.tuskegee.edu/office-of-ada-compliance">ADA 504 Accommodations - Accessibility</a></li>
+	<li><a href="/about-us/administration">Administration</a></li>
+	<li><a href="/admissions">Admissions</a></li>
+	<li><a href="https://www.tuskegee.edu/support-tu">Advancement and Development</a></li>
+	<li><a href="https://www.tuskegee.edu/afrotc">Air Force ROTC</a></li>
+	<li><a href="/discover-tu/alumni-friends">Alumni &amp; Friends</a></li>
+	<li><a href="http://www.lighthouse-services.com/tuskegee" target="_blank">Anonymous Reporting</a></li>
+	<li><a href="/discover-tu/extracurricular-activities/army-rotc">Army ROTC</a></li>
+	<li><a href="http://www.goldentigersports.com/" target="_blank">Athletics</a></li>
+	<li><a href="https://www.tuskegee.edu/band">Band</a></li>
+	<li><a href="https://www.tuskegee.edu/about-us/centers-of-excellence/bioethics-center">Bioethics Center</a></li>
+	<li><a href="/about-us/board-of-trustees">Board of Trustees</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/bursar">Bursar</a></li>
+	<li><a href="https://www.tuskegee.edu/tours">Campus Tours</a></li>
+	<li><a href="/programs-courses/career-development-placement">Career Center</a></li>
+	<li><a href="/about-us/chapel">Chapel</a></li>
+	<li><a href="https://www.tuskegee.edu/choir">Choir</a></li>
+	<li><a href="/programs-courses/colleges-schools">Colleges &amp; Schools</a></li>
+</ul>
+
+                </div>
+                <div class="quick-links-column">
+                    <ul>
+	<li><a href="https://www.tuskegee.edu/marketing">Communications, PR &amp; Marketing</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/colleges-schools/caens/cooperative-extension-program">Cooperative Extension</a></li>
+	<li><a href="https://www.tuskegee.edu/culinary-services">Culinary - Dining Services</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/student-affairs/dean-of-students">Dean of Students and Student Conduct</a></li>
+	<li><a href="http://elearning.tuskegee.edu/" target="_blank">E-Learning (ODEOL)</a></li>
+	<li><a href="/police/health-safety">Environmental Health &amp; Safety</a></li>
+	<li><a href="/academics/faculty-senate">Faculty Senate</a></li>
+	<li><a href="/admissions-aid/financial-aid">Financial Aid</a></li>
+	<li><a href="https://www.tuskegee.edu/ogcea">General Counsel and External Affairs</a></li>
+	<li><a href="/graduate-school">Graduate School</a></li>
+	<li><a href="https://www.tuskegee.edu/cares-act-emergency-funds">HEERF - CARES Act&nbsp;Emergency Funds</a></li>
+	<li><a href="/housing-and-residence-life">Housing and Residence Life</a></li>
+	<li><a href="/discover-tu/human-resources">Human Resources</a></li>
+	<li><a href="/student-life/office-of-information-technology">Information Technology</a></li>
+	<li><a href="/institutional-effectiveness">Institutional Effectiveness</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/colleges-schools/caens/phd-integrative-biosciences">Integrative Biosciences</a></li>
+	<li><a href="/discover-tu/extracurricular-activities/nrotc">Naval ROTC</a></li>
+	<li><a href="/policies">Policies</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/registrar">Registrar</a></li>
+</ul>
+
+                </div>
+                <div class="quick-links-column">
+                    <ul>
+	<li><a href="https://www.tuskegee.edu/research-innovation">Research and Sponsored Programs</a></li>
+	<li><a href="/rotc">ROTC at Tuskegee University</a></li>
+	<li><a href="/admissions-aid/scholarships">Scholarships</a></li>
+	<li><a href="https://www.tuskegee.edu/staff-senate">Staff Senate</a></li>
+	<li><a href="https://www.tuskegee.edu/institutional-effectiveness/student-achievement">Student Achievement</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/student-affairs">Student Affairs</a></li>
+	<li><a href="/student-complaints">Student Complaints</a></li>
+	<li><a href="/Content/Uploads/Tuskegee/files/Student%20Affairs/TU-Student-Handbook-2021-2022(1)%20(4).pdf" target="_blank">Student Handbook</a></li>
+	<li><a href="/student-life/student-affairs/student-health">Student Health Center</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/student-life-and-development">Student Life and Development</a></li>
+	<li><a href="/resources/title-iii">Title III</a></li>
+	<li><a href="/student-life/title-ix">Title IX</a></li>
+	<li><a href="http://tuspubs.tuskegee.edu/" target="_blank">Tuskegee Scholarly Publications</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/bursar">Tuition and Fees</a></li>
+	<li><a href="/tugo">Tuskegee University Global Office</a></li>
+	<li><a href="https://tuhelpdesk.tuskegee.edu" target="_blank">TU Help Desk Service Portal</a></li>
+	<li><a href="https://www.tuskegee.edu/office-of-undergraduate-research">TU Office of Undergraduate Research</a></li>
+	<li><a href="/police">TU Police Department</a></li>
+	<li><a href="https://www.tuskegee.edu/university-audit-and-risk-management">University Audit and Risk Management</a></li>
+</ul>
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!-- END QUICK LINKS -->
+
+        <div class="header-bottom-block">
+        	<div class="content">
+            	<h1 class="logo"><a href="/" title="Tuskegee University">Tuskegee University</a></h1>
+            </div>
+        </div>
+    </header>
+<!-- Header End -->
+
+<!-- Navigation Start -->
+	<div id="navigation">
+    	<div class="content">
+        	<nav id="nav-wrap">
+                <ul id="-2" class=" sf-menu"><li id="_294087" class=""><a href='/discover-tu' class=''>Discover TU</a><ul id="_1_294087" class="_sub"><li id="_294292" class=""><a href='/discover-tu/why-choose-tu' class=''>Why Choose TU?</a></li><li id="_294294" class=""><a href='/discover-tu/choosing-a-career' class=''>Choosing A Career</a></li><li id="_294295" class=""><a href='/discover-tu/human-resources' class=''>Human Resources</a></li><li id="_294805" class=""><a href='/discover-tu/online-learning' class=''>Online Learning</a></li><li id="_294806" class=""><a href='/discover-tu/how-do-we-rank' class=''>How Do We Rank?</a></li><li id="_294807" class=""><a href='/discover-tu/prospective-students-and-parents' class=''>Prospective Students and Parents</a></li><li id="_294809" class=""><a href='/discover-tu/international-students' class=''>International Students</a></li><li id="_294831" class=""><a href='/discover-tu/donors' class=''>Donors</a></li><li id="_294833" class=""><a href='/discover-tu/extracurricular-activities' class=''>Extracurricular Activities</a></li><li id="_294832" class=""><a href='/discover-tu/student-freedom-initiative' class=''>Student Freedom Initiative</a></li><li id="_294844" class=""><a href='/discover-tu/lyceum-series' class=''>Lyceum Series</a></li><li id="_294850" class=""><a href='/discover-tu/fine-performing-arts' class=''>Fine & Performing Arts</a></li><li id="_294849" class=""><a href='/discover-tu/homecoming' class=''>Homecoming</a></li><li id="_294851" class=""><a href='/discover-tu/tu-presidents' class=''>TU Presidents</a></li></ul></li><li id="_294092" class=""><a href='/programs-courses' class=''>Programs & Courses</a><ul id="_1_294092" class="_sub"><li id="_295030" class=""><a href='/programs-courses/colleges-schools' class=''>Colleges & Schools</a></li><li id="_296170" class=""><a href='/programs-courses/degree-programs' class=''>Degree Programs</a></li><li id="_296210" class=""><a href='/programs-courses/academic-regulations' class=''>Academic Regulations</a></li><li id="_296221" class=""><a href='/programs-courses/need-advising' class=''>Need Advising</a></li><li id="_296237" class=""><a href='/programs-courses/scholarships' class=''>Scholarships</a></li><li id="_296211" class=""><a href='/programs-courses/online-learning' class=''>Online Learning</a></li><li id="_296215" class=""><a href='/programs-courses/apply-to-graduate-school' class=''>Apply to Graduate School</a></li><li id="_296224" class=""><a href='/programs-courses/find-your-interest' class=''>Find Your Interest</a></li><li id="_296254" class=""><a href='/programs-courses/registrar' class=''>Registrar</a></li><li id="_296212" class=""><a href='/programs-courses/provost' class=''>Provost</a></li><li id="_296216" class=""><a href='/programs-courses/course-catalog' class=''>Course Catalog</a></li><li id="_296225" class=""><a href='/programs-courses/search-our-degree-programs' class=''>Search our Degree Programs</a></li><li id="_296274" class=""><a href='/programs-courses/career-development-placement' class=''>Career Development & Placement</a></li><li id="_296217" class=""><a href='/programs-courses/academic-calendar' class=''>Academic Calendar</a></li><li id="_296226" class=""><a href='/programs-courses/student-support' class=''>Student Support</a></li><li id="_296219" class=""><a href='/programs-courses/student-handbook' class=''>Student Handbook</a></li><li id="_296228" class=""><a href='/programs-courses/bursar' class=''>Bursar</a></li></ul></li><li id="_294095" class=""><a href='/admissions-aid' class=''>Admissions & Aid</a><ul id="_1_294095" class="_sub"><li id="_296300" class=""><a href='/admissions-aid/financial-aid' class=''>Financial Aid</a></li><li id="_296312" class=""><a href='/admissions-aid/priority-deadlines' class=''>Priority Deadlines</a></li><li id="_296320" class=""><a href='/admissions-aid/academic-advising' class=''>Academic Advising</a></li><li id="_296296" class=""><a href='/admissions-aid/finalize-your-acceptance' class=''>Finalize Your Acceptance</a></li><li id="_296321" class=""><a href='/admissions-aid/select-a-major' class=''>Select a Major</a></li><li id="_296324" class=""><a href='/admissions-aid/scholarships' class=''>Scholarships</a></li><li id="_296297" class=""><a href='/admissions-aid/apply-now' class=''>Apply Now</a></li><li id="_296322" class=""><a href='/admissions-aid/tuition-fees' class=''>Tuition & Fees</a></li><li id="_296318" class=""><a href='/admissions-aid/payment-plans' class=''>Payment Plans</a></li><li id="_296299" class=""><a href='/admissions-aid/buy-your-books' class=''>Buy Your Books</a></li><li id="_296319" class=""><a href='/admissions-aid/loans-grants' class=''>Loans & Grants</a></li><li id="_296325" class=""><a href='/admissions-aid/income-contingent-alternative' class=''>Income-Contingent Alternative</a></li></ul></li><li id="_294096" class=""><a href='/student-life' class=''>Student Life</a><ul id="_1_294096" class="_sub"><li id="_296327" class=""><a href='/student-life/intramural-sports-and-recreation' class=''>Intramural Sports and Recreation</a></li><li id="_296332" class=""><a href='/student-life/alert' class=''>Alert</a></li><li id="_296333" class=""><a href='/student-life/title-ix' class=''>Title IX</a></li><li id="_296336" class=""><a href='/student-life/dining-services' class=''>Dining Services</a></li><li id="_296337" class=""><a href='/student-life/student-organizations' class=''>Student Organizations</a></li><li id="_296354" class=""><a href='/student-life/your-gradesclass-schedule' class='' target='_blank'>Your Grades/Class Schedule</a></li><li id="_296408" class=""><a href='/student-life/miss-tuskegee-a-lineage-of-leaders' class=''>Miss Tuskegee: A Lineage of Leaders</a></li><li id="_296355" class=""><a href='/student-life/student-code-of-conduct' class=''>Student Code of Conduct</a></li><li id="_296356" class=""><a href='/student-life/student-complaints' class=''>Student Complaints</a></li><li id="_296357" class=""><a href='/student-life/student-affairs' class=''>Student Affairs</a></li><li id="_296368" class=""><a href='/student-life/shuttle-service' class=''>Shuttle Service</a></li><li id="_296383" class=""><a href='/student-life/tu-academic-calendar' class=''>TU Academic Calendar</a></li><li id="_296391" class=""><a href='/student-life/student-events-calendar' class=''>Student Events Calendar</a></li><li id="_296411" class=""><a href='/student-life/golden-tiger-connect' class=''>Golden Tiger Connect</a></li><li id="_296412" class=""><a href='/student-life/nso-leaders' class=''>NSO Leaders</a></li></ul></li><li id="_294101" class=""><a href='/research-innovation' class=''>Research & Innovation</a><ul id="_1_294101" class="_sub"><li id="_296489" class=""><a href='/research-innovation/research-mission-goals-and-outcomes' class=''>Research Mission, Goals, and Outcomes</a></li><li id="_296490" class=""><a href='/research-innovation/research-council' class=''>Research Council</a></li><li id="_296491" class=""><a href='/research-innovation/grantsmanship-and-compliance' class=''>Grantsmanship and Compliance</a></li><li id="_296492" class=""><a href='/research-innovation/office-sponsored-programs' class=''>Office Sponsored Programs</a></li><li id="_296493" class=""><a href='/research-innovation/technology-transfer' class=''>Technology Transfer</a></li><li id="_296495" class=""><a href='/research-innovation/detail-guide-to-research-and-sponsored-programs' class=''>Detail Guide to Research and Sponsored Programs</a></li><li id="_296496" class=""><a href='/research-innovation/research-capability' class=''>Research Capability</a></li><li id="_296497" class=""><a href='/research-innovation/centers-of-excellence' class=''>Centers of Excellence</a></li><li id="_296506" class=""><a href='/research-innovation/major-research-and-sponsored-programs-activities' class=''>Major Research and Sponsored Programs Activities</a></li><li id="_296509" class=""><a href='/research-innovation/annual-reports' class=''>Annual Reports</a></li><li id="_296510" class=""><a href='/research-innovation/funding-sources' class=''>Funding Sources</a></li><li id="_296511" class=""><a href='/research-innovation/summer-programs' class=''>Summer Programs</a></li><li id="_296523" class=""><a href='/research-innovation/publications-in-refereed-journals-and-conference-presentations' class=''>Publications in Refereed?Journals?and Conference Presentations</a></li><li id="_296524" class=""><a href='/research-innovation/research-expertise' class=''>Research Expertise</a></li><li id="_296525" class=""><a href='/research-innovation/internal-routing-form' class=''>Internal Routing Form</a></li><li id="_296526" class=""><a href='/research-innovation/intellectual-property-manual' class=''>Intellectual Property Manual</a></li></ul></li><li id="_294102" class=""><a href='/support-tu' class=''>Support TU</a><ul id="_1_294102" class="_sub"><li id="_296538" class=""><a href='/support-tu/give' class=''>Give</a></li><li id="_296541" class=""><a href='/support-tu/assist-with-technology-enhancements' class=''>Assist with Technology Enhancements</a></li><li id="_296543" class=""><a href='/support-tu/help-improve-success-rates' class=''>Help Improve Success Rates</a></li><li id="_296544" class=""><a href='/support-tu/major-producer-of-stem-graduates' class=''>Major Producer of STEM Graduates</a></li><li id="_296545" class=""><a href='/support-tu/pioneers-in-health-care' class=''>Pioneers in Health Care</a></li><li id="_296546" class=""><a href='/support-tu/a-top-producing-hbcu' class=''>A Top-Producing HBCU</a></li><li id="_296547" class=""><a href='/support-tu/national-historic-site' class=''>National Historic Site</a></li><li id="_296548" class=""><a href='/support-tu/championship-sports' class=''>Championship Sports</a></li><li id="_296549" class=""><a href='/support-tu/george-washington-carver' class=''>George Washington Carver</a></li><li id="_296568" class=""><a href='/support-tu/how-do-we-rank' class=''>How Do We Rank?</a></li></ul></li></ul>
+                <!-- BEGIN MEGA MENUS-->
+<div class="sf-mega sf-mega-one" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>We Teach Success</h3>
+<a href="https://www.tuskegee.edu/discover-tu/prospective-students-and-parents">Why Choose TU?</a> <a href="/discover-tu/choosing-a-career">Choosing a Career</a> <a href="/discover-tu/online-learning">Online Learning</a> <a href="/discover-tu/how-do-we-rank">How do we Rank?</a>
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Resources For</h3>
+
+<ul>
+	<li><a href="/discover-tu/prospective-students-and-parents">Prospective Students &amp; Parents</a></li>
+	<li><a href="/discover-tu/alumni-friends">Alumni &amp; Friends</a></li>
+	<li><a href="/discover-tu/international-students">International Students</a></li>
+	<li><a href="http://www.goldentigersports.com" target="_blank">Visitors &amp; Fans</a></li>
+	<li><a href="/discover-tu/donors">Donors</a></li>
+	<li><a href="https://www.tuskegee.edu/research-innovation/summer-programs">High School Students (Summer Programs at TU)</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Art &amp; Culture at TU</h3>
+
+<ul>
+	<li><a href="/tugo">TU Global Office</a></li>
+	<li><a href="/discover-tu/extracurricular-activities">Extracurricular Activities</a></li>
+	<li><a href="/discover-tu/fine-performing-arts">Fine &amp; Performing Arts</a></li>
+	<li><a href="/discover-tu/lyceum-series">Lyceum Series</a></li>
+	<li><a href="/office-of-undergraduate-research">Undergraduate Research</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section3">
+            <img alt="Image of students in band concert" src="/Content/Uploads/Tuskegee/Images/nav-img.jpg" style="margin: 0px;" />
+<h4>Check Out What TU Has to Offer</h4>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-two" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>Further Your Education</h3>
+
+<p><a href="https://www.tuskegee.edu/about-us">All About Us</a> <a href="/programs-courses/find-your-interest">Find Your Interest</a> <a href="/programs-courses/search-our-degree-programs">Search our Degree Programs</a> <a href="https://www.tuskegee.edu/academics/academic-advising">Need Advising?</a>&nbsp;</p>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Academics</h3>
+
+<ul>
+	<li><a href="/programs-courses/colleges-schools">Colleges &amp; Schools</a></li>
+	<li><a href="/programs-courses/degree-programs">Degree Programs</a></li>
+	<li><a href="/programs-courses/online-learning">Online Learning</a></li>
+	<li><a href="/graduate-school">Graduate School</a></li>
+	<li><a href="https://www.tuskegee.edu/rotc">ROTC Program</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/bursar">Tuition and Fees</a></li>
+	<li><a href="/programs-courses/colleges-schools/cas/english/general-education-curriculum">General Education Curriculum</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Academic Resources</h3>
+
+<ul>
+	<li><a href="/programs-courses/academic-calendar">Academic Calendar</a></li>
+	<li><a href="/programs-courses/academic-regulations">Academic Regulations</a></li>
+	<li><a href="/programs-courses/course-catalog">Course Catalog</a></li>
+	<li><a href="https://www.tuskegee.edu/libraries">Libraries</a></li>
+	<li><a href="/programs-courses/scholarships">Scholarships</a></li>
+	<li><a href="https://www.tuskegee.edu/Content/Uploads/Tuskegee/files/Student%20Affairs/TU-Student-Handbook-2021-2022.pdf" target="_blank">Student Handbook</a></li>
+	<li><a href="/programs-courses/student-support">Student Support</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2" style="border:none;">
+            <h3>Academic Services</h3>
+
+<ul>
+	<li><a href="https://www.tuskegee.edu/programs-courses/provost">Academic Affairs/Provost Office</a></li>
+	<li><a href="https://www.tuskegee.edu/admissions">Admissions</a></li>
+	<li><a href="/programs-courses/bursar">Bursar</a></li>
+	<li><a href="/financial-aid">Financial Aid</a></li>
+	<li><a href="/programs-courses/registrar">Registrar</a></li>
+	<li><a href="/programs-courses/career-development-placement">Career Development &amp; Placement</a></li>
+	<li><a href="/office-of-undergraduate-research">Office of Undergraduate Research</a></li>
+</ul>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-three" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>Preparing you for Success</h3>
+<a href="https://www.tuskegee.edu/admissions-aid/apply-now">Apply Now</a><a href="/admissions-aid/select-a-major">Select a Major</a> <a href="/admissions-aid/admissions-counselors">Admissions Counselors</a> <a href="/admissions-aid/buy-your-books">Buy Your Books</a>
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Apply for Admissions</h3>
+
+<ul>
+	<li><a href="/admissions">Undergraduate Admissions</a></li>
+	<li><a href="/graduate-school">Graduate School&nbsp;Admissions</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/colleges-schools/cvm/cvm-admissions" target="_blank">Veterinary Medicine Admissions</a></li>
+	<li><a href="http://elearning.tuskegee.edu/" target="_blank">e-Learning</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Pay for College</h3>
+
+<ul>
+	<li><a href="/admissions-aid/tuition-fees">Tuition and Fees</a></li>
+	<li><a href="/admissions-aid/financial-aid">Financial Aid</a></li>
+	<li><a href="https://webadv-prod.ec.tuskegee.edu/WAPROD/WAPROD" target="_blank">Pay My Tuition</a></li>
+	<li><a href="https://www.tuskegee.edu/admissions-aid/financial-aid">Net Price Calculator</a></li>
+	<li><a href="/admissions-aid/scholarships">Scholarships</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p>&nbsp;&nbsp;</p>
+
+<p><img alt="Image of five students sitting on a campus bench" height="220" src="/Content/Uploads/Tuskegee/Images/Aviary/e373e9fd16864c4da5e064952ac94e93.jpg" style="margin: 0px;" width="249" /></p>
+
+<h4><em>Become a Tuskegee Golden Tiger.<br />
+You are sure to&nbsp;fit right in.</em></h4>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-four" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>Experience Campus Life</h3>
+<a href="/student-life/what-do-we-offer">What Do We Offer?</a><a href="https://www.tuskegee.edu/student-life/student-organizations">Join a Student Organization</a> <a href="/student-life/attend-an-event">Attend an Event</a> <a href="/student-life/sports-recreation">Sports &amp; Recreation</a>
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Student Services</h3>
+
+<ul>
+	<li><a href="https://webadv-prod.ec.tuskegee.edu/WAPROD/WAPROD" target="_blank">TigerWeb (View Grades/Classes)</a></li>
+	<li><a href="/student-life/student-affairs">Student Affairs</a></li>
+	<li><a href="https://www.tuskegee.edu/programs-courses/bursar">Bursar (View Tuition and Fees)</a></li>
+	<li><a href="https://www.tuskegee.edu/housing-and-residence-life">Housing &amp; Residence Life</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/student-life-and-development">Student Life and Development</a></li>
+	<li><a href="/student-life/office-of-information-technology">Information Technology</a></li>
+	<li><a href="https://www.tuskegee.edu/new-student-orientation">New Student Orientation</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Support Units</h3>
+
+<ul>
+	<li><a href="https://www.tuskegee.edu/office-of-ada-compliance">ADA Accessibility and Title IX</a></li>
+	<li><a href="/REACH">REACH/Tutoring</a></li>
+	<li><a href="/student-life/counseling-center">Counseling Center</a></li>
+	<li><a href="/student-life/student-affairs/student-health">Student Health Center</a></li>
+	<li><a href="/libraries">Libraries</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/student-affairs/dean-of-students">Dean of Students/Student Conduct</a></li>
+	<li><a href="/police">Campus Police</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p>&nbsp; &nbsp;&nbsp;<br />
+<img alt="students in a room talking amongst themselves" height="173" src="/Content/Uploads/Tuskegee/images/We-encourage-excellence4.jpg" style="margin: 0px;" width="260" /></p>
+
+<p><em><span style="font-family:georgia,serif;">You will find many Student and<br />
+Greek organizations here that<br />
+will fit&nbsp;your personality.</span></em></p>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-five" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>Research</h3>
+<a href="https://www.tuskegee.edu/research-innovation">Research and Sponsored Programs</a> <a href="https://www.tuskegee.edu/about-us/centers-of-excellence" target="_blank">Centers of Excellence</a><a href="https://www.tuskegee.edu/office-of-undergraduate-research">Undergraduate Research</a><a href="https://www.tuskegee.edu/research-innovation/research-in-the-news">Research in the News</a>
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Innovation</h3>
+
+<ul>
+	<li><a href="https://www.tuskegee.edu/Content/Uploads/Tuskegee/images/Research%20and%20Grad%20Studies/Intellectual%20Property%20Policy%20Guidelines%20Revised%20May%202017%20USE%20THIS%20ONE%20(5).pdf" target="_blank">Intellectual Policy</a></li>
+	<li><a href="https://www.tuskegee.edu/research-and-graduate-studies/patents">Patents Approved</a></li>
+	<li><a href="https://www.tuskegee.edu/Content/Uploads/Tuskegee/images/Research%20and%20Grad%20Studies/Pending%20Disclosures%20with%20USPTO.pdf" target="_blank">Patents Pending</a></li>
+	<li><a href="https://www.tuskegee.edu/research-innovation/publications-in-refereed-journals-and-conference-presentations">Publications &amp; Refereed Journals</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Global Initiatives</h3>
+
+<ul>
+	<li><a href="https://www.tuskegee.edu/tugo">TU&nbsp;Global Office (TUGO)</a></li>
+	<li><a href="https://www.tuskegee.edu/tugo/study-abroad">Study Abroad</a></li>
+	<li><a href="https://www.tuskegee.edu/Content/Uploads/Tuskegee/files/HR/Policies/internationaltravelpolicy.pdf" target="_blank">International Travel Policy</a></li>
+	<li><a href="https://travel.state.gov/content/travel.html" target="_blank">Passport Information</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section3">
+            <h3>Outreach</h3>
+
+<ul>
+	<li><a href="https://www.tuskegee.edu/programs-courses/colleges-schools/caens/cooperative-extension-program">Extension &amp; Outreach</a></li>
+	<li><a href="https://www.tuskegee.edu/research-innovation/summer-programs" target="_blank">Summer Programs</a></li>
+	<li><a href="https://www.tuskegee.edu/research-innovation/publications-in-refereed-journals-and-conference-presentations">Publications in Refereed Journals<br />
+	and Conference Presentations</a></li>
+</ul>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div class="sf-mega sf-mega-six" style="display:none;">
+    <div class="block">
+        <div class="sf-mega-section1">
+            <h3>Your Donation makes an Impact</h3>
+<a href="https://www.tuskegee.edu/support-tu">Help Promote Academic Excellence</a> <a href="https://www.tuskegee.edu/support-tu">Assist with Technology Enhancements</a> <a href="https://www.tuskegee.edu/support-tu">Support our Research Efforts</a> <a href="https://www.tuskegee.edu/support-tu">Help Improve Success Rates</a>
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Prominence</h3>
+
+<ul>
+	<li><a href="/support-tu/major-producer-of-stem-graduates">Major producer of STEM Graduates</a></li>
+	<li><a href="/support-tu/pioneers-in-health-care">Pioneers in Health Care</a></li>
+	<li><a href="/support-tu/a-top-producing-hbcu">A top-producing HBCU</a></li>
+	<li><a href="/support-tu/national-historic-site">National Historic Site</a></li>
+	<li><a href="/support-tu/championship-sports">Championship Sports</a></li>
+	<li><a href="/office-of-undergraduate-research">Excelling in Undergraduate Research</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section2">
+            <h3>Distinction</h3>
+
+<ul>
+	<li><a href="/support-tu/george-washington-carver">George Washington Carver</a></li>
+	<li><a href="/discover-tu/tu-presidents/booker-t-washington">Booker T. Washington</a></li>
+	<li><a href="/support-tu/tuskegee-airmen">Tuskegee Airmen</a></li>
+	<li><a href="/discover-tu/tu-presidents">Legacy of Leadership</a></li>
+</ul>
+
+        </div>
+        <div class="sf-mega-section3">
+            <p><br />
+&nbsp;&nbsp;<a href="/kellogg-hotel-and-conference-center"><img alt="Pedestrian walkway on TU;s campus" height="165" src="/Content/Uploads/Tuskegee/images/AboutUs.png" style="margin:0px; float:left" width="242" /></a></p>
+
+<h3></h3>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p><font face="georgia, serif"><i>Tuskegee is Ranked #4 among<br />
+U.S. News and World Report's<br />
+Top&nbsp;HBCUs.</i></font></p>
+
+<p></p>
+
+        </div>
+    <div class="clear"></div>
+    </div>
+</div>
+<!-- END MEGA MENUS -->
+            </nav>
+        </div>
+    </div>
+<!-- Navigation End -->
+<!-- END HEADER -->
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=166741233475530";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Banner Start -->
+    <!-- BEGIN HOMEPAGE SLIDER-->
+<script>
+    $(document).ready(function(){
+        $('.home-slider').slick({
+            autoplay: true,
+            dots: true,
+            speed: 500,
+            autoplaySpeed: 9000,
+            fade: true,
+            cssEase: 'linear',
+            accessibility: true,
+            slidesToShow: 1,
+            nextArrow: '<i class="fa fa-arrow-right"><img src="/Content/Uploads/Tuskegee/Images/slider-next.png" alt="next" /></i>',
+            prevArrow: '<i class="fa fa-arrow-left"><img src="/Content/Uploads/Tuskegee/Images/slider-prev.png" alt="previous" /></i>',
+        });
+    });
+</script>
+
+<div class="home-slider">
+    <li>
+    <a href="https://www.tuskegee.edu/news/tuskegee-university-announces-dr-david-wilson-77-79-as-spring-2022-commencement-speaker">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/WILSON_commencement_speaker_4_30. copy_norm.jpg" alt="Spring 2022 Undergraduate Commencement Speaker" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/commencement">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/2022 commencement web(1)_norm.jpg" alt="2022 Spring Commencement" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/coronavirus-resources">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/Covid_update(1)_norm.jpg" alt="COVID Updates" class="big" />
+    </a>
+</li><li>
+    <a href="https://alumni.tuskegee.edu/">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/Web_TUSKEGEE_SOCIAL_LIVE_(1523-523)_norm.jpg" alt="Golden Tiger Network" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/news/tuskegee-university-maintains-top-5-ranking-among-hbcus-in-the-latest-us-news-and-world-report">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/us-news-web-banner(21)_norm.png" alt="U.S. News and World Report ranking" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/news/tuskegee-university-joins-thermo-fisher-scientific-covid-19-testing-initiative-for-historically-black-colleges-and-universities">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/1thermofisher_web_norm.png" alt="Thermo Fisher $25M donation" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/coronavirus-resources/golden-tiger-health-check">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/HealthCheck-banner(2)2021-8-Tuesday1259_norm.png" alt="Golden Tiger Healthcheck" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/news/tuskegee-university-receives-2-million-from-the-tracking-foundation">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/$2million tracking banner copy(1)_norm.jpg" alt="$2M Tracking Foundation Gift" class="big" />
+    </a>
+</li><li>
+    <a href="https://www.tuskegee.edu/news/tuskegee-university-partners-with-propel-center-a-new-global-hbcu-headquarters-for-innovation">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/Propel-for-homepage_norm.png" alt="Propel Center partner" class="big" />
+    </a>
+</li><li>
+    <a href="https://tuskegee.university-tour.com/">
+        <img src="/Content/Uploads/Tuskegee/Images/Gallery/Normalized/2homepage_studentbridge_norm_norm_norm.png" alt="" class="big" />
+    </a>
+</li>
+</div>
+<!-- END HOMEPAGE SLIDER -->
+<!-- Banner End -->
+
+<!-- Body Top Start -->
+	<div class="body-top-block">
+    	<div class="content">
+    	    <div id="homepage-news-carousel">
+                <aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/PattersonHall-thumb1.png' alt='Tuskegee University College of Veterinary Medicine hosts virtual 56th symposium and celebrates largest reunion classes donations'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Tuskegee University College of Veterinary Medicine hosts virtual 56th symposium and celebrates largest reunion classes donations</h2>
+        <p class="news-text-snippet">Reunion Classes of 1972 & 1997 were honored.</p>
+    </article>
+    <a href="/news/tuskegee-university-college-of-veterinary-medicine-hosts-virtual-56th-symposium-and-celebrates-largest-reunion-classes-donations" alt="Tuskegee University College of Veterinary Medicine hosts virtual 56th symposium and celebrates largest reunion classes donations , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/David-Wilson-TU-Commencement-speaker2022-thumb.jpg' alt='Tuskegee University announces Dr. David Wilson ¡®77, ¡¯79 as Spring 2022 Commencement Speaker'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Tuskegee University announces Dr. David Wilson ¡®77, ¡¯79 as Spring 2022 Commencement Speaker</h2>
+        <p class="news-text-snippet">Dr. David Wilson, president of Morgan State University, a TU alumnus, will deliver the undergraduate commencement address .</p>
+    </article>
+    <a href="/news/tuskegee-university-announces-dr-david-wilson-77-79-as-spring-2022-commencement-speaker" alt="Tuskegee University announces Dr. David Wilson ¡®77, ¡¯79 as Spring 2022 Commencement Speaker , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/Flowing_water-image-thumb.jpg' alt='Tuskegee University to take part in NOAA's $360 Million National Water Effort'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Tuskegee University to take part in NOAA's $360 Million National Water Effort</h2>
+        <p class="news-text-snippet">The consortium was awarded $360 million over the next five years by the National Oceanic and Atmospheric Administration (NOAA). </p>
+    </article>
+    <a href="/news/tuskegee-university-to-take-part-in-noaas-360-million-national-water-effort" alt="Tuskegee University to take part in NOAA's $360 Million National Water Effort , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/Project-1-of-1065-3[54]-thumb.jpg' alt='Tuskegee University recognizes April's National Child Abuse Prevention Month'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Tuskegee University recognizes April's National Child Abuse Prevention Month</h2>
+        <p class="news-text-snippet">Tuskegee University recognizes the month of April as National Child Abuse Prevention Month.</p>
+    </article>
+    <a href="/news/tuskegee-university-recognizes-aprils-national-child-abuse-prevention-month" alt="Tuskegee University recognizes April's National Child Abuse Prevention Month , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/Jamaal_William_Nicholas-thumb.jpg' alt='Dr. J. William Nicholas announced as the new band director for the Marching Crimson Pipers'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Dr. J. William Nicholas announced as the new band director for the Marching Crimson Pipers</h2>
+        <p class="news-text-snippet">Dr. Nicholas begins on June 1 as new band director of Tuskegee University Marching Crimson Pipers.</p>
+    </article>
+    <a href="/news/dr-j-william-nicholas-announced-as-the-new-band-director-for-the-marching-crimson-pipers" alt="Dr. J. William Nicholas announced as the new band director for the Marching Crimson Pipers , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/AMIE-students-thumb.png' alt='Engineering Students Win Awards at Design Challenge Competition'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Engineering Students Win Awards at Design Challenge Competition</h2>
+        <p class="news-text-snippet">Tuskegee University engineering students awarded third place in a design competition</p>
+    </article>
+    <a href="/news/engineering-students-win-awards-at-design-challenge-competition" alt="Engineering Students Win Awards at Design Challenge Competition , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/FoundersDay2022checkpresentation-thumb.jpg' alt='University, alumni, celebrate Founders' Day Weekend events virtually and in-person'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">University, alumni, celebrate Founders' Day Weekend events virtually and in-person</h2>
+        <p class="news-text-snippet">Tuskegee University celebrated the 104th Founders' Day with Reunion Classes of 1947, 1952, 1957, 1962, 1967, 1972, 1977, and 1982.</p>
+    </article>
+    <a href="/news/university-alumni-celebrate-founders-day-weekend-events-virtually-and-in-person" alt="University, alumni, celebrate Founders' Day Weekend events virtually and in-person , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/GTN_thumbnail-copy1.png' alt='Tuskegee University launches a new alumni relations platform'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Tuskegee University launches a new alumni relations platform</h2>
+        <p class="news-text-snippet">The Golden Tiger Network is a centralized source for alumni news, communication, events, programs, and much more.</p>
+    </article>
+    <a href="/news/tuskegee-university-launches-a-new-alumni-relations-platform" alt="Tuskegee University launches a new alumni relations platform , click here to read more ">Read More</a>
+</aside><aside>
+	<figure class="img-block">
+	    <img src='/Content/Uploads/Tuskegee/Images/Content/TU-seal-thumb.jpg' alt='Board of Trustees announces the call for applications for the Elected Alumni Trustee'>
+            <h5>?</h5>
+    </figure>
+    
+    <article class="text-block">
+    	<h2 class="news-text-title">Board of Trustees announces the call for applications for the Elected Alumni Trustee</h2>
+        <p class="news-text-snippet">Tuskegee University Board of Trustees accepting nominations for an Elected Alumni Trustee</p>
+    </article>
+    <a href="/news/board-of-trustees-announces-the-call-for-applications-for-the-elected-alumni-trustee" alt="Board of Trustees announces the call for applications for the Elected Alumni Trustee , click here to read more ">Read More</a>
+</aside>
+            </div>
+        <div class="clear"></div>
+        <a href="/news" class="events" aria-label="Read more news">All News</a>
+        <div class="clear"></div>
+        </div>
+    </div>
+<!-- Body Top End -->
+
+<!-- Upcoming Start -->
+	<div class="upcoming-block">
+    	<div class="content">
+        	<h2>Upcoming Events</h2>
+
+            
+                <aside>
+	<article class="top-circle">
+        <h5>May
+            <span>06</span>
+        </h5>
+    </article>
+    <h3>Joint ROTC Commissioning</h3>
+    <p>TU Chapel 
+    
+        <span>10:00AM - 11:00AM</span>
+    </p>
+    
+</aside><aside>
+	<article class="top-circle">
+        <h5>May
+            <span>06</span>
+        </h5>
+    </article>
+    <h3>Nursing and Allied Health Capping and...</h3>
+    <p>TU Chapel 
+    
+        <span>3:00PM - 4:00PM</span>
+    </p>
+    
+</aside><aside>
+	<article class="top-circle">
+        <h5>May
+            <span>06</span>
+        </h5>
+    </article>
+    <h3>Order of the Engineer Ceremony</h3>
+    <p>Logan Hall 
+    
+        <span>4:00PM - 4:00PM</span>
+    </p>
+    
+</aside><aside>
+	<article class="top-circle">
+        <h5>May
+            <span>06</span>
+        </h5>
+    </article>
+    <h3>School of Education Induction</h3>
+    <p>TU Chapel 
+    
+        <span>7:00PM - 8:00PM</span>
+    </p>
+    
+</aside>
+            <a href="/trumba-calendar" target="_blank" class="events" aria-label="Read about more of our events">All Events</a>
+        <div class="clear"></div>
+        </div>
+    </div>
+<!-- Upcoming End -->
+
+<!-- Tuskegee Numbers Start -->
+	<div class="tuskegee-numbers-block">
+    	<div class="content">
+            <h2>Tuskegee by the Numbers</h2>
+
+<div class="thumb-box">
+<aside><img alt="" src="/Content/Uploads/Tuskegee/Images/tuskegee-icon1.png" />
+<h3>More than 60 Degree Programs</h3>
+</aside>
+
+<aside><img alt="" src="/Content/Uploads/Tuskegee/Images/tuskegee-icon2.png" />
+<h3>#4?HBCU nationally</h3>
+</aside>
+
+<aside><img alt="" src="/Content/Uploads/Tuskegee/Images/tuskegee-icon3.png" />
+<h3>14:1 Student-Faculty Ratio</h3>
+</aside>
+
+<aside><img alt="" src="/Content/Uploads/Tuskegee/Images/tuskegee-icon4.png" />
+<h3>Only HBCU designated a National Historic Site</h3>
+</aside>
+
+<div class="clear"></div>
+</div>
+<a href="https://www.tuskegee.edu/discover-tu/why-choose-tu/quick-facts">Read More</a>
+        <div class="clear"></div>
+        </div>
+    </div>
+<!-- Tuskegee Numbers End -->
+
+<!-- Keep Up Tuskegee Start -->
+	<div class="keep-up-tuskegee-block">
+    	<div class="content">
+        	<h2>Keep Up With Tuskegee</h2>
+            
+            <div class="lt-block">
+            	<div class="color-panel">
+            	    <iframe allowfullscreen="" frameborder="0" height="277" src="https://www.youtube.com/embed/ZggNT2woUws" width="100%"></iframe>
+<h3>Why You Should Choose Tuskegee</h3>
+
+<p>Tuskegee's mission has always been service to people. Stressing the need to educate the whole person, that is, the hand and the heart as well as the mind, This institution founded by Dr. Booker T. Washington was acclaimed--first by Alabama and then by the nation for the soundness and vigor of its educational programs and principles.</p>
+
+                </div>
+                <a href="https://www.youtube.com/user/tuskegeeuniversity" class="youtube" target="_blank" aria-label="Follow us on Youtube">Follow Us On Youtube</a>
+            </div>
+            
+            <div class="rt-block">
+            	<div class="top-block">
+                	<div class="instagram-feed">
+                	</div>
+                <div class="clear"></div>
+                </div>
+                
+                <a href="https://www.instagram.com/tuskegeeuniversity/?ref=badge" class="instagram" target="_blank" aria-label="Follow us on Instagram" >Follow Us On Instagram</a>
+                
+                <div class="bottom-block">
+                    <div id="twitter-feed-1" style="display: none;"></div>
+                    <div class="fb-page fb-feed1" data-href="https://www.facebook.com/TUSKEGEEUNIVERSITY/" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false" ><blockquote cite="https://www.facebook.com/TUSKEGEEUNIVERSITY/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TUSKEGEEUNIVERSITY/">TUSKEGEE UNIVERSITY</a></blockquote></div>
+                    <div class="fb-page fb-feed2" data-href="https://www.facebook.com/TUSKEGEEUNIVERSITY/" data-width="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false" ><blockquote cite="https://www.facebook.com/TUSKEGEEUNIVERSITY/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TUSKEGEEUNIVERSITY/">TUSKEGEE UNIVERSITY</a></blockquote></div>
+                    <div class="clear"></div>
+                </div>
+                
+                <a href="https://www.facebook.com/pg/TUSKEGEEUNIVERSITY" class="facebook" target="_blank" aria-label="Follow us on Facebook" >Follow Us On Facebook</a>
+            </div>
+        <div class="clear"></div>
+        </div>
+    </div>
+    <!-- BEGIN FOOTER-->
+<!-- Footer Start -->
+	<footer id="footer">
+    	<div class="content">
+        	<div class="footer-top-block">
+            	<aside class="lt-block">
+                	<ul>
+	<li><a href="https://directory.tuskegee.edu/" target="_blank">Campus Directory</a></li>
+	<li class="last"><a href="/tours/visiting-tuskegee/campus-map">Campus Map</a></li>
+</ul>
+
+                </aside>
+                
+                <aside class="rt-block">
+                    <a href="https://www.facebook.com/pg/TUSKEGEEUNIVERSITY" target="_blank"><img alt="Visit us on Facebook" src="/Content/Uploads/Tuskegee/Images/social-icon1.png" /></a> <a href="http://twitter.com/TuskegeeUniv" target="_blank"><img alt="Visit us on Twitter" src="/Content/Uploads/Tuskegee/Images/social-icon2.png" /></a> <a href="http://instagram.com/tuskegeeuniversity?ref=badge" target="_blank"><img alt="Visit us on Instagram" src="/Content/Uploads/Tuskegee/Images/social-icon3.png" /></a> <a href="https://www.youtube.com/user/tuskegeeuniversity" target="_blank"><img alt="Visit us on Youtube" src="/Content/Uploads/Tuskegee/Images/social-icon4.png" /></a> <a href="https://www.linkedin.com/edu/school?id=17738&amp;trk=tyah&amp;trkInfo=tarId%3A1412781756534%2Ctas%3Atuskegee%20%2Cidx%3A2-1-4" target="_blank"><img alt="Visit us on Linkedin" src="/Content/Uploads/Tuskegee/Images/social-icon5.png" /></a>
+                </aside>
+            <div class="clear"></div>
+            </div>
+            
+            <div class="footer-md-block">
+            	<aside class="lt-block">
+                	<a href="/"><img src="/Content/Uploads/Tuskegee/Images/f-logo.png" alt="Return to the Homepage" /></a>
+                </aside>
+                
+                <aside class="rt-block">
+                    <h3><strong>Tuskegee University</strong><br />
+1200 W. Montgomery Rd.<br />
+Tuskegee, AL 36088<br />
+Phone: 334-727-8011</h3>
+
+                </aside>
+            <div class="clear"></div>
+            </div>
+            
+            <div class="footer-bottom-block">
+            	<ul>
+	<li><a href="https://www.tuskegee.edu/office-of-ada-compliance">Accessibility</a></li>
+	<li><a href="http://www.tuskegee.edu/bookstore" target="_blank">Campus Bookstore</a></li>
+	<li><a href="https://www.tuskegee.edu/student-life/title-ix">Equal Opportunity</a></li>
+	<li><a href="/marketing" target="_blank">Media</a></li>
+	<li><a href="/sacscoc-accreditation">SACSCOC Accreditation</a></li>
+	<li><a href="/student-life/alert">TigerAlert</a></li>
+	<li class="last"><a href="/resources">Tools &amp; Resources</a></li>
+</ul>
+
+<p></p>
+
+                <p>? 2022 Tuskegee University</p>
+            <div class="clear"></div>
+            </div>
+        <div class="clear"></div>
+        </div>
+    </footer>
+<!-- Footer End -->
+<!-- END FOOTER -->
+    
+    <script>
+        var configProfile = {
+          "profile": {"screenName": 'tuskegeeuniv'},
+          "domId": 'twitter-feed-1',
+          "maxTweets": 1,
+          "enableLinks": true, 
+          "showUser": true,
+          "showTime": true,
+          "showImages": true,
+          "lang": 'en'
+        };
+        twitterFetcher.fetch(configProfile);
+    </script>
+    
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        (function() {
+         var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+         sz.src = '//siteimproveanalytics.com/js/siteanalyze_66358049.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+        })();
+        /*]]>*/
+    </script>
+    
+    <script src="//rum-static.pingdom.net/pa-5c7e7b511872b50016000803.js" async></script>
+
+</body>
+</html>
+
+
+
+
+
+
+

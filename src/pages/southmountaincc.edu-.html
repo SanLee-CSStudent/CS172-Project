@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+      <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NMCRDDH');</script>
+    <!-- End Google Tag Manager -->
+    <link rel="profile" href="http://www.w3.org/1999/xhtml/vocab" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRJS-dd43522f8c01301414a",applicationID:"527346635"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(9),c=t(10),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(11);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?l("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&l("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(u&&u<r.startTime)return;var i=[r],o=a({});o&&i.push(o),l("lcp",i)}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||l("cls",[t])})}function a(t){var e=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(e)return e.type&&(t["net-type"]=e.type),e.effectiveType&&(t["net-etype"]=e.effectiveType),e.rtt&&(t["net-rtt"]=e.rtt),e.downlink&&(t["net-dlink"]=e.downlink),t}function c(t){if(t instanceof y&&!w){var e=Math.round(t.timeStamp),n={type:t.type};a(n),e<=v.now()?n.fid=v.now()-e:e>v.offset&&e<=Date.now()?(e-=v.offset,n.fid=v.now()-e):e=v.now(),w=!0,l("timing",["fi",e,n])}}function f(t){"hidden"===t&&(u=v.now(),l("pageHide",[u]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var u,s,d,p,l=t("handle"),v=t("loader"),m=t(8),g=t(3),y=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){s=new PerformanceObserver(r);try{s.observe({entryTypes:["paint"]})}catch(h){}d=new PerformanceObserver(i);try{d.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}p=new PerformanceObserver(o);try{p.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var w=!1,b=["click","keydown","mousedown","pointerdown","touchstart"];b.forEach(function(t){document.addEventListener(t,c,g(!1))})}m(f)}},{}],7:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],8:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],9:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],10:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],11:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){h[t]=m(t).concat(e)}function v(t,e){var n=h[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return h[t]||[]}function g(t){return p[t]=p[t]||i(n)}function y(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var h={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:y,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(9),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!M++){var t=T.info=NREUM.info,e=m.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(x,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+T.offset],null,"api"),c("timing",["load",n]);var r=m.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=l+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===m.readyState&&o()}function o(){c("mark",["domContent",a()+T.offset],null,"api")}var a=t(5),c=t("handle"),f=t(9),u=t("ee"),s=t(7),d=t(2),p=t(3),l=d.getConfiguration("ssl")===!1?"http":"https",v=window,m=v.document,g="addEventListener",y="attachEvent",h=v.XMLHttpRequest,w=h&&h.prototype,b=!1;NREUM.o={ST:setTimeout,SI:v.setImmediate,CT:clearTimeout,XHR:h,REQ:v.Request,EV:v.Event,PR:v.Promise,MO:v.MutationObserver};var E=""+location,x={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1216.min.js"},O=h&&w&&w[g]&&!/CriOS/.test(navigator.userAgent),T=e.exports={offset:a.getLastTimestamp(),now:a,origin:E,features:{},xhrWrappable:O,userAgent:s,disabled:b};if(!b){t(1),t(6),m[g]?(m[g]("DOMContentLoaded",o,p(!1)),v[g]("load",r,p(!1))):(m[y]("onreadystatechange",i),v[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var M=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(10),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="facebook-domain-verification" content="bbykhrcsjxpgneacsh9wp24bxd0kkd" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://www.southmountaincc.edu/sites/default/themes/smc/favicon.ico" type="image/vnd.microsoft.icon" />
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)" />
+<link rel="canonical" href="https://www.southmountaincc.edu/" />
+<link rel="shortlink" href="https://www.southmountaincc.edu/" />
+  <title>South Mountain Community College</title>
+  <link type="text/css" rel="stylesheet" href="https://www.southmountaincc.edu/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.southmountaincc.edu/sites/default/files/css/css_D2tv4j_B8paspfxP1NdfsRC5PAuGFYrDCuCOGcqxlvE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.southmountaincc.edu/sites/default/files/css/css_R8pbNVYL--jRVeSgD4aikgMO9kn_bbWLc3RpKvLaX8k.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" media="all" />
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.southmountaincc.edu/sites/default/files/css/css_DMHwxfWNb3VKZ2iSC5z1mlZWHWcWHCZTpzYGIN6ajmo.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.southmountaincc.edu/sites/default/files/css/css_N3MqDWyK-nYvBcLhCv4sZg78XlLsC2hSC3YlXgKrlOg.css" media="all" />
+  <script src="https://www.southmountaincc.edu/sites/all/libraries/respondjs/respond.min.js?rbc0k7"></script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_6wB7_RH3hNT_viZwOlvXgQ7bvciK-Mir9CVHAkENV64.js"></script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_TVTqjz8JHRb2KK9hlzuk0YsjzD013dKyYX_OTz-2VXU.js"></script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_HX7N8zynbUNqi3or5wLMtqdXWs03BxC6yagWVRowrXs.js"></script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_ZuSibJj6sp97FzMvEv0dannvew7h6goG4bEOR-pjXtU.js"></script>
+<script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-339314-1", {"cookieDomain":".www.southmountaincc.edu"});ga("set", "anonymizeIp", true);ga("send", "pageview");</script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_wHv0Ta2RWPVK4SxHaGHMR7jyEnnGUleHXm2VlhGVuMY.js"></script>
+<script>(function() {
+      var cx = '001177764251691993171:1ydnouoqrnc';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();</script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_e3MhNrnWrXWqokJsN2_ppLqNqoeYd5BVzzDXW8tbLUE.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"smc","theme_token":"r5lqJKca8ITK5Zym8ozxLww_8NDwcx-E0ThiIDRQXDs","js":{"0":1,"sites\/all\/modules\/contrib\/eu_cookie_compliance\/js\/eu_cookie_compliance.js":1,"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/libraries\/respondjs\/respond.min.js":1,"sites\/all\/modules\/contrib\/jquery_update\/replace\/jquery\/1.9\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/contrib\/eu_cookie_compliance\/js\/jquery.cookie-1.4.1.min.js":1,"sites\/all\/modules\/contrib\/admin_menu\/admin_devel\/admin_devel.js":1,"sites\/all\/modules\/mccd\/fatv_chatbox_block\/js\/fatv_chatbox_block.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/libraries\/DOMPurify\/purify.min.js":1,"sites\/all\/modules\/contrib\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/contrib\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/contrib\/colorbox\/js\/colorbox_load.js":1,"sites\/all\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"1":1,"sites\/all\/themes\/college\/js\/pb-tabs.js":1,"2":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/affix.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/alert.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/button.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/carousel.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/collapse.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/dropdown.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/modal.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/tooltip.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/popover.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/scrollspy.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/tab.js":1,"sites\/all\/themes\/college\/bootstrap\/assets\/javascripts\/bootstrap\/transition.js":1,"sites\/all\/themes\/college\/js\/college.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/mccd\/program\/program_award\/css\/program-award.css":1,"sites\/all\/modules\/mccd\/program\/program_foi\/css\/program_foi.css":1,"sites\/all\/modules\/mccd\/program\/program_program\/css\/program-program.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/contrib\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/eu_cookie_compliance\/css\/eu_cookie_compliance.bare.css":1,"https:\/\/fonts.googleapis.com\/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i":1,"https:\/\/fonts.googleapis.com\/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i":1,"sites\/all\/themes\/college\/css\/college.css":1,"sites\/default\/themes\/smc\/css\/style.css":1,"https:\/\/use.fontawesome.com\/releases\/v5.0.10\/css\/all.css":1,"sites\/all\/themes\/college\/css\/frontpage.css":1,"sites\/default\/themes\/smc\/css\/frontpage.css":1}},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px","file_public_path":"\/sites\/default\/files","specificPagesDefaultValue":"admin*\nimagebrowser*\nimg_assist*\nimce*\nnode\/add\/*\nnode\/*\/edit\nprint\/*\nprintpdf\/*\nsystem\/ajax\nsystem\/ajax\/*"},"better_exposed_filters":{"views":{"frontpage_feature":{"displays":{"block_1":{"filters":[]}}},"news_cards":{"displays":{"block_1":{"filters":[]}}},"events_cards":{"displays":{"upcoming_events":{"filters":[]}}},"frontpage_promos":{"displays":{"block_1":{"filters":[]}}}}},"eu_cookie_compliance":{"cookie_policy_version":"1.0.0","popup_enabled":1,"popup_agreed_enabled":0,"popup_hide_agreed":0,"popup_clicking_confirmation":0,"popup_scrolling_confirmation":0,"popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Cp\u003EWe use cookies on this site to enhance your user experience. Please \u003Ca href=\u0022https:\/\/www.maricopa.edu\/disclaimer\u0022\u003Ereview our privacy policy\u003C\/a\u003E for more information.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022btn btn-default agree-button eu-cookie-compliance-default-button\u0022\u003EOK\u003C\/button\u003E\n                \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","use_mobile_message":false,"mobile_popup_html_info":"\u003Cdiv\u003E\n  \u003Cdiv class =\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\n\u003Cp\u003EBy tapping the Accept button, you agree to us doing so.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022btn btn-default agree-button eu-cookie-compliance-default-button\u0022\u003EOK\u003C\/button\u003E\n                \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","mobile_breakpoint":"768","popup_html_agreed":"\u003Cdiv\u003E\n  \u003Cdiv class=\u0022popup-content agreed\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EThank you for accepting cookies\u003C\/h2\u003E\n\u003Cp\u003EYou can now hide this message or find out more about cookies.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022hide-popup-button eu-cookie-compliance-hide-button\u0022\u003EHide\u003C\/button\u003E\n          \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E","popup_use_bare_css":1,"popup_height":"auto","popup_width":0,"popup_delay":1000,"popup_link":"https:\/\/www.maricopa.edu\/disclaimer","popup_link_new_window":1,"popup_position":null,"fixed_top_position":false,"popup_language":"en","store_consent":false,"better_support_for_screen_readers":1,"reload_page":0,"domain":"","domain_all_sites":0,"popup_eu_only_js":0,"cookie_lifetime":"14","cookie_session":false,"disagree_do_not_show_popup":0,"method":"default","allowed_cookies":"","withdraw_markup":"\u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-tab\u0022\u003EPrivacy settings\u003C\/button\u003E\n\u003Cdiv class=\u0022eu-cookie-withdraw-banner\u0022\u003E\n  \u003Cdiv class=\u0022popup-content info\u0022\u003E\n    \u003Cdiv id=\u0022popup-text\u0022\u003E\n      \u003Ch2\u003EWe use cookies on this site to enhance your user experience\u003C\/h2\u003E\n\u003Cp\u003EYou have given your consent for us to set cookies.\u003C\/p\u003E\n    \u003C\/div\u003E\n    \u003Cdiv id=\u0022popup-buttons\u0022\u003E\n      \u003Cbutton type=\u0022button\u0022 class=\u0022eu-cookie-withdraw-button\u0022\u003EWithdraw consent\u003C\/button\u003E\n    \u003C\/div\u003E\n  \u003C\/div\u003E\n\u003C\/div\u003E\n","withdraw_enabled":false,"withdraw_button_on_info_popup":0,"cookie_categories":[],"cookie_categories_details":[],"enable_save_preferences_button":1,"cookie_name":"mccd_gdpr","cookie_value_disagreed":"0","cookie_value_agreed_show_thank_you":"1","cookie_value_agreed":"2","containing_element":"body","automatic_cookies_removal":true},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackColorbox":1,"trackDomainMode":1},"bootstrap":{"anchorsFix":"0","anchorsSmoothScrolling":"0","formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+</head>
+<body class="html front not-logged-in no-sidebars page-node page-node- page-node-1226 node-type-frontpage">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMCRDDH"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+      <div class="container-fluid container-college">
+    <div class="row">  <div class="region region-alert">
+    <section id="block-block-116" class="block block-block block-covid-updates clearfix">
+  <div class="alert-message-leader">Maricopa Emergency Management System Alert</div>
+  <div class="alert-message">
+    <div class="well well-sm">
+<p><strong class="text-danger"><span class="fas fa-exclamation-triangle">?</span> <span style="color: #8c5200;  font-size: 85%;">CORONAVIRUS (COVID-19) UPDATE:</span>?Face coverings are encouraged inside </strong><strong class="text-danger">all South Mountain Community College buildings, including the SMC Library.</strong></p>
+</div>
+  </div>
+</section>
+  </div>
+</div>
+  </div>
+<header role="banner">
+  <nav id="global-nav" class="navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <div class="container-fluid container-college">
+        <div id="site-logo" class="navbar-brand">
+          <a id="logo" href="/" title="South Mountain Community College">
+            <img src="https://www.southmountaincc.edu/sites/default/themes/smc/logo.png" alt="Home" />
+          </a>
+        </div>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#global-links" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="global-links">
+      <div id="top-menu">
+  <div class="container-fluid container-college">
+    <ul class="nav navbar-nav">
+      <li><a href="/students">Students</a></li>
+      <li><a href="https://inside.southmountaincc.edu" target="_blank" >Employees</a></li>
+      <li><a href="/about/community">Community</a></li>
+      <li><a href="https://athletics.southmountaincc.edu/" target="_blank" >Athletics</a></li>
+      <li><a href="/about/locations">Locations</a></li>
+      <li><a href="https://ww2.southmountaincc.edu/directory" target="_blank" >Directory</a></li>
+    </ul>
+    <div id="cta-menu">
+      <a href="/give" class="btn btn-top-second" target="_blank">Give to SMCC</a>
+      <a href="https://redirect.maricopa.edu/admissions" class="btn btn-top-first" target="_blank">Apply Now</a>
+      <a href="/request-info" class="btn btn-top-second" target="_blank">Request Information</a>
+    </div>
+  </div>
+</div>
+      <div id="search-menu">
+        <div class="container-fluid container-college">
+                    <div id="google-search">
+            <div id="search-container">
+    <div id="nav-search" class="reset-box-sizing" role="search">
+      <gcse:search></gcse:search>
+      <script>
+        window.onload = function() {
+          document.getElementById('gsc-i-id1').placeholder = 'Search SMC';
+        };
+      </script>
+    </div></div>          </div>
+                  </div>
+      </div>
+      <div id="main-menu">
+        <div class="container-fluid container-college">
+          <div id="menu-container">
+                          <ul class="menu nav navbar-nav"><li class="first leaf" role="presentation"><a href="/degrees-certificates" title="Degrees and Certificates">Degrees &amp; Certificates</a></li>
+<li class="leaf" role="presentation"><a href="/future-students" title="">Future Students</a></li>
+<li class="leaf" role="presentation"><a href="/paying-college" title="">Paying for College</a></li>
+<li class="leaf" role="presentation"><a href="/current-students" title="">Current Students</a></li>
+<li class="leaf" role="presentation"><a href="/academics" title="">Academics</a></li>
+<li class="last leaf" role="presentation"><a href="/about" title="">About</a></li>
+</ul>                                  </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </header>
+<h1 class="page-header hidden">South Mountain Community College</h1>
+<div id="feature-bg"><div class="container-fluid">
+  <div class="row row-feature">
+    <div class="col-sm-12">
+        <div class="region region-main-top">
+    <section id="block-views-frontpage-feature-block-1" class="block block-views clearfix">
+
+      
+  <div class="view view-frontpage-feature view-id-frontpage_feature view-display-id-block_1 view-dom-id-c58aeb5bba52cfae58fbfb22679778f4">
+        
+  
+  
+      <div class="view-content">
+      
+<div id="views-bootstrap-carousel-1" class="views-bootstrap-carousel-plugin-style carousel slide"  data-ride="carousel" data-interval="7500" data-pause="hover" data-wrap="true">
+      <!-- Carousel indicators -->
+    <ol class="carousel-indicators">
+              <li data-target="#views-bootstrap-carousel-1" data-slide-to="0" class="active"></li>
+              <li data-target="#views-bootstrap-carousel-1" data-slide-to="1" class=""></li>
+              <li data-target="#views-bootstrap-carousel-1" data-slide-to="2" class=""></li>
+              <li data-target="#views-bootstrap-carousel-1" data-slide-to="3" class=""></li>
+          </ol>
+  
+  <!-- Carousel items -->
+  <div class="carousel-inner" role="listbox">
+          <div class="item active">
+        
+<a href="https://www.southmountaincc.edu/events/2022/spring-2022-commencement"><div class="gradient"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/commencement_2022_1600x500_v01.jpg" width="1600" height="500" alt="SMCC 2022 Commencement Ceremony" title="SMCC 2022 Commencement Ceremony" /></div></a>
+  <div class="carousel-caption">
+          <h3 class="caption-title">SMCC 2022 Commencement Ceremony</h3>
+    
+          <p class="caption-description">Thursday, May 12 ? 7pm</p>
+    
+          <div class="caption-button"><a href="https://www.southmountaincc.edu/events/2022/spring-2022-commencement" title="SMCC 2022 Commencement Ceremony" class="btn btn-lg btn-frontpage-feature">Click here for more information!</a></div>
+      </div>
+      </div>
+          <div class="item ">
+        
+<a href="https://www.southmountaincc.edu/UTSC"><div class="gradient"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/ultimate_technology_summer_camp_2022_1600x500_v02.jpg" width="1600" height="500" alt="Ultimate Technology Summer Camp" title="Ultimate Technology Summer Camp" /></div></a>
+  <div class="carousel-caption">
+          <h3 class="caption-title">Ultimate Technology Summer Camp</h3>
+    
+          <p class="caption-description">Application Deadline: May 20, 2022</p>
+    
+          <div class="caption-button"><a href="https://www.southmountaincc.edu/UTSC" title="Ultimate Technology Summer Camp" class="btn btn-lg btn-frontpage-feature">Apply Here!</a></div>
+      </div>
+      </div>
+          <div class="item ">
+        
+<a href="https://www.southmountaincc.edu/events/2022/smcc-covid-vaccination-and-testing-clinic"><div class="gradient"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/covid_vaccination_pod_front_page_1600x500_v02.jpg" width="1600" height="500" alt="SMCC Covid Vaccinations" title="SMCC Covid Vaccinations" /></div></a>
+  <div class="carousel-caption">
+          <h3 class="caption-title">SMCC Covid Vaccinations</h3>
+    
+          <p class="caption-description">Upcoming Dates Through June</p>
+    
+          <div class="caption-button"><a href="https://www.southmountaincc.edu/events/2022/smcc-covid-vaccination-and-testing-clinic" title="SMCC Covid Vaccinations" class="btn btn-lg btn-frontpage-feature">Pfizer, Moderna and J&amp;J Will be Available. Learn more!</a></div>
+      </div>
+      </div>
+          <div class="item ">
+        
+<a href="https://together.maricopa.edu/returning-campus"><div class="gradient"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/covid-19_protocols_face_covering_1600x500_v01.jpg" width="1600" height="500" alt="Face Coverings are Encouraged Inside All SMCC Buildings" title="Face Coverings are Encouraged Inside All SMCC Buildings" /></div></a>
+  <div class="carousel-caption">
+          <h3 class="caption-title">Face Coverings are Encouraged Inside All SMCC Buildings</h3>
+    
+          <p class="caption-description">Your Health and Safety is Important to Us!</p>
+    
+          <div class="caption-button"><a href="https://together.maricopa.edu/returning-campus" title="Face Coverings are Encouraged Inside All SMCC Buildings" class="btn btn-lg btn-frontpage-feature">Social Distancing is required.</a></div>
+      </div>
+      </div>
+      </div>
+
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</section>
+  </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="main-container container-fluid container-college">
+  <div class="row">
+    <section class="col-sm-12">
+      <div class="row row-feature">
+        <div class="col-sm-12">
+                  </div>
+      </div>
+                <div class="row row-promo">
+        <div class="col-sm-4 col-md-3">
+          <a id="main-content"></a>
+          <ul class="list-unstyled quick-links">
+            <li class="link-my-maricopa-edu"><a href="https://my.maricopa.edu" title="My.maricopa.edu" target="_blank">My.maricopa.edu</a></li>
+            <li class="link-class-schedule"><a href="http://classes.sis.maricopa.edu/index.php?institutions[]=SMC07" title="Schedule of Classes" target="_blank">Class Search</a></li>
+            <li class="link-financial-aid"><a href="/paying-college/financial-aid" title="Financial Aid">Financial Aid</a></li>
+            <li class="link-bookstore"><a href="https://www.bkstr.com/southmountainccstore" target="_blank" title="Bookstore">Bookstore</a></li>
+            <li class="link-canvas"><a href="http://learn.maricopa.edu/" target="_blank" title="Canvas Login">Canvas</a></li>
+            <li class="link-library"><a href="https://libguides.southmountaincc.edu/home" target="_blank" title="Library">Library</a></li>
+            <li class="link-chat"><a href='#' onclick="window.open('https://chat.southmountaincc.edu/chatbeacon/southmountaincc/2/?accountId=1&siteId=2&queueId=8&theme=blue&popout=true&multiq=7,5,14,6&pc=false', 'cbchat','left=20,top=20,width=376,height=700,resizable=0'); return false;">Chat with Us</a></li>
+          </ul>
+        </div>
+        <div id="promos" class="col-sm-8 col-md-9">
+          <div class="view view-frontpage-promos view-id-frontpage_promos view-display-id-block_1 view-dom-id-b7f2521f74e19cbeebcec4e6068149b5">
+        
+  
+  
+      <div class="view-content">
+      
+
+<div id="views-bootstrap-grid-1" class="views-bootstrap-grid-plugin-style">
+  
+          <div class="row">
+                  <div class="card-set--column col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              
+  <div>        <span><a class="card--link" href="https://www.southmountaincc.edu/academics/webforms/help-me-request-form">
+  <div class="card linked">
+    <div class="thumbnail promo-image"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/helpmeform-sm.jpg" width="722" height="380" alt="Help me" title="Don&#039;t Know Where to Start?" /></div>
+    <div class="caption">
+      <h3 class="card--title">Don&#039;t Know Where to Start?</h3>
+      <div class="card--body"><p>Use our easy Help Me! form and a friendly advisor will contact you and help you get started!</p></div>
+    </div>
+  </div>
+</a></span>  </div>          </div>
+
+                                      <div class="card-set--column col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              
+  <div>        <span><a class="card--link" href="https://www.southmountaincc.edu/FYE">
+  <div class="card linked">
+    <div class="thumbnail promo-image"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/unnamed.jpg" width="512" height="269" alt="Beginning in the Fall 2022 Semester" title="Beginning in the Fall 2022 Semester" /></div>
+    <div class="caption">
+      <h3 class="card--title">Beginning in the Fall 2022 Semester</h3>
+      <div class="card--body"><p>All new students will need to take a First Year Experience course, FYE101 or FYE103, Learn More!  </p></div>
+    </div>
+  </div>
+</a></span>  </div>          </div>
+
+                                                              <div class="clearfix visible-sm-block"></div>
+                                                                                                          <div class="card-set--column col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              
+  <div>        <span><a class="card--link" href="https://www.maricopa.edu/executive-searches/south-mountain-community-college-president">
+  <div class="card linked">
+    <div class="thumbnail promo-image"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/frontpage/promos/president_search_512x269_v02.jpg" width="512" height="269" alt="Presidential Search @ SMCC" title="Presidential Search" /></div>
+    <div class="caption">
+      <h3 class="card--title">Presidential Search</h3>
+      <div class="card--body"><p>Dr. Shari Olson has announced her retirement, and a search for the next president of SMCC has begun.</p></div>
+    </div>
+  </div>
+</a></span>  </div>          </div>
+
+                                                                                        <div class="clearfix visible-md-block"></div>
+                                                        <div class="clearfix visible-lg-block"></div>
+                                                  </div>
+    
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>        </div>
+      </div>
+    </section>
+  </div>
+
+            <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <article id="node-1226" class="node node-frontpage clearfix">
+    
+<div class="paragraphs-items paragraphs-items-field-fp-paragraphs paragraphs-items-field-fp-paragraphs-full paragraphs-items-full">
+  <div class="field field-name-field-fp-paragraphs field-type-paragraphs field-label-hidden">
+    <div class="field-items">
+          <div class="field-item even"><div class="tab-set tab-set-16"
+      style="background-image: url(/sites/default/files/paragraphs/tab/smcc_tab_1600x606_new.png); background-position-x: 50%;"
+  >
+  <div class="tab-set--overlay">
+          <h2 class="tab-set--title">What type of student are you?</h2>
+    
+    <ul class="tab-set--tablist nav nav-pills mb-3" role="tablist">
+              <li class="nav-item tab-set-label active"
+                      data-tab-background="/sites/default/files/paragraphs/tab/smcc_tab_1600x606_new.png"
+            data-tab-bg-position="50"
+                    role="presentation"
+        >
+          <a class="nav-link"
+             id="new-tab"
+             data-toggle="pill"
+             href="#tab-new"
+             role="tab"
+             aria-controls="tab-new"
+             aria-selected="true"
+          >
+            New          </a>
+        </li>
+              <li class="nav-item tab-set-label "
+                      data-tab-background="/sites/default/files/paragraphs/tab/smcc_tab_1600x606_current.png"
+            data-tab-bg-position="50"
+                    role="presentation"
+        >
+          <a class="nav-link"
+             id="current-tab"
+             data-toggle="pill"
+             href="#tab-current"
+             role="tab"
+             aria-controls="tab-current"
+             aria-selected="false"
+          >
+            Current          </a>
+        </li>
+              <li class="nav-item tab-set-label "
+                      data-tab-background="/sites/default/files/paragraphs/tab/smcc_tab_1600x606_high_school.jpg"
+            data-tab-bg-position="50"
+                    role="presentation"
+        >
+          <a class="nav-link"
+             id="high-school-tab"
+             data-toggle="pill"
+             href="#tab-high-school"
+             role="tab"
+             aria-controls="tab-high-school"
+             aria-selected="false"
+          >
+            High School          </a>
+        </li>
+          </ul>
+
+    <div class="tab-set--content tab-content" id="pills-tabContent">
+                                                                                                                                                                                                                                                                                    <div class="tab-pane fade active in"
+               id="tab-new"
+               role="tabpanel"
+               aria-labelledby="new-tab"
+          >
+            <div class="tab entity entity-paragraphs-item paragraphs-item-pb-tab">
+  <div class="content">
+    
+          <div class="tab--body"><p>Your success is the reason we¡¯re here. Whether you want to train for a career, prepare for a four-year university, or learn just for the fun of it, we¡¯ll help you reach your goals.</p>
+</div>
+    
+          <div class="tab--cta"><a href="/future-students" class="btn btn-lg btn-outline-light">Get Started Today</a></div>
+      </div>
+</div>
+          </div>
+                                <div class="tab-pane fade "
+               id="tab-current"
+               role="tabpanel"
+               aria-labelledby="current-tab"
+          >
+            <div class="tab entity entity-paragraphs-item paragraphs-item-pb-tab">
+  <div class="content">
+    
+          <div class="tab--body"><p>If you are a current student at South Mountain or another Maricopa Community College, we have the resources to help you succeed.</p>
+</div>
+    
+          <div class="tab--cta"><a href="/current-students" class="btn btn-lg btn-outline-light">Learn More</a></div>
+      </div>
+</div>
+          </div>
+                                <div class="tab-pane fade "
+               id="tab-high-school"
+               role="tabpanel"
+               aria-labelledby="high-school-tab"
+          >
+            <div class="tab entity entity-paragraphs-item paragraphs-item-pb-tab">
+  <div class="content">
+    
+          <div class="tab--body"><p>Don¡¯t put off your dreams. If you¡¯re in high school, you can take advantage of opportunities to get a head start on your college education today. Learn more about participating high schools.</p>
+</div>
+    
+          <div class="tab--cta"><a href="/future-students/early-college" class="btn btn-lg btn-outline-light">Get More Information</a></div>
+      </div>
+</div>
+          </div>
+                  </div> <!-- end tab-content -->
+  </div>
+</div>
+</div>
+      </div>
+</div>
+</div>
+</article>
+
+</section>
+  </div>
+
+      <div class="row">
+      <div class="col-sm-12">
+          <div class="region region-main-bottom">
+    <section id="block-views-news-cards-block-1" class="block block-views block-latest-news clearfix">
+
+        <h2 class="block-title">Latest News</h2>
+    
+  <div class="view view-news-cards view-id-news_cards view-display-id-block_1 card-set view-dom-id-3d8a63333b4ec79f74aabf8596a928eb">
+        
+  
+  
+      <div class="view-content">
+        <div class="card">
+    <div class="thumbnail">
+  <div class="field-content"><a href="/news/2022/summer-math-camps"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/news/teaser/guadalupe_center_summer_math_camps_1170x600_v04.jpg?itok=Bm0XIGSK" width="600" height="308" alt="Summer Math Camps" /></a></div>        <div class="news--category college">
+        <div>  
+<span class="news--category__label"><a href="/news/category/college">College</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <header class="news--title">
+    <div class="article--date"><span class="date-display-single">April 22, 2022</span></div>    <h2><span class="field-content"><a href="/news/2022/summer-math-camps">Summer Math Camps</a></span></h2>
+  </header>
+</div>  </div>
+  <div class="card">
+    <div class="thumbnail">
+  <div class="field-content"><a href="/news/2022/award-winning-singer-songwriter-storyteller-martha-redbone-visits-smcc-storytelling-institute"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/news/teaser/1_0.png?itok=sHxItI0X" width="600" height="308" alt="Award Winning Singer, Songwriter, Storyteller, Martha Redbone Visits SMCC Storytelling Institute " /></a></div>        <div class="news--category press-releases">
+        <div>  
+<span class="news--category__label"><a href="/news/category/press-releases">Press Releases</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <header class="news--title">
+    <div class="article--date"><span class="date-display-single">April 21, 2022</span></div>    <h2><span class="field-content"><a href="/news/2022/award-winning-singer-songwriter-storyteller-martha-redbone-visits-smcc-storytelling-institute">Award Winning Singer, Songwriter, Storyteller, Martha Redbone Visits SMCC Storytelling Institute</a></span></h2>
+  </header>
+</div>  </div>
+  <div class="card">
+    <div class="thumbnail">
+  <div class="field-content"><a href="/news/2022/south-mountain-community-college-theatre-returns-stage-trich-sarah-cho"><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/news/teaser/trich_2022_1170x600_v02.jpg?itok=p95ZKibp" width="600" height="308" alt="South Mountain Community College Theatre Returns to the Stage with TRICH by Sarah Cho" /></a></div>        <div class="news--category college">
+        <div>  
+<span class="news--category__label"><a href="/news/category/college">College</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <header class="news--title">
+    <div class="article--date"><span class="date-display-single">April 13, 2022</span></div>    <h2><span class="field-content"><a href="/news/2022/south-mountain-community-college-theatre-returns-stage-trich-sarah-cho">South Mountain Community College Theatre Returns to the Stage with TRICH by Sarah Cho</a></span></h2>
+  </header>
+</div>  </div>
+    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="/news" class="btn btn-lg btn-primary">View All News</a></p>
+    </div>
+  
+  
+</div>
+</section>
+<section id="block-views-events-cards-upcoming-events" class="block block-views block-upcoming-events clearfix">
+
+        <h2 class="block-title">Upcoming Events</h2>
+    
+  <div class="view view-events-cards view-id-events_cards view-display-id-upcoming_events card-set view-dom-id-e768b9ccda69eed61d7864ca976368e4">
+        
+  
+  
+      <div class="view-content">
+        <div class="card">
+    <div class="thumbnail">
+  <div><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/events/nau_walk-in_wednesdays_2022_1170x600_v02.jpg?itok=T_-9gkWr" width="600" height="308" alt="NAU Walk-in Wednesdays" /></div>        <div class="event--category college">
+        <div><span class="event--category__label"><a href="/events/category/college">College</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <div class="event--date">
+    <span class="event--date-month">May</span>
+    <span class="event--date-day">4</span>
+  </div>
+  <header class="event--title">
+    <h2><span><a href="/events/2022/nau-walk-wednesdays">NAU Walk-in Wednesdays</a></span></h2>
+  </header>
+</div>
+  </div>
+  <div class="card">
+    <div class="thumbnail">
+  <div><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/events/storytelling_for_student_success_2022_1170x600_v01.jpg?itok=K3JtPmYf" width="600" height="308" alt="Storytelling for Student Success" /></div>        <div class="event--category college">
+        <div><span class="event--category__label"><a href="/events/category/college">College</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <div class="event--date">
+    <span class="event--date-month">May</span>
+    <span class="event--date-day">4</span>
+  </div>
+  <header class="event--title">
+    <h2><span><a href="/events/2022/storytelling-student-success">Storytelling for Student Success</a></span></h2>
+  </header>
+</div>
+  </div>
+  <div class="card">
+    <div class="thumbnail">
+  <div><img class="img-responsive" src="https://www.southmountaincc.edu/sites/default/files/styles/event_card/public/events/gcu_at_smcc_2022_1170x600_v01.jpg?itok=_3VliK0H" width="600" height="308" alt="Grand Canyon University (GCU) @ SMCC" /></div>        <div class="event--category college">
+        <div><span class="event--category__label"><a href="/events/category/college">College</a></span>
+</div>      </div>
+  </div>
+<div class="caption">
+  <div class="event--date">
+    <span class="event--date-month">May</span>
+    <span class="event--date-day">5</span>
+  </div>
+  <header class="event--title">
+    <h2><span><a href="/events/2022/grand-canyon-university-gcu-smcc">Grand Canyon University (GCU) @ SMCC</a></span></h2>
+  </header>
+</div>
+  </div>
+    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="/events" class="btn btn-lg btn-primary">View All Events</a></p>
+    </div>
+  
+  
+</div>
+</section>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="global-footer">
+  <div class="container-fluid container-college">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-9">
+        <ul class="menu nav"><li class="first leaf" role="presentation"><a href="https://redirect.maricopa.edu/admissions" title="">Apply Now</a></li>
+<li class="leaf" role="presentation"><a href="https://athletics.southmountaincc.edu/" title="">Athletics</a></li>
+<li class="leaf" role="presentation"><a href="https://www.southmountaincc.edu/current-students/bookstore" title="">Bookstore</a></li>
+<li class="leaf" role="presentation"><a href="https://learn.maricopa.edu/" title="">Canvas</a></li>
+<li class="leaf" role="presentation"><a href="https://www.maricopa.edu/about/careers" title="">Careers</a></li>
+<li class="leaf" role="presentation"><a href="https://district.maricopa.edu/consumer-information" title="Consumer Information">Consumer Information</a></li>
+<li class="leaf" role="presentation"><a href="/degrees-certificates" title="">Degrees and Certificates</a></li>
+<li class="leaf" role="presentation"><a href="https://ww2.southmountaincc.edu/directory" title="">Directory</a></li>
+<li class="leaf" role="presentation"><a href="/future-students/disability-resources" title="">Disability Resources</a></li>
+<li class="leaf" role="presentation"><a href="https://www.maricopa.edu/disclaimer" title="Disclaimer">Disclaimer</a></li>
+<li class="leaf" role="presentation"><a href="https://district.maricopa.edu/consumer-information" title="">Disclosures</a></li>
+<li class="leaf" role="presentation"><a href="https://inside.southmountaincc.edu/" title="">Employees</a></li>
+<li class="leaf" role="presentation"><a href="/future-students/enrollment-steps" title="">Enrollment Steps</a></li>
+<li class="leaf" role="presentation"><a href="http://classes.sis.maricopa.edu/index.php?institutions[]=SMC07 " title="">Find a Class</a></li>
+<li class="leaf" role="presentation"><a href="/current-students/learning-resources" title="">Learning Resources</a></li>
+<li class="leaf" role="presentation"><a href="https://libguides.southmountaincc.edu/home" title="">Library</a></li>
+<li class="leaf" role="presentation"><a href="https://my.maricopa.edu/" title="">My Maricopa</a></li>
+<li class="leaf" role="presentation"><a href="https://myinfo.maricopa.edu/" title="">MyInfo</a></li>
+<li class="leaf" role="presentation"><a href="https://district.maricopa.edu/consumer-information/non-discrimination-statements" title="">Non-discrimination Statement</a></li>
+<li class="leaf" role="presentation"><a href="/about/community/performance-arts-center" title="">Performance Arts Center</a></li>
+<li class="leaf" role="presentation"><a href="https://district.maricopa.edu/legal/petition-signature-solicitation-protocols" title="">Petition Solicitation Instructions</a></li>
+<li class="leaf" role="presentation"><a href="https://www.southmountaincc.edu/request-info" title="">Request Information</a></li>
+<li class="leaf" role="presentation"><a href="http://strengths.southmountaincc.edu/" title="">StrengthsQuest</a></li>
+<li class="leaf" role="presentation"><a href="/about/technology-support-services" title="">Technology Support Services</a></li>
+<li class="leaf" role="presentation"><a href="/current-students/veterans-services" title="">Veterans Services</a></li>
+<li class="last leaf" role="presentation"><a href="/about/about-campus-map" title="">Visit SMCC</a></li>
+</ul>      </div>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <div class="athletics-logo">
+          <a href="https://athletics.southmountaincc.edu/" target="_blank">
+            <img class="mascot" src="/sites/smc/themes/smc/images/athletics.png" alt="Athletics" />
+          </a>
+        </div>
+        <div class="social-icons">
+          <p>
+            <span class="fa-stack fa-lg">
+              <a href="https://www.facebook.com/southmountaincc" target="_blank">
+                <span aria-hidden="true" class="fab fa-facebook-square fa-2x facebook"></span>
+                <span class="sr-only">facebook</span>
+              </a>
+            </span>
+            <span class="fa-stack fa-lg">
+              <a href="https://twitter.com/smcccougar" target="_blank">
+                <span aria-hidden="true" class="fab fa-twitter-square fa-2x twitter"></span>
+                <span class="sr-only">twitter</span>
+              </a>
+            </span>
+            <span class="fa-stack fa-lg">
+              <a href="http://www.youtube.com/user/southmountaincc" target="_blank">
+                <span aria-hidden="true" class="fab fa-youtube-square fa-2x youtube"></span>
+                <span class="sr-only">youtube</span>
+              </a>
+            </span>
+            <span class="fa-stack fa-lg">
+              <a href="https://www.instagram.com/southmountaincc" target="_blank">
+                <span aria-hidden="true" class="fab fa-instagram fa-2x instagram"></span>
+                <span class="sr-only">instagram</span>
+              </a>
+            </span>
+            <span class="fa-stack fa-lg">
+              <a href="https://www.linkedin.com/school/south-mountain-community-college/" target="_blank">
+                <span aria-hidden="true" class="fab fa-linkedin fa-2x linkedin"></span>
+                <span class="sr-only">linkedin</span>
+              </a>
+            </span>
+          </p>
+        </div>
+        <div class="app-icons">
+          <h5>Download the MyInfo App</h5>
+          <a href="https://apps.apple.com/us/app/maricopa-myinfo/id1438380267" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.maricopa.edu/images/svg/icon/app_store_badge.svg" alt="Download MyInfo on the App Store" />
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=edu.maricopa.myinfo&amp;utm_source=app&amp;utm_campaign=myinfo&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.maricopa.edu/images/svg/icon/google_play_badge.svg" alt="Download MyInfo on the Play Store" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row bottom">
+      <div class="col-sm-12">
+        <p class="college-address">7050 South 24th Street, Phoenix, AZ 85042 | 602.243.8000 |  &copy;&nbsp;2022 South Mountain Community College</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 eoaa">
+        <div class="col-md-9">
+          <p>The Maricopa County Community College District (MCCCD) is an EEO/AA institution and an equal opportunity employer of protected veterans and individuals with disabilities. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, age, or national origin. A lack of English language skills will not be a barrier to admission and participation in the career and technical education programs of the District.</p>
+          <p>The Maricopa County Community College District does not discriminate on the basis of race, color, national origin, sex, disability or age in its programs or activities.  For Title IX/504 concerns, call the following number to reach the appointed coordinator:  (480) 731-8499.  For additional information, as well as a listing of all coordinators within the Maricopa College system, visit http://www.maricopa.edu/non-discrimination.</p>
+        </div>
+        <div class="col-md-3 maricopa-logo">
+          <a href="https://www.maricopa.edu" target="_blank"><img class="img-responsive" src="/sites/all/themes/college/images/maricopa-horiz-white.png" alt="Maricopa Community Colleges" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <div class="footer container-fluid">
+      <div class="region region-footer">
+    <section id="block-block-161" class="block block-block clearfix">
+
+      
+  <script type="text/javascript" src="https://chat.southmountaincc.edu/chatbeacon/southmountaincc/2/scripts/chatbeacon.js?accountId=1&amp;siteId=2&amp;queueId=8&amp;m=1&amp;i=1&amp;b=1&amp;c=1&amp;theme=frame&amp;multiq=7,5,14,6&amp;pc=false" defer="defer"></script>
+</section>
+  </div>
+  </div>
+  <script>window.eu_cookie_compliance_cookie_name = "mccd_gdpr";</script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_Fl8DctnznJ4fSz4gYMnWAQWJujwJNw-_pMz9aiO_aNA.js"></script>
+<script src="https://www.southmountaincc.edu/sites/default/files/js/js_MRdvkC2u4oGsp5wVxBG1pGV5NrCPW3mssHxIn6G9tGE.js"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-dd43522f8c01301414a","applicationID":"527346635","transactionName":"NFAAMkZRCkJRAURZDg0aIwVAWQtfHwxfVAQ8RQMBUW8SWFUV","queueTime":0,"applicationTime":508,"atts":"GBcDRA5LGUw=","errorBeacon":"bam.nr-data.net","agent":""}</script><script async type="text/javascript" src="/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=3&cb=977704319"></script>
+</body>
+</html>

@@ -5,13 +5,17 @@ import java.net.URL;
 import java.util.HashSet;
 
 public class LinkNode {
+	
+	// root node constructor
 	public LinkNode(String link) throws MalformedURLException {
 		link = removeRef(link);
 		
 		// for the starting node, root is itself
 		this.link = new URL(link);
+		// get local address of URL
 		this.local = this.link.getFile();
-		// has to be a root domain but contains no slash
+		// if root does not contain slash(/) at the end, add it
+		// normalizing to prevent duplicate pages
 		if(this.local.equals("")) {
 			this.link = null;
 			this.link = new URL(link + "/");
@@ -20,6 +24,7 @@ public class LinkNode {
 		depth = 1;
 	}
 	
+	// child node constructors
 	public LinkNode(String link, int depth) throws MalformedURLException {
 		link = removeRef(link);
 		
@@ -30,11 +35,10 @@ public class LinkNode {
 	
 	// from the URL, this function decides whether URL is functional or not
 	public boolean checkURL() {
-		// if the link is pointing to non-edu sites, return false
-		if(!checkHost()) {
-			return false;
-		}
 		// if the local path is included in the robots.txt
+		if(robots == null) {
+			return true;
+		}
 		if(robots.contains(this.getLocal())) {
 			return false;
 		}
@@ -48,13 +52,6 @@ public class LinkNode {
 			return true;
 		}
 		return false;
-	}
-	
-	public boolean isFile() {
-		if(link.getFile().contains("")) {
-			return false;
-		}
-		return true;
 	}
 	
 	// check if the URL points to specific files
@@ -76,7 +73,7 @@ public class LinkNode {
 	}
 	
 	// check if the URL links to .edu hosts
-	// if it does not contain .edu ignore it
+	// if it does not contain .edu, ignore the URL
 	public boolean checkHost() {
 		if(link.getHost().contains(".edu")) {
 			return true;

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -63,15 +64,21 @@ public class Crawler {
 	
 	private void readRobots(LinkNode curr) throws IOException {
 		String robots = curr.getLink() + "robots.txt";
-		Connection.Response html = Jsoup.connect(robots).execute();
+		Connection.Response accessList = Jsoup.connect(robots).execute();
 		
-		String htmlText = html.body();
-		String[] lines = htmlText.split("\n");
+		String accessListText = accessList.body();
+		String[] lines = accessListText.split("\n");
 		
 		HashSet<String> disallowed = new HashSet<String>();
 		for(String s: lines) {
+			if(s.equals("")) {
+				continue;
+			}
 			if(s.toLowerCase().charAt(0) == "D".toLowerCase().charAt(0)) {
-				disallowed.add(s.split(" ")[1]);
+				String[] disallowedPath = s.split(" ");
+				if(disallowedPath.length >= 2) {
+					disallowed.add(disallowedPath[1]);
+				}
 			}
 		}
 		
@@ -79,33 +86,39 @@ public class Crawler {
 	}
 	
 	// reads in seed.txt and store URL to frontier
-	private void loadSeeds() throws FileNotFoundException, MalformedURLException {
-		String seedFile = "src/seed.txt";
-		
-		File seed = new File(seedFile);
-		Scanner s;
-
-		s = new Scanner(seed);
-		
-		// while(s.hasNextLine()) {
-			// upon creating LinkNode, anchors or references are removed
-			LinkNode node = new LinkNode(s.nextLine());
-			// if normalization succeeds, add node to the frontier
-			// otherwise(i.e. protocol is not http), ignores it and continue to the next seed
-			if(node.checkHost()) {
-				frontier.add(node);
+	private void loadSeeds() {
+		try {
+			String seedFile = "src/seed.txt";
+			
+			File seed = new File(seedFile);
+			Scanner s;
+	
+			s = new Scanner(seed);
+			
+			while(s.hasNextLine()) {
+				// upon creating LinkNode, anchors or references are removed
+				LinkNode node = new LinkNode(s.nextLine());
+				// if normalization succeeds, add node to the frontier
+				// otherwise(i.e. protocol is not http), ignores it and continue to the next seed
+				if(node.checkHost()) {
+					frontier.add(node);
+				}
 			}
-		// }
-		s.close();
+			s.close();
+		} catch(FileNotFoundException e) {
+			System.out.println("File not found in pages repository: " + e.getMessage());
+		} catch (MalformedURLException e) {
+			System.out.println("Malformed URL is read");
+		}
 	}
 	
 	public void crawl() {
-		try {
-			// add seed link to frontier, currently just manually assigned
-			loadSeeds();
-			
-			// run as long as frontier has some links to crawl
-			while(!frontier.isEmpty()) {
+		// add seed link to frontier, currently just manually assigned
+		loadSeeds();
+		
+		// run as long as frontier has some links to crawl
+		while(!frontier.isEmpty()) {
+			try {
 				if(numPages > MAX_NUM_PAGES) {
 					// crawler reached page number limit
 					return;
@@ -113,21 +126,17 @@ public class Crawler {
 				LinkNode curr = frontier.poll();
 				numPages++;
 				
-				if(visited.contains(curr.getLink())) {
+				// check if the current page is already visited
+				// check if current page is in file formats to prevent download them
+				// i.e. .pdf .jpg .png ...
+				if(visited.contains(curr.getLink()) || curr.isInvalidFiles()) {
 					continue;
 				}
 				
-				System.out.println(curr.getLocal());
+				// root domain will contain robots.txt
 				if(curr.getDepth() == 1) {
 					readRobots(curr);
 				}
-				
-				// check if current page is in file formats to prevent download them
-				// i.e. .pdf .jpg .png ...
-				if(curr.isInvalidFiles()) {
-					continue;
-				}
-				
 				String title = createUniqueTitle(curr);
 				
 				// fetch pages from URL
@@ -157,25 +166,30 @@ public class Crawler {
 					if(curr.getDepth() >= MAX_DEPTH) {
 						continue;
 					}
-					
-					LinkNode next = new LinkNode(e.absUrl("href"), curr.getDepth() + 1);
+					String nextLink = e.absUrl("href");
+	
+					if(!nextLink.contains("http")) {
+						continue;
+					}
+					LinkNode next = new LinkNode(nextLink, curr.getDepth() + 1);
 					next.setDisallow(curr.getRobots());
 					if(next.checkURL()) {
 						frontier.add(next);
 					}
 				}
+			} catch (FileNotFoundException e) {
+				System.out.println("File Not found.");
+			} catch (MalformedURLException e) {
+				// some links are not accessible due to not supported protocols(i.e. tel? or virtual assistants)
+				System.out.println("Malformed URL is read");
+			} catch (UnknownHostException e) {
+				// host name is not found
+				System.out.println("Unknown Host: " + e.getMessage());
+			} catch (IOException e) {
+				System.out.println("Writing to file failed");
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("File Not found.");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			// some links are not accessible due to not supported http protocol
-			System.out.println("Malformed URL is read");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("Writing to file failed");
 		}
+		System.out.println("Frontier is empty");
 	}
 	
 	// any data structure implementing Queue should work
