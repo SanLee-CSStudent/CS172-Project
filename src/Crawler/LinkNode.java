@@ -81,6 +81,7 @@ public class LinkNode {
 		return false;
 	}
 	
+	// remove bookmarks/references noted by "#"
 	private String removeRef(String link){
 		if(link.contains("#")) {
 			return link.substring(0, link.indexOf("#") - 1);
@@ -89,26 +90,32 @@ public class LinkNode {
 		return link;
 	}
 	
+	// return URL protocol: http, https, ftp...
 	public String getProtocol() {
 		return link.getProtocol();
 	}
 	
+	// return local address: /a/b/c...
 	public String getLocal() {
 		return local;
 	}
 	
+	// return the complete link
 	public String getLink() {
 		return link.toString();
 	}
 	
+	// return the recursion depth of the current node
 	public int getDepth() {
 		return depth;
 	}
 	
+	// set robots disallow list to the current node
 	public void setDisallow(HashSet<String> robots) {
 		this.robots = robots;
 	}
 	
+	// return robots disallow list
 	public HashSet<String> getRobots() {
 		return robots;
 	}

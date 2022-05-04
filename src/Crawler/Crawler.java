@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -21,21 +20,25 @@ import org.jsoup.select.Elements;
 
 public class Crawler {
 	
+	// empty constructor
+	// initialize frontier deque and visited set
 	public Crawler() {
-		this.frontier = new ArrayDeque<LinkNode>(MAX_NUM_PAGES);
+		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
-		
-		// loadExistingPages();
 	}
 	
+	// constructor with one parameter: depth
+	// initialize frontier and visited, set MAX DEPTH to depth input
 	public Crawler(int depth) {
-		this.frontier = new ArrayDeque<LinkNode>(MAX_NUM_PAGES);
+		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
 		this.MAX_DEPTH = depth;
 	}
 	
+	// constructor with two parameters: depth, pages
+	// initialize frontier and visited, set MAX DEPTH and MAX PAGES to inputs
 	public Crawler(int depth, int numPages) {
-		this.frontier = new ArrayDeque<LinkNode>(MAX_NUM_PAGES);
+		this.frontier = new ArrayDeque<LinkNode>();
 		this.visited = new HashSet<String>();
 		this.MAX_DEPTH = depth;
 		this.MAX_NUM_PAGES = numPages;
@@ -62,10 +65,13 @@ public class Crawler {
 		return address.toString();
 	}
 	
+	// reads robots.txt from root domain
+	// parse robots.txt to extract disallowed paths
 	private void readRobots(LinkNode curr) throws IOException {
+		// fetch robots.txt
 		String robots = curr.getLink() + "robots.txt";
 		Connection.Response accessList = Jsoup.connect(robots).execute();
-		
+		// parse robots.txt
 		String accessListText = accessList.body();
 		String[] lines = accessListText.split("\n");
 		
@@ -77,11 +83,13 @@ public class Crawler {
 			if(s.toLowerCase().charAt(0) == "D".toLowerCase().charAt(0)) {
 				String[] disallowedPath = s.split(" ");
 				if(disallowedPath.length >= 2) {
+					// add disallow paths to set
 					disallowed.add(disallowedPath[1]);
 				}
 			}
 		}
 		
+		// give root ListNode a list of disallowed paths
 		curr.setDisallow(disallowed);
 	}
 	
@@ -89,17 +97,15 @@ public class Crawler {
 	private void loadSeeds() {
 		try {
 			String seedFile = "src/seed.txt";
-			
+			// reads seed.txt
 			File seed = new File(seedFile);
-			Scanner s;
-	
-			s = new Scanner(seed);
+			Scanner s = new Scanner(seed);
 			
+			// read seeds line by line
 			while(s.hasNextLine()) {
 				// upon creating LinkNode, anchors or references are removed
 				LinkNode node = new LinkNode(s.nextLine());
-				// if normalization succeeds, add node to the frontier
-				// otherwise(i.e. protocol is not http), ignores it and continue to the next seed
+				// if seed page is from .edu, add it to the frontier
 				if(node.checkHost()) {
 					frontier.add(node);
 				}
@@ -142,7 +148,7 @@ public class Crawler {
 				// fetch pages from URL
 				Document doc = Jsoup.connect(curr.getLink()).get();
 				Connection.Response html = Jsoup.connect(curr.getLink()).execute();
-				
+				// write page to a file and store it under src/pages/
 				String htmlText = html.body();
 				BufferedWriter writer = new BufferedWriter(new FileWriter(title));
 				writer.write(htmlText);
@@ -151,28 +157,29 @@ public class Crawler {
 				// only stored pages go to visited
 				visited.add(title);
 				
-				// to see what pages are visited
+				// DEBUG: to see what pages are visited
 				System.out.println("Title: " + title);
 				
-				// if current protocol is not http or is a file that cannot be parsed, stop parsing the URL 
+				// if current protocol is not http or is a file that cannot be parsed, stop parsing the URL
+				// pages with https protocol are still downloaded, but not parsed as indicated in the discussion slides
 				// otherwise, parse the URL and extract next URLs
 				if(!curr.isHTTP()) {
 					continue;
 				}
 				
+				// find all links in the current document
 				Elements links = doc.select("a[href]");
 				for(Element e: links) {
 					// if current page reaches max depth, skip it
 					if(curr.getDepth() >= MAX_DEPTH) {
 						continue;
 					}
+					// get the next links and check 
 					String nextLink = e.absUrl("href");
-	
-					if(!nextLink.contains("http")) {
-						continue;
-					}
 					LinkNode next = new LinkNode(nextLink, curr.getDepth() + 1);
+					// pass down domain's robots access list to child nodes
 					next.setDisallow(curr.getRobots());
+					// if next node is part of robots disallow list, ignore it
 					if(next.checkURL()) {
 						frontier.add(next);
 					}
