@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-Equiv="Cache-Control" Content="no-cache">
+<meta http-Equiv="Pragma" Content="no-cache">
+<meta http-Equiv="Expires" Content="0">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js"
+    xmlns:wairole="http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#"
+    xmlns:waistate="http://www.w3.org/2005/07/aaa" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="en" xml:lang="en">
+<head id="ctl00_Head1"><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="CACHE-CONTROL" content="NO-CACHE" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Content-Language" content="en" /><title>
+	Master Calendar - Calendar
+</title><link rel="icon" href="favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="ShortcutIcon.ico" type="image/x-icon" />
+    <style type="text/css">
+        #HeaderContainer h1{margin-top:5em;margin-left:40%;margin-right:40%;}
+        #PageLinksContainer {clear:both;margin-top:2em;bottom:1%;width: 100%;text-align: center;}
+        #FooterContainer{clear:both;margin-top:2em;bottom:1%;width: 100%;text-align: center;}
+        /*our footer text*/
+        .footer{font-size: smaller;color: #225d92;}
+        .callbackStatus{border:black thin solid;background-color: #fff8dc;}
+        div#CallbackStatus{position:fixed;clear:both;margin-top:.4em;padding:.5em;width:12em;}
+        div.centerRow{clear: both;text-align: center;}
+        @media screen
+        {
+            /*Centers the header (things above the menu) at the top of the page*/
+            .HeaderContainer
+            {
+                clear:both;
+	            width: 100%;
+	            text-align:center;
+            }
+        }
+        @media Print
+        {
+            .HeaderContainer
+            {
+                display:none;	
+            }
+        }
+        
+    
+    </style>
+    
+	<link rel="stylesheet" type="text/css" href="Styles/Calendar/dynamiccss.ashx" />
+    <script src="Includes/modernizr.custom.70372.js" type="text/javascript"></script>
+
+
+    
+    <script src="Includes/Calendar/jquery-1.9.1.js" type="text/javascript"></script>
+
+    <script src="Includes/Calendar/jquery-ui-1.10.2.custom.min.js" type="text/javascript"></script>
+    <script src="Includes/Calendar/jquery.tools.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="Includes/json.js" ></script>
+    <script type="text/javascript" src="Includes/Globals.js" ></script>
+    <script type="text/javascript" src="Includes/Common.js" ></script>
+    <script src="Includes/Calendar/jquery.validate.js" type="text/javascript"></script>
+    <script src="Includes/Calendar/dea.mc.user.menu-0.1.js" type="text/javascript"></script>
+    <script src="Includes/Calendar/dea.mc.login-0.1.js" type="text/javascript"></script>
+    <script src="Includes/Calendar/Utilities.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (helpTextMsg != '' || showHelpEdit) {
+                $('.help-text-icon').click(function () {
+                    openHelpText();
+                });
+
+                $('.help-text-icon').keypress(function (e) {
+                    if (e.which == 13 || e.which == 32) 
+                        openHelpText();
+                });
+                if (showHelpEdit) {
+                    $('.edit-Help-Link').show();
+                    $('.edit-Help-Link').click(function () {
+                        if(helpTextEditLink != '')
+                            document.location.href = helpTextEditLink;
+                    });
+                }
+            }
+            else {
+                $('.help-text-icon').hide();
+            }
+
+        });
+        function openHelpText() {
+            $('#helpTextDialog').modal({
+                closeHTML: "<span class='visuallyhidden' id='helptextCloseMsg'> Help Text Close</span>" + 
+                    "<a aria-labelledby='helptextCloseMsg' tabindex='0' href='#' class='modal-close modalFirstInput'>x</a>",
+                position: ["20%"],
+                overlayId: 'helpText-overlay',
+                containerId: 'helpText-container',
+                singleInput: true,
+                onShow: function (dialog) {
+                    var modal = this;
+                    $('.helpTextMessage').append(helpTextMsg);
+                    $('.modal-close', dialog.container).focus();
+                }
+            });
+        }
+    </script>
+    
+    <style type="text/css" id="antiClickjack">body{display: none !important;}</style>
+    <script type="text/javascript">
+        if (self === top || self.parent === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        }
+        else {
+            top.location = self.location;
+        }
+    </script>
+
+    
+    <script src="Includes/Calendar/fluidgrid.js" type="text/javascript"></script>
+    <script src="Includes/Calendar/jquery.ticker.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/html5placeholder.jquery.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/search.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.features.scoller-0.1.js" type="text/javascript" ></script>
+
+    
+    <script src="Includes/Calendar/knockout-2.2.1.debug.js" type="text/javascript" ></script>
+
+    <script src="Includes/Calendar/knockout.mapping-latest.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/ko.lib.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/SideBySideKOViewModel.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/jquery.simplemodal.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/jquery.simplemodal-osx.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/jquery.print.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.group.box-0.1.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.dropdown.multiselect.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/jquery.mousedown.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/event-list-ko-viewmodel.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/DateFormat.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.eventlist.accordion-0.1.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.curtain-01.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.tooltip.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/dea.eventgrid-0.1.js" type="text/javascript" ></script>
+    <script src="Includes/Calendar/event-curtains-data-ko-viewmodel.js" type="text/javascript" ></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5220ba9a39b147c7"></script>
+    <script src="Includes/Calendar/dea.special.dates-0.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyALWSXqWl2Kj9KfOxt7TK_QnaovBtzrma8&amp;sensor=false"></script></head>
+<body id="mcBody" class="mc-bg-color-2">
+<div id="mcCon" class="mcCon">
+    <noscript>Master Calendar requires Javascript to be supported and enabled.</noscript>
+    <form name="aspnetForm" method="post" action="./MasterCalendar.aspx?data=f1bM4GJyEC4c6eCHPPbtMY%2bWvGlri%2fpqYHG1jGFDQCisK6%2bcpl89gXTcnZf0MrYBpjqCBl%2fIVe158Tc04MnKJvaiWYXyoEkA9cTA7FgA0Nk%2ftL2nkfeccxUqRUd97CWWCK5dJE7hqZKZvUoCGqlWsKfQZYcaGYQ2T7r5WCa3mUBFbA32fFPSottHoFU6AijerZNqjkONNkzNj2pqAA9VlVmIFlOMtKilK%2bLJcITI8aIyWyinhmZXPo0rzgq6Jbck" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="IuNBUzYqVvgYmJRDSQ6QSoOrzPcrRpJLeVrW7mUsyUMW+Mf04Lvb3U8dw2t+wjj/Bp60/v/89tPuNjwI6FzJjyvphnup2MiI7TCy5QUipAlH2GO4mpwKmexlD1efHRhg5GV091dWa5N1tkteMvzwApS9tKc7s3Tr7Kr9IpaWLBkxMcphF0/2CLXgtaPl+YAhi55QLxksabFj7peFYbGGUxyecE1ZTGR6Sgr6yokh1sggwzYcI3tiBd2QwoAVoL37Ey7tnr5KcnLPV9tub+rsWoZaUVQvO0DvVX8mXy415CXxObE6www3g1bJw74v/ZB5o5X4PY/UNksiuVpRfyENpxvtbosNVTEf1a3xWv/xa98kNMIbe6P/Zp372g3VVkcV" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/MasterCalendar/WebResource.axd?d=coymIFkBw16dfmQxRzKOTeWDTSM_C1kgs-EtaG9BNk9rlsjxBoGMQq7phirUthYiBP_Nn5lA27bCcu8nWEja1yqbFdpaqU79lP-6FJsiC2c1&amp;t=637729405680000000" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var announcementTxt = "Announcements";var featuredFeedTxt = "Featured Events";var checkAllTxt = "Check All";var expandAllTxt = "Expand All";var uncheckAllTxt = "Uncheck All";var collapseAllTxt = "Collapse All";var viewTxt = "View";var monthTxt = "Month";var yearTxt = "Year";var alertTxt = "Alert";var showWeekends = true;var startWeekOn = 0;var displayView = 2;var displayFormat = 1;var listType = 1;var startdateInvalidmsg = "Start date must be earlier than end date.";var blinkPendingApproval = false;var pendingApprovalCount = 0;var pendingApprovaltxt = "Event(s) Pending Approval";var showAddEvent = false;var multipleSelectedtxt = "(Multiple Selected)";var selectMultipletxt = "Select Multiple";var allText = "(all)";var useSubLocation = true;var showTimezonePicker = false;var expandCalendars = true;var noSpecialDatesMsg = "There are no special dates for the date selected.";var specialDatesTxt = "Special Dates";var calTimeStamp = 'd95d5fd52b3a4172b1f8665c00173a86';var collaspeFilters = false;var tickerDelay = 5000;var helpTextEditLink = "/MasterCalendar/EditWebText.aspx?data=DDKzQnfoMIkKQQPSXGYI974KMnEbnY6ej%2bVgYsXSr1Q0F28%2fSstE0o038yP%2byxAkzHHGvk%2btSNg%3d";var groupingTxt = "Grouping";var selectTxt = "Select {0}";var selectNextDay = "Select the next day in the calendar";var selectPrevDay = "Select the previous day in the calendar";var selectNextWeek = "Select the next week in the calendar";var selectPrevWeek = "Select the previous week in the calendar";var selectNextMonth = "Select the next month in the calendar";var selectPrevMonth = "Select the previous month in the calendar";var expandCollapseTxt = "Expand/Collapse Arrow";var externalLinkTxt = "External Link";var viewEventDetailsFormatTxt = "View details for {0}"; var announcement = []; var events = [];var calendars = [{"Id":13,"Name":"Fall Semester 2022 Aug 20 - Dec 19, 2022","Selected":0},{"Id":7,"Name":"Public Events","Selected":0},{"Id":2,"Name":"Reynolds Performance Hall","Selected":0},{"Id":18,"Name":"Spring Semester 2022 Dec 13, 2021 to May 10, 2022","Selected":0},{"Id":19,"Name":"Summer Semester 2022 May 12, 2022 to Aug 16, 2022","Selected":0},{"Id":15,"Name":"UCA Camps","Selected":0}];var groupBoxData = [{"expanded":true,"checked":true,"text":"UCA Public Events","id":1,"items":[{"checked":true,"text":"Public Events","id":7,"isCalendar":true,"link":""},{"checked":true,"text":"Reynolds Performance Hall","id":2,"isCalendar":true,"link":""},{"checked":true,"text":"UCA Camps","id":15,"isCalendar":true,"link":""},{"checked":true,"text":"Spring Semester 2022 Dec 13, 2021 to May 10, 2022","id":18,"isCalendar":true,"link":""},{"checked":true,"text":"Summer Semester 2022 May 12, 2022 to Aug 16, 2022","id":19,"isCalendar":true,"link":""},{"checked":true,"text":"Fall Semester 2022 Aug 20 - Dec 19, 2022","id":13,"isCalendar":true,"link":""}]}];var specialDates = [];
+var displayView = 2;var displayFormat = 1;var listType = 1;var keyWord = "";var eventGridData = [{"EventDate":"4/24/2022","Total":8,"Events":[{"Id":261733,"EventId":23354,"Title":"UCA Tennis Team Tournament","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/24/2022 8:00:00 AM","EventDuaration":780,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650776400000)\/"},"Location":{"Id":0,"Name":"TENS TENS Tennis Court 4","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261732,"EventId":23354,"Title":"UCA Tennis Team Tournament","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/24/2022 8:00:00 AM","EventDuaration":780,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650776400000)\/"},"Location":{"Id":0,"Name":"TENS TENS Tennis Court 3","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261730,"EventId":23354,"Title":"UCA Tennis Team Tournament","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/24/2022 8:00:00 AM","EventDuaration":780,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650776400000)\/"},"Location":{"Id":0,"Name":"TENS TENS Tennis Court 1","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261731,"EventId":23354,"Title":"UCA Tennis Team Tournament","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/24/2022 8:00:00 AM","EventDuaration":780,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650776400000)\/"},"Location":{"Id":0,"Name":"TENS TENS Tennis Court 2","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261729,"EventId":23354,"Title":"UCA Tennis Team Tournament","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/24/2022 8:00:00 AM","EventDuaration":780,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650776400000)\/"},"Location":{"Id":0,"Name":"TENS TENS Tennis Court 8","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"4/26/2022","Total":0,"Events":[{"Id":261237,"EventId":23142,"Title":"Campus Band and Symphonic Band Concert","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Concert","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/26/2022 7:30:00 PM","EventDuaration":150,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1650949200000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"4/28/2022","Total":0,"Events":[{"Id":261069,"EventId":23021,"Title":"Final Date To Withdraw","Notes":null,"Description":" Final date to officially withdraw from April 4-May 6 classes with a W grade unless already dropped for non-attendance.? After this date, no withdrawals are permitted and no W grades are recorded. To view the complete academic calendar, click this link?Academic Calendar","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/28/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651122000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261070,"EventId":23022,"Title":"Undergraduate Graduating Seniors","Notes":null,"Description":" Undergraduate Graduating Seniors: Final date to make degree application for May graduation.? Name WILL NOT be included in the commencement program. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/28/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651122000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261238,"EventId":23143,"Title":"UCA Wind Ensemble Concert","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Concert","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/28/2022 7:30:00 PM","EventDuaration":120,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651122000000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"4/29/2022","Total":0,"Events":[{"Id":261452,"EventId":23283,"Title":"Girl Power in STEM","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Conference","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/29/2022 8:00:00 AM","EventDuaration":540,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651208400000)\/"},"Location":{"Id":0,"Name":"FC FC 1019 Gym","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261071,"EventId":23023,"Title":"Study Day Friday, April 29th","Notes":null,"Description":" Study Day, Friday, April 29th. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/29/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651208400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261869,"EventId":23374,"Title":"Vortex Launch Event","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Other","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/29/2022 6:00:00 PM","EventDuaration":120,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651208400000)\/"},"Location":{"Id":0,"Name":"SC AMP","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261669,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/29/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651208400000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"4/30/2022","Total":0,"Events":[{"Id":261072,"EventId":23024,"Title":"Final Exams for Saturday Classes","Notes":null,"Description":" Final exams for Saturday classes. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/30/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651294800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261689,"EventId":23340,"Title":"CSO: \u0026quot;Tribute to Reynolds\u0026quot;","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Concert","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/30/2022 2:00:00 PM","EventDuaration":480,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651294800000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261670,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"4/30/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651294800000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/2/2022","Total":0,"Events":[{"Id":261073,"EventId":23025,"Title":"Final Exams for Day and Night Classes May 2 - May ","Notes":null,"Description":" Final exams for day and night classes May 2-May 6. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/2/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651467600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/3/2022","Total":0,"Events":[{"Id":261074,"EventId":23025,"Title":"Final Exams for Day and Night Classes May 2 - May ","Notes":null,"Description":" Final exams for day and night classes May 2-May 6. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/3/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651554000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261415,"EventId":23267,"Title":"Conway Men\u0026#39;s Chorus 2020 Spring Pops Concert","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Concert","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/3/2022 7:00:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651554000000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/4/2022","Total":0,"Events":[{"Id":261075,"EventId":23025,"Title":"Final Exams for Day and Night Classes May 2 - May ","Notes":null,"Description":" Final exams for day and night classes May 2-May 6. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/4/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651640400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261857,"EventId":23369,"Title":"Film Production 4 Screening","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/4/2022 6:00:00 PM","EventDuaration":210,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651640400000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/5/2022","Total":0,"Events":[{"Id":261076,"EventId":23025,"Title":"Final Exams for Day and Night Classes May 2 - May ","Notes":null,"Description":" Final exams for day and night classes May 2-May 6. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/5/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651726800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261698,"EventId":23346,"Title":"2022 UCA Film Festival","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/5/2022 7:00:00 PM","EventDuaration":180,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651726800000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/6/2022","Total":0,"Events":[{"Id":261078,"EventId":23026,"Title":"Graduate School Commencement Ceremony","Notes":null,"Description":" Graduate School Commencement Ceremony. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/6/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651813200000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261077,"EventId":23025,"Title":"Final Exams for Day and Night Classes May 2 - May ","Notes":null,"Description":" Final exams for day and night classes May 2-May 6. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/6/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651813200000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261739,"EventId":23357,"Title":"2022 Nursing Convocation","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#9ACD32","EventTypeName":null,"EventType":"Ceremony","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/6/2022 2:00:00 PM","EventDuaration":120,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651813200000)\/"},"Location":{"Id":0,"Name":"REYN Aud and Lobbies","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261671,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/6/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651813200000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/7/2022","Total":0,"Events":[{"Id":261079,"EventId":23027,"Title":"Undergraduate Commencement Ceremonies","Notes":null,"Description":" Undergraduate commencement ceremonies. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/7/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651899600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261672,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/7/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1651899600000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/10/2022","Total":0,"Events":[{"Id":261080,"EventId":23028,"Title":"Final Grade Reports Due","Notes":null,"Description":" Final grade report due by noon. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/10/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652158800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/12/2022","Total":0,"Events":[{"Id":261153,"EventId":23072,"Title":"Excess Aid Direct Deposits and Checks","Notes":null,"Description":" ?May Intersession and 13-Week Summer Session Excess Aid Direct Deposits Available \u0026 Checks Mailed. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/12/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652331600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/13/2022","Total":0,"Events":[{"Id":261154,"EventId":23073,"Title":"Payment Due Summer 2022 Classes","Notes":null,"Description":" Payment Due for May Intersession, 8-Week and 13-Week Summer Session classes. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/13/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652418000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261673,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/13/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652418000000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/14/2022","Total":0,"Events":[{"Id":261674,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/14/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652504400000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/15/2022","Total":0,"Events":[{"Id":261417,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/15/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652590800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/16/2022","Total":0,"Events":[{"Id":261418,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/16/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652677200000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261155,"EventId":23074,"Title":"Instructions Begin","Notes":null,"Description":" ?Instruction begins for Summer Session classes for May Intersession (May 16 - June 3), 8-Week (May 16 - July 8) and 13-Week (May 16 - Aug 12). To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/16/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652677200000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/17/2022","Total":0,"Events":[{"Id":261419,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/17/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652763600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261157,"EventId":23076,"Title":"Change of Course Period Ends","Notes":null,"Description":" Change of course period ends for May Intersession and 8-Week Classes. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/17/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652763600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261158,"EventId":23077,"Title":"Final Date To","Notes":null,"Description":" Final date to register, add classes, change from credit to audit or audit to credit and change to Arkansas residency. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/17/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652763600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261156,"EventId":23075,"Title":"Final Date to Drop with 100% Refund","Notes":null,"Description":" Final date to drop May Intersession and 8-Week classes and receive a 100% refund. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/17/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652763600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/18/2022","Total":0,"Events":[{"Id":261420,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/18/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652850000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/19/2022","Total":0,"Events":[{"Id":261421,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/19/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1652936400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/20/2022","Total":7,"Events":[{"Id":261422,"EventId":23269,"Title":"Health Sciences Entrepreneurship Bootcamp","Notes":null,"Description":"Instruction in entrepreneurship in the health sciences field. Please see event Url for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/20/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653022800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261161,"EventId":23080,"Title":"Change of Course Period Ends","Notes":null,"Description":" Change of course period ends for 13-Week Summer Session classes. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/20/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653022800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261162,"EventId":23081,"Title":"Final Date To","Notes":null,"Description":" Final date to register, add classes and change from credit to audit or audit to credit. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/20/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653022800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261159,"EventId":23078,"Title":"Final Date to Drop with 100% Refund","Notes":null,"Description":" Final date to drop 13-Week Summer Session classes and receive a 100% refund. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/20/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653022800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261160,"EventId":23079,"Title":"Final Date to Drop with 75% Refund","Notes":null,"Description":" Final date to drop May Intersession and 8-Week classes and receive a 75% refund. NO REFUND AFTER THIS DATE. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/20/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653022800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/21/2022","Total":0,"Events":[{"Id":261676,"EventId":23331,"Title":"Planetarium Show","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/21/2022 6:30:00 PM","EventDuaration":90,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653109200000)\/"},"Location":{"Id":0,"Name":"CCCS CCCS 108 Planetarium","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/29/2022","Total":0,"Events":[{"Id":261423,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/29/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653800400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/30/2022","Total":0,"Events":[{"Id":261424,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/30/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653886800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261163,"EventId":23082,"Title":"Memorial Day Holiday - University Closed","Notes":null,"Description":" Memorial Day Holiday.? No classes and University closed. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/30/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653886800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"5/31/2022","Total":0,"Events":[{"Id":261425,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"5/31/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1653973200000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"6/1/2022","Total":0,"Events":[{"Id":261426,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/1/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654059600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261429,"EventId":23271,"Title":"IT Careers Camp","Notes":null,"Description":"To educate students in IT Careers and encourage them to continue their education beyond high school. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/1/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654059600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261164,"EventId":23083,"Title":"Final Date To Withdraw","Notes":null,"Description":" Final date to officially withdraw from a May Intersession course or the university wit a W grade unless already dropped for non-attendance.? After this date, no withdrawals are permitted and no W grades are recorded. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/1/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654059600000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"6/2/2022","Total":6,"Events":[{"Id":261427,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/2/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654146000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261430,"EventId":23271,"Title":"IT Careers Camp","Notes":null,"Description":"To educate students in IT Careers and encourage them to continue their education beyond high school. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/2/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654146000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261267,"EventId":23164,"Title":"Elite Showcase 8-10th","Notes":null,"Description":"Provide 8-10th grade boys with basketball skill instruction that will help take their game to the next level. Please see https://www.ucambbsummercamps.com/ for more information.","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/2/2022 7:45:00 AM","EventDuaration":315,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654146000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261165,"EventId":23084,"Title":"Excess Aid Direct Deposits and Checks Mailed","Notes":null,"Description":" 1st Five Week Summer Session and 10-Week Summer Session Excess Aid Direct Deposits Available \u0026 Checks Mailed. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/2/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654146000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261828,"EventId":23359,"Title":"Future Bears","Notes":null,"Description":"Instruction in football fundamentals for 1-8th graders. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/2/2022 8:00:00 AM","EventDuaration":240,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654146000000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"6/3/2022","Total":7,"Events":[{"Id":261428,"EventId":23270,"Title":"AR Boys State","Notes":null,"Description":"Annual camp designed to be an immersive program in civics education designed for high school junior boys. Please see event URL for more info.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/3/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654232400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261431,"EventId":23271,"Title":"IT Careers Camp","Notes":null,"Description":"To educate students in IT Careers and encourage them to continue their education beyond high school. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/3/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654232400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261784,"EventId":23358,"Title":"Upward Bound Summer Academy","Notes":null,"Description":"Preparation for college bound high school students.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/3/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654232400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261166,"EventId":23085,"Title":"Final Exams for May Intersession","Notes":null,"Description":" Final examinations for May Intersession classes. To view the complete academic calendar, click this link?Academic Calendar?","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#CC33FF","EventTypeName":null,"EventType":"Academic Important Dates to remember","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/3/2022 8:00:00 AM","EventDuaration":510,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654232400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261829,"EventId":23359,"Title":"Future Bears","Notes":null,"Description":"Instruction in football fundamentals for 1-8th graders. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/3/2022 8:00:00 AM","EventDuaration":240,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654232400000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]},{"EventDate":"6/4/2022","Total":0,"Events":[{"Id":261589,"EventId":23313,"Title":"Dixie Band Camp Sr.","Notes":null,"Description":"Band camp for senior high. More information to come soon.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/4/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654318800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261432,"EventId":23271,"Title":"IT Careers Camp","Notes":null,"Description":"To educate students in IT Careers and encourage them to continue their education beyond high school. Please see event URL for more information.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/4/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654318800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261785,"EventId":23358,"Title":"Upward Bound Summer Academy","Notes":null,"Description":"Preparation for college bound high school students.","EventImageURL":null,"ALTText":null,"isAllDay":true,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"#FF0000","EventTypeName":null,"EventType":"Camp","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/4/2022 8:00:00 AM","EventDuaration":60,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654318800000)\/"},"Location":{"Id":0,"Name":"","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300},{"Id":261328,"EventId":23207,"Title":"IT Camp - Brunch and Awards Ceremony","Notes":null,"Description":"","EventImageURL":null,"ALTText":null,"isAllDay":false,"NoEndTime":false,"isSpecial":false,"Priority":2,"EventTypeColor":"","EventTypeName":null,"EventType":"","AllowEdit":false,"Cancel":false,"CalendarName":null,"EventDateTime":{"EventDateTime":"6/4/2022 8:00:00 AM","EventDuaration":180,"EventTimeZone":"CT","DefaultUTCOffset":-300,"BaseDate":"\/Date(1654318800000)\/"},"Location":{"Id":0,"Name":"EST EST 206 Hall of Fame","Address":null},"UDFs":null,"EventKeyWords":null,"Icon1":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"Icon2":{"IconDescription":" ","ShowOnToolTip":false,"LargeIcon":"","CustomURL":"http://"},"SelectedTZBias":-300}]}];
+ var EventTypesFilterData = [{"expanded":true,"checked":false,"text":"Event Types","id":-1,"items":[{"checked":false,"text":"Academic Important Dates to remember","id":17},{"checked":false,"text":"Camp","id":6},{"checked":false,"text":"Ceremony","id":24},{"checked":false,"text":"Concert","id":1},{"checked":false,"text":"Conference","id":8},{"checked":false,"text":"Fair","id":9},{"checked":false,"text":"Lecture","id":10},{"checked":false,"text":"Meeting","id":11},{"checked":false,"text":"Other","id":21},{"checked":false,"text":"Pageant","id":12},{"checked":false,"text":"Performance","id":2},{"checked":false,"text":"Social Event","id":13},{"checked":false,"text":"Workshop","id":15}]}]; var LocationFilterData = [{"expanded":true,"checked":false,"text":"Locations","id":-1,"items":[{"checked":false,"text":"Arkansas Coding Academy (ACA)","id":99},{"checked":false,"text":"Bear Baseball Stadium (BASE)","id":21},{"checked":false,"text":"Bill Stephens Track and Soccer Complex (BSTSS)","id":30},{"checked":false,"text":"Brewer-Hegeman Conference Center (BHCC)","id":3},{"checked":false,"text":"Buffalo Alumni House (ALUM)","id":64},{"checked":false,"text":"Burdick Hall (BURD)","id":44},{"checked":false,"text":"Christian Cafeteria (CHRS)","id":36},{"checked":false,"text":"College of Business Building (COB)","id":35},{"checked":false,"text":"Crafton Alumni Pavilion (PAVI)","id":39},{"checked":false,"text":"Doyne Health Science Center (DHSC)","id":31},{"checked":false,"text":"Estes Stadium (EST)","id":22},{"checked":false,"text":"Farris Center (FC)","id":29},{"checked":false,"text":"Farris Softball Complex (SBALL)","id":34},{"checked":false,"text":"Ferguson Chapel (CHAP)","id":26},{"checked":false,"text":"Football Practice Field (FBPF)","id":38},{"checked":false,"text":"Harding Centennial Fountain Plaza (FOUN)","id":27},{"checked":false,"text":"Health Physical Education Recreation (HPER)","id":4},{"checked":false,"text":"Indoor Sports Facility (PEP)","id":25},{"checked":false,"text":"Irby Hall (IRB)","id":42},{"checked":false,"text":"Jewel Moore Nature Reserve (JMNR)","id":98},{"checked":false,"text":"Laney Hall (LAN)","id":66},{"checked":false,"text":"Lewis Science Center (LSC)","id":54},{"checked":false,"text":"Main Hall (MH)","id":28},{"checked":false,"text":"Mashburn Hall (MASH)","id":67},{"checked":false,"text":"Math, CSci \u0026amp; Tech (MCS)","id":55},{"checked":false,"text":"McAlister Hall (MAC)","id":20},{"checked":false,"text":"McCastlain Hall (MCC)","id":40},{"checked":false,"text":"Meadors Hall (MEAD)","id":74},{"checked":false,"text":"Parking Lots (PL)","id":68},{"checked":false,"text":"Prince Center (PRIN)","id":23},{"checked":false,"text":"Reynolds Performance Hall (REYN)","id":104},{"checked":false,"text":"Roads (RDS)","id":57},{"checked":false,"text":"Snow Fine Arts Center (SFAC)","id":32},{"checked":false,"text":"Stanley Russ Hall (SRH)","id":59},{"checked":false,"text":"Student Center (SC)","id":1},{"checked":false,"text":"Tennis Complex (TENS)","id":33},{"checked":false,"text":"Virtual","id":102},{"checked":false,"text":"Win Thompson Hall (WTH)","id":62},{"checked":false,"text":"Wingo Hall (WING)","id":77}]}]; var SubLocationFilterData = [{"expanded":true,"checked":false,"text":"SubLocations","id":-1,"items":[]}]; var DepartmentFilterData = [{"expanded":true,"checked":false,"text":"Departments","id":-1,"items":[{"checked":false,"text":"Athletics","id":5},{"checked":false,"text":"Campus Recreation","id":6},{"checked":false,"text":"Conference Services","id":3},{"checked":false,"text":"Registrar","id":4},{"checked":false,"text":"Reynolds Performance Hall","id":2},{"checked":false,"text":"School of Communication","id":7},{"checked":false,"text":"Student Center","id":1}]}]; var showSubscribe = true;showExactMatch = true;currentDates = "4/24/2022|6/4/2022";var ems_timeSep = ":",mc_Help = "Help",mc_useHelpIcon = 0,mc_allowSystemCheckAccess = 1,mc_localAddress = "161.31.24.123",mc_remoteHost = "161.31.25.30",ems_nosystemcheckacess = "Access to this page is restricted to the server that is hosting the application. To view version information see the About.aspx page",ems_AM = "AM",ems_PM = "PM",ems_timeFormat = "h:mm tt",ems_timePicker = "Time Picker",eventDetailstxt = "Event Details",gotoString = "Go to the current month",todayString = "Today is",scrollLeftMessage = "Click to scroll to previous month. Hold mouse button to scroll automatically.",scrollRightMessage = "Click to scroll to next month. Hold mouse button to scroll automatically.",selectMonthMessage = "Click to select a month.",selectYearMessage = "Click to select a year.",selectDateMessage = "Select [date] as date.",ems_UnhandledCallback = "Unhandled Callback.",ems_FailedToLoadCallbackXml = "Error loading xml document from server",localizationKey = "en-US",localizationDateSeparator = "/",localizationDateFormat = "m/d/yyyy",ems_FirstDateViolation = "Date violates your first available event date",ems_LastDateViolation = "Date violates your last available event date",ems_InvalidDate = "Invalid Date",ems_InvalidTime = "Invalid Time",ems_CloseTheCalendar = "Close the Calendar",mc_rootDirectory = "/MasterCalendar/",ajaxRootDirectory = "",sSelectedColor = "rgb(175,188,33)";checkVersion("data=x3ijH9FTK9UfR1IPnJHJBB0vNIurQVtwSnGbxY%2bikSKDfpyXwL0zZA%3d%3d");Dea.pageCallback = function (mcObject) { WebForm_DoCallback('__Page','' + Dea.JSON.stringify(mcObject) + '',Dea.handleCallback,'' + mcObject.router + '',Dea.errorCallback,true)};var PathToRoot = '/MasterCalendar/';var isLoggedIn = false;var loginTxt = "Login";var logoutTxt = "Log Out";var helpTextMsg = "";var postionMenuRight = true;var showLogout = true;var showLogin = true;var showHelpEdit = false;var loginUsername = "";var showLoginTimezone = true;var loginTimezoneId = 64;var showEmailPasswordLink = true; var logintimezonesData = [{"id":"73","name":"(GMT -12:00) Eniwetok, Kwajalein","bias":-720,"abbr":""},{"id":"72","name":"(GMT -11:00) Midway Island, Samoa","bias":-660,"abbr":""},{"id":"70","name":"(GMT -09:00) Alaska","bias":-600,"abbr":"AKT"},{"id":"71","name":"(GMT -10:00) Hawaii","bias":-600,"abbr":"HAT"},{"id":"83","name":"(GMT -08:00) Tijuana, Baja California","bias":-480,"abbr":""},{"id":"67","name":"(GMT -07:00) Arizona","bias":-420,"abbr":"MT"},{"id":"69","name":"(GMT -08:00) Pacific Time","bias":-420,"abbr":"PT"},{"id":"81","name":"(GMT -07:00) Chihuahua, La Paz, Mazatlan","bias":-420,"abbr":""},{"id":"63","name":"(GMT -06:00) Central America","bias":-360,"abbr":"CST"},{"id":"66","name":"(GMT -06:00) Saskatchewan","bias":-360,"abbr":""},{"id":"68","name":"(GMT -07:00) Mountain Time","bias":-360,"abbr":"MT"},{"id":"60","name":"(GMT -05:00) Bogota, Lima, Quito","bias":-300,"abbr":"PET"},{"id":"62","name":"(GMT -05:00) Indiana - East","bias":-300,"abbr":"ET"},{"id":"64","name":"(GMT -06:00) Central Time","bias":-300,"abbr":"CT"},{"id":"65","name":"(GMT -06:00) Mexico City","bias":-300,"abbr":"CST"},{"id":"84","name":"(GMT -04:30) Caracas","bias":-270,"abbr":"VET"},{"id":"57","name":"(GMT -04:00) Atlantic Time - Canada","bias":-240,"abbr":"AST"},{"id":"58","name":"(GMT -04:00) Caracas, La Paz","bias":-240,"abbr":"VET"},{"id":"59","name":"(GMT -04:00) Santiago","bias":-240,"abbr":"CST"},{"id":"61","name":"(GMT -05:00) Eastern Time","bias":-240,"abbr":"ET"},{"id":"94","name":"(GMT -04:00) Paraguay","bias":-240,"abbr":"PYST"},{"id":"98","name":"(GMT -04:00) Atlantic Time - Puerto Rico","bias":-240,"abbr":"AST"},{"id":"53","name":"(GMT -03:00) Brasilia","bias":-180,"abbr":"BRT"},{"id":"54","name":"(GMT -03:00) Buenos Aires, Georgetown","bias":-180,"abbr":"ART"},{"id":"55","name":"(GMT -03:00) Greenland","bias":-180,"abbr":""},{"id":"80","name":"(GMT -03:00) Montevideo","bias":-180,"abbr":"UYST"},{"id":"86","name":"(GMT -03:00) Argentina","bias":-180,"abbr":"ART"},{"id":"56","name":"(GMT -03:30) Newfoundland","bias":-150,"abbr":"NST"},{"id":"52","name":"(GMT -02:00) Mid-Atlantic","bias":-120,"abbr":""},{"id":"1","name":"(GMT +00:00) Casablanca, Monrovia","bias":0,"abbr":"WET"},{"id":"92","name":"(GMT +00:00) Morroco","bias":0,"abbr":"WET"},{"id":"2","name":"(GMT +00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London","bias":60,"abbr":"UTC"},{"id":"7","name":"(GMT +01:00) West Central Africa","bias":60,"abbr":"WAT"},{"id":"50","name":"(GMT -01:00) Azores","bias":60,"abbr":""},{"id":"51","name":"(GMT -01:00) Cape Verde Is., Yerevan, Baku, Tbilisi","bias":60,"abbr":""},{"id":"3","name":"(GMT +01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","bias":120,"abbr":"CET"},{"id":"4","name":"(GMT +01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague","bias":120,"abbr":"CET"},{"id":"5","name":"(GMT +01:00) Brussels, Copenhagen, Madrid, Paris","bias":120,"abbr":"CET"},{"id":"6","name":"(GMT +01:00) Sarajevo, Skopje, Sofija, Vilnius, Warsaw, Zagreb","bias":120,"abbr":"CET"},{"id":"10","name":"(GMT +02:00) Cairo","bias":120,"abbr":""},{"id":"11","name":"(GMT +02:00) Harare, Pretoria","bias":120,"abbr":""},{"id":"13","name":"(GMT +02:00) Jerusalem","bias":120,"abbr":"IST"},{"id":"78","name":"(GMT +02:00) Amman","bias":120,"abbr":""},{"id":"79","name":"(GMT +02:00) Beirut","bias":120,"abbr":""},{"id":"82","name":"(GMT +02:00) Windhoek","bias":120,"abbr":""},{"id":"95","name":"(GMT +02:00) Syria","bias":120,"abbr":"EET"},{"id":"8","name":"(GMT +02:00) Athens, Istanbul, Minsk","bias":180,"abbr":"EET"},{"id":"9","name":"(GMT +02:00) Bucharest","bias":180,"abbr":"EET"},{"id":"12","name":"(GMT +02:00) Helsinki, Riga, Tallinn","bias":180,"abbr":"EET"},{"id":"15","name":"(GMT +03:00) Kuwait, Riyadh","bias":180,"abbr":"AT"},{"id":"17","name":"(GMT +03:00) Nairobi","bias":180,"abbr":"EAT"},{"id":"18","name":"(GMT +03:30) Tehran","bias":180,"abbr":""},{"id":"77","name":"(GMT +03:00) Tbilisi","bias":180,"abbr":""},{"id":"85","name":"(GMT +02:00) Turkey","bias":180,"abbr":"EET"},{"id":"88","name":"(GMT +03:00) Kaliningrad","bias":180,"abbr":"EEST"},{"id":"14","name":"(GMT +03:00) Baghdad","bias":240,"abbr":"AT"},{"id":"16","name":"(GMT +03:00) Moscow, St. Petersburg, Volgograd","bias":240,"abbr":"MSK"},{"id":"19","name":"(GMT +04:00) Abu Dhabi, Muscat","bias":240,"abbr":"GST"},{"id":"20","name":"(GMT +04:30) Kabul","bias":240,"abbr":""},{"id":"75","name":"(GMT +04:00) Yerevan","bias":240,"abbr":""},{"id":"76","name":"(GMT +04:00) Manaus","bias":240,"abbr":""},{"id":"91","name":"(GMT +04:00) Mauritius","bias":240,"abbr":"MUT"},{"id":"22","name":"(GMT +05:00) Islamabad, Karachi, Tashkent","bias":300,"abbr":"PKT"},{"id":"24","name":"(GMT +05:45) Kathmandu","bias":300,"abbr":""},{"id":"74","name":"(GMT +04:00) Baku","bias":300,"abbr":"AZT"},{"id":"93","name":"(GMT +05:00) Pakistan","bias":300,"abbr":"PKT"},{"id":"23","name":"(GMT +05:30) Calcutta, Chennai, Mumbai, New Delhi","bias":330,"abbr":"IST"},{"id":"27","name":"(GMT +06:00) Sri Jayawardenepura","bias":330,"abbr":"IST"},{"id":"21","name":"(GMT +05:00) Ekaterinburg","bias":360,"abbr":"YEKT"},{"id":"25","name":"(GMT +06:00) Almaty, Novosibirsk","bias":360,"abbr":"ALMT"},{"id":"26","name":"(GMT +06:00) Astana, Dhaka","bias":360,"abbr":"ALMT"},{"id":"28","name":"(GMT +06:30) Rangoon","bias":360,"abbr":""},{"id":"87","name":"(GMT +06:00) Bangladesh","bias":360,"abbr":"BST"},{"id":"29","name":"(GMT +07:00) Bangkok, Hanoi, Jakarta","bias":420,"abbr":"ICT"},{"id":"30","name":"(GMT +07:00) Krasnoyarsk","bias":420,"abbr":""},{"id":"31","name":"(GMT +08:00) Beijing, Chongqing, Hong Kong, Urumqi","bias":480,"abbr":"HKT"},{"id":"32","name":"(GMT +08:00) Irkutsk, Ulaan Bataar","bias":480,"abbr":""},{"id":"33","name":"(GMT +08:00) Kuala Lumpur, Singapore","bias":480,"abbr":"SGT"},{"id":"34","name":"(GMT +08:00) Perth","bias":480,"abbr":"WST"},{"id":"35","name":"(GMT +08:00) Taipei","bias":480,"abbr":"CST"},{"id":"96","name":"(GMT +08:00) Ulaanbaatar","bias":480,"abbr":"ULAT"},{"id":"36","name":"(GMT +09:00) Osaka, Sapporo, Tokyo","bias":540,"abbr":"JST"},{"id":"37","name":"(GMT +09:00) Seoul","bias":540,"abbr":"SST"},{"id":"38","name":"(GMT +09:00) Yakutsk","bias":540,"abbr":""},{"id":"39","name":"(GMT +09:30) Adelaide","bias":570,"abbr":"CST"},{"id":"40","name":"(GMT +09:30) Darwin","bias":570,"abbr":"CST"},{"id":"41","name":"(GMT +10:00) Brisbane","bias":600,"abbr":"EST"},{"id":"42","name":"(GMT +10:00) Canberra, Melbourne, Sydney","bias":600,"abbr":"EST"},{"id":"43","name":"(GMT +10:00) Guam, Port Moresby","bias":600,"abbr":""},{"id":"44","name":"(GMT +10:00) Hobart","bias":600,"abbr":"EST"},{"id":"45","name":"(GMT +10:00) Vladivostok","bias":600,"abbr":""},{"id":"46","name":"(GMT +11:00) Magadan, Solomon Is., New Caledonia","bias":660,"abbr":""},{"id":"47","name":"(GMT +12:00) Auckland, Wellington","bias":720,"abbr":"NZT"},{"id":"48","name":"(GMT +12:00) Fiji, Kamchatka, Marshall Is.","bias":720,"abbr":""},{"id":"89","name":"(GMT +12:00) Kamchatka","bias":720,"abbr":"PETT"},{"id":"90","name":"(GMT +12:00) Magadan","bias":720,"abbr":"MAGT"},{"id":"49","name":"(GMT +13:00) Nuku\u0026#39;alofa","bias":780,"abbr":""}]; var userMenu = [{"group":{"url":"MasterCalendar.aspx","title":"Calendar","urlMethod":1,"items":[]}},{"group":{"url":null,"title":"My Options","urlMethod":-1,"items":[{"url":"https://schedule.uca.edu/emswebapp/Content/Custom/how-to-subscribe-to-uca-calendars.pdf","title":"How To Subscribe","urlMethod":0}]}}];var isLeft = false;
+//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="28B11E50" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+       <div id="ctl00_HeaderContainer" class="HeaderContainer show-large">
+             
+            
+
+
+
+
+<div class="row po">
+    <div class="twelve columns">
+        <div id="ctl00_Header_imgBannerDiv" class="imgBanner centered pointer"><img src="http://schedule.uca.edu/MasterCalendar/ImageWriter.aspx?data=IPkf9F3DB014d7Mcuxnr02hg194Zr%2fYICmc%2b3DyQmrlgKN39%2bJJQUApj4PVMdMN6" alt="Banner Image" style="border-width:0px;" /></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    if (isLeft) {
+        $('.imgBanner').css({ 'margin': '20px -20px 20px -10px' });
+    }
+
+    $(document).ready(function () {
+        $('.imgBanner').click(function () {
+            document.location.href = 'MasterCalendar.aspx';
+        });
+    });
+
+    
+</script>
+
+           
+       </div>
+       <div id="HeaderContainer1" class="HeaderContainer1 show-medium show-small">
+            <div class="row mc-title-primary">
+                <!--<div class=">EMS Master Calendar</div>-->
+                <div id="ctl00_Div2" class="ml10">
+	EMS Master Calendar
+</div>
+            </div>
+       </div>
+       <div class="row">
+            <div title='Help Text' class="c-wrapper-active fl opacity-medium ml10 pointer help-text-icon" style="width:20px;height:20px">
+                <span id="helpTextLabel" class="visuallyhidden">Help Text</span>
+                <div tabindex="0" class="icon question" style="margin-left:-3px;margin-top:-2px" role="button" aria-labelledby="helpTextLabel"></div>
+            </div>   
+       </div>  
+       <div id="page" style="padding-left:.2em; padding-right:.2em;">
+            <div id="ctl00_lblOutMessage" class="outMessage">
+            </div>
+            <div id="ctl00_Summary" class="errorSummary" style="color:Red;display:none;">
+
+</div>
+            <div id="helpDialog">
+                <span id="ctl00_DefaultHelp" class="clear helpDialog"></span>   
+            </div>  
+            
+    <div role="banner" class="visuallyhidden">
+      <h1>Calendar Managers</h1>
+    </div>
+    <section class="main">
+        <div id="breakpointdetect" class="show-medium show-large"></div>
+        <div id="fedetect" class="show-large"></div>
+        <div class="row centered">
+            <div class="compatModeMessage" style="display:none"">
+                <span>It looks like you have enabled Internet Explorer Compatibility View.
+Master Calendar works best if you turn this off.</span>
+                <span class="dismissCompatMode">Dismiss</span>
+            </div>
+            
+            <!-- Search -->
+            <section>
+                <div class="fluid search-results nine columns" style="display:none">
+
+                    <div class="row">
+                        <div class="show-small show-medium mt10"></div>
+                        <div class="fr pointer back-to-events"  style="height:22px;line-height:22px;vertical-align:middle;margin-bottom:10px;">
+                            <div class="c-wrapper-active fl opacity-full"><div title='Back to Calendar' class="fl icon back"></div></div>
+                            <div  tabindex="0" class="fl pl6 font-size-normal mc-color-3 font-weight-bold">
+                                Back to Calendar
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pl6 mc-title-primary mc-boxshadow br-5" style="margin-bottom:10px;display:block">Search Results</div>
+
+                    <div class="row space">
+                        <div class="column three po fl">
+                            <label class="fl" for="startDate">From:</label>
+                            <div id="sdCal-container" class="fl">
+                                <input id="startDate" type="text" class="fl"/>
+                            </div>
+                        </div>
+                        <div class="column three po fl">
+                            <label class="fl" for="endDate">To:</label>
+                            <div id="edCal-container" class="fl">
+                                <input id="endDate" class="fl" type="text" />
+                            </div>
+                        </div>
+                        <div class="column six po">
+                            <div class="row centered search-box-large fl" style="display:block;">
+                                <div class="fl" style="position:relative;z-index:1000;">
+                                    <div class="fl mc-bg-color-5 search-box ml20">
+                                        <div title='Search' class="icon loupe pointer centered fl"></div>
+                                        <div class="fl"><input id="largeSearchBox" type="text" title="Search for Events" style="width:200px" value="" class="search-box-input mc-bg-color-1 mc-border-color-5 mc-border-style-solid mc-border-width-1px" 
+                                           aria-labeledby="largeSearchBox" placeHolder="Search for Events"/></div>
+                                        <div tabindex="0" class="go fl pl5 pointer">GO</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space" style="height:22px;line-height:22px;vertical-align:middle;margin-bottom:30px;">
+                        <div class="fl">
+                            <input id="chkUseFilters" type="checkbox" class="fl show-large" style="margin-top:3px;" />
+                            <label for="chkUseFilters" class="fl font-size-normal pl10 pr10 show-large">Use Selected Filters</label>
+
+                            <input id="chkExactMatch" type="checkbox" class="fl" style="margin-top:3px;" />
+                            <label for="chkExactMatch" class="fl font-size-normal pl10 pr10" >Use Exact Match</label>
+                            
+                            <input id="generalEvents" type="radio" name="rdeventType" class="fl pl5 mt2" value="0" checked/>
+                            <label for="generalEvents" class="fl pl5 font-size-normal pl10 pr10">General events</label>
+
+                            <input id="specialEvents" type="radio" name="rdeventType" class="fl pl5 mt2" value="1" />
+                            <label for="specialEvents" class="fl pl5 font-size-normal pl10 pr10">Special dates</label>
+                        </div>
+                    </div>
+
+                    <section class="space">
+                        <div class="font-size-Xlarge">Your search for: '<span class="font-weight-bold search-text-value"></span>' returned (<span class="font-weight-bold search-count-value"></span>) result(s)</div>
+                        <section role="navigation" class="event-type-display-search space" style="margin-top:15px;">
+                            <div class="row centered" style="margin-top:10px;">
+                                <div class="pl10 pr10">
+                                    
+                                    <span id="searchResultsExportText" class="visuallyhidden">Select to export the search results as a .csv file</span>
+                                    <div tabindex="0" aria-labelledby="searchResultsExportText" class="button normal fr"><div title='Export' class="icon export fl"></div>Export</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="p10 search-list-bar">
+                             <div class="row centered box el-container" data-bind="with:$root.searcheventlistVM">
+                                <div>
+                                    <div class="row el-title show-large show-medium">
+                                        <div tabindex="0" class="three columns title" data-bind="event: { click:function(){ sortBy('EventDate',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('EventDate',$element) } }  }">
+                                            <div title='Sort' class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Event Date</span>
+                                            
+                                        </div>
+                                        <div tabindex="0" class="four columns title" data-bind="event: { click:function(){sortBy('Title',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Title',$element) } } }">
+                                            <div title='Sort' class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Title</span>
+                                        </div>
+                                        <div tabindex="0" class="two columns title" data-bind="event: { click:function(){sortBy('Location',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Location',$element) } } }">
+                                            <div title='Sort' class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl"><div id="ctl00_pc_LocationSearchLabel">
+	Location
+</div></span>
+                                        </div>
+                                        <div tabindex="0" class="two columns title" data-bind="event: { click:function(){sortBy('CalendarName',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('CalendarName',$element) } } }">
+                                            <div title='Sort' class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Calendar</span>
+                                        </div> 
+                                        <div class="one columns title po"><div title='Expand' class="icon expand centered" style="margin-top:1px;"></div></div>
+                                    </div>
+                                    <div class="el-data-container" >
+                                        <div class="el-data-item" data-bind="template: { name: 'searchResults-list-template', foreach: events}, searchListPost:{}"></div>
+                                    </div>
+                                    <div class="row  mc-color-3 p5 font-weight-bold more-results">
+                                        <span class="go pointer">Load More Results</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                       <!-- BEGIN - Block Event List - List-->
+                       <section class="special-date-list space" style="display:none;">
+                             <div class="row centered box el-container pr10" data-bind="with:$root.specialDatesVM">
+                                <div>
+                                    <div class="row el-title show-large show-medium">
+                                        
+                                        <div tabindex="0" class="two columns title" data-bind="event: { click:function(){ sortBy('EventDate',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('EventDate',$element) } }  }">
+                                            <div class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Event Date</span>
+                                            
+                                        </div>
+                                        <div tabindex="0" class="four columns title" data-bind="event: { click:function(){ sortBy('Title',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Title',$element) } }  }">
+                                            <div class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Title</span>
+                                        </div>
+                                        <div tabindex="0" class="four columns title" data-bind="event: { click:function(){ sortBy('Notes',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Notes',$element) } }  }">
+                                            <div class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl"><div id="ctl00_pc_Div2">
+	Notes
+</div></span>
+                                        </div>
+                                        <div tabindex="0" class="two columns title" data-bind="event: { click:function(){ sortBy('CalendarName',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('CalendarName',$element) } }  }">
+                                            <div class="icon down pointer fl mt4"></div>
+                                            <span class="pointer fl">Calendar</span>
+                                        </div> 
+                                    </div>
+                                    <div class="el-data-container p10" >
+                                        <div class="el-data-item" data-bind="template: { name: 'specialDate-list-template',foreach: events}, specialListPost:{}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- END - Block Event List - List-->
+
+                    </section>
+                </div>
+            </section>
+
+
+            <div class="fluid events nine columns" style="display:block">
+
+                <div class="row login-fluid show-small show-medium ">
+                    <div class="twelve column mt5 mb5">
+                        <div class="fr login-fluid-container"></div>
+                    </div>
+                </div>
+
+               <!-- BEGIN - Announcements Ticker -->
+                <div id="announcementHolder">
+                    <section class="space show-large">
+                        <div class="row">
+                            <ul id="js-news" class="js-hidden">
+	                        </ul>    
+                        </div>
+                    </section>
+                </div>
+                <!-- END - Announcements Ticker -->
+
+                <!-- BEGIN - Featured Events -->
+                <div id="feHolder" class="show-large">
+                    <div class="row pl6 mc-title-primary mc-boxshadow br-5" style="margin-bottom:10px;display:block">
+                        <div id="ctl00_pc_FeaturedEventsLabel" class="fl">
+	Featured Events
+</div>
+                        <div tabindex="0" title='Expand/Collapse Arrow' class="fr icon down pointer" style="margin-top:5px;" onclick="UpDown(this,'.fetured-events-content')" onkeypress="UpDown(this,'.fetured-events-content')"></div>
+                    </div>
+                
+                    <section class="fetured-events space">
+                        <div class="fetured-events-content fetured-events-content-horizontal-1" style="display:block;">
+                            <div class="row box mc-bg-color-1 mc-border-style-solid mc-border-color-5 mc-border-width-3px p10">
+                                <div class="row content p10"><!-- Viewer Row -->
+                                    <div class="six columns scroller-image"><!--Image Container-->
+                                    </div>
+                                    <div class="six columns scroller-text">
+                                        <h1 tabindex="0" class="mc-color-3 font-size-Xlarge font-weight-bold space scroller-text-title pointer">Featured Event Title</h1>
+                                        <div style="overflow:auto;max-height:110px;margin-bottom:5px">
+                                            <p class="mc-color-4 font-size-normal space scroller-text-description" style="text-overflow:ellipsis"></p>
+                                        </div>
+                                        
+                                        <div class="mc-color-4 font-size-small font-weight-bold scroller-text-info">
+                                            <div class="info-date"></div>
+                                            <div class="info-time"></div>
+                                            <div class="info-location"></div>
+                                        </div>
+                                        <div tabindex="0" class="mc-color-4 font-size-normal space m4 pointer scroller-text-more">
+                                            more
+                                        </div>
+                                    </div>
+                                    <div class="scroller-playback-controls">
+                                        <div tabindex="0" class="c-wrapper-active fl"><div title='Play' class="icon pointer play fl"></div></div>
+                                        <div tabindex="0" class="c-wrapper-inactive fl"><div title='Pause' class="icon pointer pause fl"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row scroller-control mc-bg-color-5">
+
+                                <div class="fl mc-border-color-2 mc-border-style-solid mc-border-width-1px scroller">
+                                    <div tabindex="0" title='Previous' class="prev-next pointer prev-item"></div>
+                                    <div tabindex="0" title='Previous Group' class="prev-group prev-group-img pointer"></div>
+                                </div>
+
+                                <div class="fl items mc-color-4">
+                                    <div class="items-scroller" style="height:inherit;position:relative;"></div>
+                                </div>
+                                
+                                <div class="fr mc-border-color-2 mc-border-style-solid mc-border-width-1px scroller">
+                                    <div tabindex="0" title='Next' class="prev-next pointer next-item"></div>
+                                    <div tabindex="0" title='Next Group' class="next-group next-group-img pointer"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- END - Featured Events -->
+
+                <!-- BEGIN - Block Event List -->
+                <!-- BEGIN - Block Event List - Selector Bar -->
+                <section role="navigation" class="space event-list-bar" style="margin-top:10px;">
+                    <div class="row mc-title-primary br-5" >
+                        <div class="fl pl6 two column">
+                            Events
+                        </div>
+                        <div class="ten column">
+                            <div class="row">
+                                <div class="column seven">
+                                    <div class="fl pr20 date-scroller">
+                                        <div tabindex="0" role="button" class="icon previous-arrow fl mt5 mr5 pointer scroll-date" title='Select the previous month in the calendar'></div>
+                                        <span class="fl dateLabel"></span>
+                                        <div tabindex="0" role="button" class="icon next fl mt5 ml5 pointer scroll-date" title='Select the next month in the calendar'></div>
+                                    </div>
+                                </div>
+                                <div class="column five ">
+                                    <div class="display-type-buttons fr">
+                                        <div tabindex="0" role="button" aria-pressed="false" class="button normal fl"><div title='Switch the calendar view to display only the selected date' class="icon cal-week fl" style="margin-top:5px"></div><span class="text-opacity-override">Day</span></div>
+                                        <div tabindex="0" role="button" aria-pressed="false" class="button normal fl"><div title='Switch the calendar view to display only the week of the selected date' class="icon cal-week fl" style="margin-top:5px"></div><span class="text-opacity-override">Week</span></div>
+                                        <div tabindex="0" role="button" aria-pressed="false" class="button normal fl"><div title='Switch the calendar view to display only the month of the selected date' class="icon cal-month fl" style="margin-top:5px"></div><span class="text-opacity-override">Month</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- END - Block Event List - Selector Bar -->
+
+                <!-- BEGIN - Block Event List - Display Bar-->
+                 <section role="navigation" class="event-type-display-nav space" style="margin-top:15px;">
+                    <div class="row centered" style="margin-top:10px;">
+                        <div class="pl10 pr10">
+                            <div tabindex="0" role="button" aria-pressed="false" class="button trigger normal fl show-large show-medium"><div title='Switch the display type to the list view' class="icon list fl"></div>List</div>
+                            <div tabindex="0" role="button" aria-pressed="false" class="button trigger normal fl show-large show-medium"><div title='Switch the display type to the calendar view' class="icon grid fl"></div>Calendar</div>
+                            <div tabindex="0" role="button" class="button trigger normal fr"><div title='Add Event' class="icon add fl"></div>Add Event</div>
+
+
+                            <div class="time-zone  normal fr br-5 p5" style="line-height:20px;">
+                                <div title='Time zone' class="icon world fl"></div>
+                                <div class="pr6 time-zone-selected fl" data-bind="with:$root.timeZonesVM">
+                                    <label for="timezoneChangeddl" class="fl pr5">Display as</label>
+                                    <select id="timezoneChangeddl" name="timezoneChangeddl" tabindex="0"class="fl tz-ddl ddl" data-bind="options: timeZones, optionsText: 'name', optionsValue: 'id', value:timeZones.id">
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <!-- END - Block Event List - Display Bar-->
+                
+                <!-- BEGIN - Special Dates -->
+                <div class="row special-dates show-large show-medium" style="margin-top:10px;">
+                    <div class="twelve column special-date-func-list"></div>
+                </div>
+                <!-- END - Special Dates -->
+
+                <!-- BEGIN Search Fluid -->
+                <div class="row search-fluid centered show-small show-medium space" style="margin-top:10px;">
+                    <div class="twelve column centered">
+                        <div class="mc-bg-color-5 search-box fl">
+                            <div class="icon loupe pointer centered fl"></div>
+                            <div class="fl"><input type="text" id="smallSearchBox" title="Search for Events" style="width:200px" value="" class="search-box-input-fluid mc-bg-color-1 mc-border-color-5 mc-border-style-solid mc-border-width-1px"
+                            aria-labeledby="smallSearchBox"  placeHolder="Search for Events"/></div>
+                            <div class="go fl pl5 pointer">GO</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Search Fluid -->
+
+
+                <!-- BEGIN Calendar Fluid -->
+                <div class="row calendars-fluid show-medium show-small">
+                    <div class="button selected fl br-5 p5 ml20" style="line-height:20px;" onclick="setFluidCalBox(this)" onkeypress="setFluidCalBox(this)"><div class="icon cal-week fl"></div>Select Calendar(s)</div>
+                </div>
+                <!-- END Calendar Fluid -->
+
+                
+                <!-- BEGIN Back to grid -->
+                <div class="row show-large show-medium back-to-calendar" style="margin-top:10px;display:none">
+                    <div class="fr pointer back-to-events"  style="height:22px;line-height:22px;vertical-align:middle;margin-bottom:10px;">
+                        <div class="c-wrapper-active fl opacity-full"><div class="fl icon back"></div></div>
+                        <div class="fl pl6 font-size-normal mc-color-3 font-weight-bold">
+                            Back to events
+                        </div>
+                    </div>
+                </div>
+                 <!-- END Back to grid -->
+
+
+                
+
+
+                <!-- BEGIN - Block Event List - List-->
+               <section class="event-list space" style="display:block;">
+                    <div class="row centered" data-bind="with:$root.eventlistVM">
+                        <div class="margin-clear p10" data-bind="template: { name: 'event-list-template',foreach: events}, eventListPost:{}"></div>
+                    </div>
+                </section>
+                <!-- END - Block Event List - List-->
+
+                 <!-- BEGIN - Block Event List - List-->
+               <section class="event-functional-list space" style="display:none;">
+                     <div class="row centered box el-container pr10" data-bind="with:$root.eventlistVM">
+                        <div>
+                            <div class="row el-title show-large show-medium">
+                                <div tabindex="0" class="three columns title" data-bind="event: { click:function(){ sortBy('EventDate',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('EventDate',$element) } }  }">
+                                    <div class="icon down pointer fl mt4"></div>
+                                    <span class="pointer fl">Event Date</span>
+                                            
+                                </div>
+                                <div tabindex="0" class="four columns title" data-bind="event: { click:function(){ sortBy('Title',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Title',$element) } }  }">
+                                    <div class="icon down pointer fl mt4"></div>
+                                    <span class="pointer fl">Title</span>
+                                </div>
+                                <div tabindex="0" class="two columns title" data-bind="event: { click:function(){ sortBy('Location',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('Location',$element) } }  }">
+                                    <div class="icon down pointer fl mt4"></div>
+                                    <span class="pointer fl"><div id="ctl00_pc_Div1">
+	Location
+</div></span>
+                                </div>
+                                <div tabindex="0" class="two columns title" data-bind="event: { click:function(){ sortBy('CalendarName',$element)}, keypress:function(data, event){ if (event.which === 13) {sortBy('CalendarName',$element) } }  }">
+                                    <div class="icon down pointer fl mt4"></div>
+                                    <span class="pointer fl">Calendar</span>
+                                </div> 
+                                <div class="one columns title po"><div class="icon expand centered" style="margin-top:1px;"></div></div>
+                            </div>
+                            <div class="el-data-container p10" >
+                                <div class="el-data-item" data-bind="template: { name: 'functional-list-template',foreach: events}, functionalListPost:{}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- END - Block Event List - List-->
+
+                <!-- BEGIN - Block Event List - Grid-->
+                <div class="event-grid-container row centered space p20"></div>
+                <div class="tooltip-template" data-bind="with: $root.eventTTVM">
+                    <div class="tooltip br-10 p10">
+                        <div tabindex="0" aria-label="Collapse details" class="tooltip-close">X</div>
+
+                        <div class="mc-color-3 font-size-large font-weight-bold pr10 space" style="clear:both">
+                            <div class="fl icon edit pointer mt5" title="Edit" data-bind="click:function(){ CreateEditLink(event()); }, style: { display: event().AllowEdit() ? '' : 'none', marginTop: '-3px' }"></div>
+                            <div data-bind="text: Dea.htmlDecode(event().Title()), style: { textDecoration: event().Cancel()  ? 'line-through' : 'none'}"></div>
+                        </div>
+                        <div class="mc-color-4 font-size-small fl space" style="width:100%">
+                            <div class="fl mt2" style="width:10px;height:10px;" data-bind="style: { backgroundColor: event().EventTypeColor }"></div>
+                            <div class="fl ml2" data-bind="text: Dea.htmlDecode(event().EventType())"></div>
+                        </div>
+                        <div class="mc-color-4 font-size-small font-weight-bold space">
+                            
+                            <div data-bind="text: event().EventDateTime().DateFormated"></div>
+                            <div class="space" data-bind="text: event().isAllDay() ? 'All day event' : event().EventDateTime().TimeFormated"></div>
+                            <div data-bind="if:event().Icon1().ShowOnToolTip(), style: { display: event().Icon1().ShowOnToolTip() || event().Icon1().ShowOnToolTip() ? '' : 'none', clear: 'both' }">
+                                <a class="space" target="_blank" data-bind="attr: { href: event().Icon1().CustomURL }, style: { display: event().Icon1().ShowOnToolTip() ? '' : 'none', float: 'left' }">
+                                    <img style="display:block" data-bind="attr: { src: event().Icon1().LargeIcon, alt: Dea.htmlDecode(event().Icon1().IconDescription()), title: Dea.htmlDecode(event().Icon1().IconDescription()) }"/>
+                                </a>
+                                <a class="space pl5" target="_blank" data-bind="attr: { href: event().Icon2().CustomURL }, style: { display: event().Icon2().ShowOnToolTip() ? '' : 'none', float: 'left' }">
+                                    <img style="display:block" data-bind="attr: { src: event().Icon2().LargeIcon, alt: Dea.htmlDecode(event().Icon2().IconDescription()), title: Dea.htmlDecode(event().Icon2().IconDescription()) }"/>
+                                </a>
+                            </div>
+                            <div style="clear:both;" data-bind="text: Dea.htmlDecode(event().Location().Name())"></div>
+                        </div>
+                        <div class="mc-color-4 font-size-small" data-bind="text: event().setEllipsis($data.event(), 'Description', 150, $element)"></div>
+                        <div tabindex="0" class=" mc-color-3 font-size-small pointer tooltip-more" style="text-align:right">more</div>
+                        <div class="tooltip-arrow"></div>
+                    </div>
+                </div>
+                <!-- END - Block Event List - Grid-->
+            </div>
+
+
+            <!-- panel bottom -->
+            
+<div class="fluid three columns show-large filters-main-container">
+    <div style="height: 35px; line-height: 21px; vertical-align: middle; margin-right: 10px">
+        <div class="fr">
+            <div class="font-size-normal mc-color-3 font-weight-bold">
+                <div class="pending-notifications c-wrapper-active fl opacity-full">
+                    <div title='Pending Events' class="fl icon important pointer"></div>
+                    <span></span>
+                </div>
+                
+                
+<div class="login-container">
+    <div class="login-bar fl" style="height:35px;">
+
+        <div title='User Name' class="fl icon person-male"></div>
+        <div class="fl">
+            <div class="fl pointer" onclick="$(this).next().trigger('click')" onkeypress="$(this).next().trigger('click')"> guest</div>
+            <span title='Menu Open/Close Arrow' class="size75 icon75 down75 pointer fl userMenu mt3 ml2" tabindex="0" onkeydown="mc_keypressHandlerAsButton(event, this);"></span>
+
+            <span tabindex="0" class="ml10 pointer login mt2" id="loginButton"></span>
+            <div style="display: none" id="loginForm" class="mc-boxshadow">
+                <div class="font-size-normal mc-color-1" id="loginMessage"></div>
+                <section class="form login-info" id="secLogin" style="clear: both">
+                    <div>
+                        <div class="input-wrapper fl br-5 p5 space" style="line-height:20px;clear:both;">
+                            <div>
+                                <label for="loginUserID" class="fl label-small">User Id</label>
+                                <input type="text" id="loginUserID" name="userID" class="ml10 text defaultInvalid fl"/>
+                                <div title="Required" class="c-wrapper-active fr opacity-medium ml10" style="width:20px;height:20px">
+                                    <div class="icon back" style="margin-left:-3px;margin-top:-2px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-wrapper fl br-5 p5 space" style="line-height:20px;clear:both">
+                            <div>
+                                <label class="fl label-small" for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" name="password" class="ml10 text defaultInvalid fl" autocomplete="off"/>
+                                <div title="Required" class="c-wrapper-active fr opacity-medium ml10" style="width:20px;height:20px"><div class="icon back" style="margin-left:-3px;margin-top:-2px"></div></div>
+                            </div>
+                        </div>
+                        <div class="input-wrapper fl br-5 p5 space login-timezone" style="line-height:20px;clear:both">
+                            <div>
+                                <label class="fl label" for="loginTimeZone">Time zone</label>
+                                <select class="ml10 ddl-small" id="loginTimeZone" name="loginTimeZone"></select>
+                                <div title="Required" class="c-wrapper-active fr opacity-medium ml10" style="width:20px;height:20px">
+                                    <div class="icon back" style="margin-left:-3px;margin-top:-2px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt10" style="line-height:20px;clear:both">
+                            <div tabindex="0" class="fl mt5 ml20 font-size-normal mc-color-5 pointer email-my-pass">Email me my password</div>
+                            <div tabindex="0" style="line-height:20px;" class="button selected fr br-5 p5" onclick="LoginUser($('#loginUserID').val(), $('#loginPassword').val(), $('#loginTimeZone').val())" onkeypress="LoginUser($('#loginUserID').val(), $('#loginPassword').val(), $('#loginTimeZone').val())"><div class="icon key fl"></div>Login</div>
+                            <div tabindex="0"  style="line-height:20px;" class="login-cancel button selected fr br-5 p5 mr10" onclick="$('.login').data('login').close()" onkeypress="$('.login').data('login').close()"><div class="icon x fl"></div>Cancel</div>
+                            
+                        </div>
+                    </div>
+                </section>
+                <section id="secEmailPassword" style="clear: both; display: none">
+                    <div class="fl mt20">
+                        <div class="input-wrapper fl br-5 p5 space" style="line-height:20px;">
+                            <div>
+                                <label for="emailPassword" class="fl label-small">Email</label>
+                                <input type="text" id="emailPassword" name="emailPassword" class="ml10 text defaultInvalid"/>
+                                <div title="Required" class="c-wrapper-active fr opacity-medium ml10" style="width:20px;height:20px"><div class="icon back" style="margin-left:-3px;margin-top:-2px"></div></div>
+                            </div>
+                        </div>
+                        <div tabindex="0" style="line-height:20px;clear:both" class="button selected fr br-5 p5 " onclick="EmailMyPassword($('#emailPassword').val());" onkeypress="EmailMyPassword($('#emailPassword').val());"><div class="icon email fl"></div>Email Me</div>
+                        <div tabindex="0" style="line-height:20px;" class="email-password-cancel button selected fr br-5 p5 mr10" onclick="$('.login').data('login').close()" onkeypress="$('.login').data('login').close()"><div class="icon x fl"></div>Cancel</div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+    </div>
+</div> 
+                
+            </div>
+        </div>
+    </div>
+    <div id="cal-container" class="centered space">
+        <input id="inlineCal" title="Calendar Picker" type="date" class="date" min="2004-02-20" />
+    </div>
+    <section>
+        <div class="row centered search-box-small space" style="display:block;">
+            <div class="fl mt20" style="position:relative;z-index:1000">
+                <div class="fl mc-bg-color-5 search-box ml20">
+                    <div class="icon loupe centered fl"></div>
+                    <div class="fl"><input type="text" title="Search for Events" value="" class="search-box-input mc-bg-color-1 mc-border-color-5 mc-border-style-solid mc-border-width-1px" placeHolder="Search for Events"/></div>
+                    <div class="go fl pl5 pointer">GO</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="subscribeHolder" class="row" style="margin-left:20px">
+            <div style="line-height:20px;vertical-align:middle"><div class="icon star fl"></div><a onkeydown="mc_keypressHandlerAsButton(event, this)"role="link" tabindex="0" title='Notifications/iCal Feeds' class="subscribe font-size-normal">Notifications/iCal Feeds</a></div>
+        </div>
+    </section>
+    <section class="calendar-types-section">
+        <div class="centered side-box calendar-types" style="margin-top:5px;margin-left:-1px">
+            <div class="side-box-head calendar-side-box-head">
+                <div id="GroupBoxHeader" class="side-box-title fl">Calendars</div>
+                <span id="GroupBoxExpandCollapseLbl" class="visuallyhidden">Expand/Collapse Arrow</span>
+                <div aria-expanded="true" tabindex="0" role="button" aria-labelledby="GroupBoxHeader GroupBoxExpandCollapseLbl" class="fr icon down pointer"></div>
+            </div>
+
+            <div>
+                <div class="p5 font-size-small">
+                    <span tabindex="0" role="button" class="pointer check-all" onkeydown="mc_keypressHandlerAsButton(event, this)"></span>
+                    <span tabindex="0" role="button" class="fr pointer expand-all" onkeydown="mc_keypressHandlerAsButton(event, this)"></span>
+                </div>
+            </div>
+
+            <div class="calendar-types-container">
+                            
+            </div>
+        </div>
+    </section>
+    <div class="centered side-box filters-box" style="margin-top: 20px; margin-left: -1px">
+        <div class="side-box-head filter-side-box-head space">
+            <div id="FilterBoxHeader" class="side-box-title fl">Filters</div>
+            <span id="FilterBoxExpandCollapseLbl" class="visuallyhidden">Expand/Collapse Arrow</span>
+            <div aria-expanded="true" role="button" aria-labelledby="FilterBoxHeader FilterBoxExpandCollapseLbl" tabindex="0" class="fr icon down pointer"></div>
+        </div>
+        <div class="filters-container">
+            <div id="eventTypeFilterHolder" class="input-wrapper fl br-5 p5 space" style="line-height: 20px;">
+                <div>
+                    <div class="fl label-small">
+                        <div id="ctl00_pc_ctl00_EventTypesLabel" class="fl">
+	Event Types
+</div></div>
+                    <select id="EventTypesFilter" class="ddl-small multi-filter" title="Event Types">
+                    </select>
+                </div>
+            </div>
+            <div id="locationFilterHolder" class="input-wrapper fl br-5 p5 space" style="line-height: 20px;">
+                <div>
+                    <div class="fl label-small">
+                        <div id="ctl00_pc_ctl00_LocationsLabel" class="fl">
+	Locations
+</div></div>
+                    <select id="LocationsFilter" class="ddl-small multi-filter" title="Locations">
+                    </select>
+                </div>
+            </div>
+            <div id="sublocationFilterHolder" class="input-wrapper fl br-5 p5 space" style="line-height: 20px;">
+                <div>
+                    <div class="fl label-small">
+                        <div id="ctl00_pc_ctl00_SubLocationLabel" class="fl">
+	SubLocations
+</div></div>
+                    <select id="SubLocationsFilter" class="ddl-small multi-filter" title="SubLocations">
+                    </select>
+                </div>
+            </div>
+            <div id="departmentFilterHolder" class="input-wrapper fl br-5 p5 space" style="line-height: 20px;">
+                <div>
+                    <div class="fl label-small">
+                        <div id="ctl00_pc_ctl00_departmentsLabel" class="fl">
+	Departments
+</div></div>
+                    <select id="DepartmentsFilter" class="ddl-small multi-filter" title="Departments">
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <!-- END - Block Event List -->
+        </div>
+
+        <div class="row centered" style="display:none">
+            <div class="twelve columns">
+                <div class="centered">Footer</div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- search box -->
+    <div class="search-box-modal mc-bg-color-5 mc-boxshadow mc-border-color-6 mc-border-style-solid mc-border-width-3px"
+        style="display: none">
+    </div>
+    <!-- end search box -->
+
+    <!-- modal content -->
+    <div id="osx-modal-content">
+        <div id="osx-modal-title" class="pl6">
+            Announcements</div>
+        <div tabindex="0" class="close">
+            <a href="#" class="simplemodal-close">x</a></div>
+        <div id="osx-modal-data">
+        </div>
+    </div>
+
+    <div id="basic-modal-content">
+        <div id="event-loader"></div>
+    </div>
+    <!-- end modal content -->
+
+    <!-- filter buttons -->
+    <div class="fr filter-buttons" style="display: none">
+        <div tabindex="0" class="button selected fl br-5 p5" style="line-height: 20px;">
+            <div class="icon check fl">
+            </div>
+            Apply</div>
+       
+    </div>
+    <!-- end filter buttons -->
+    <script type="text/html" id="event-list-template">
+        <div class="box mc-border-style-solid mc-border-color-5 mc-border-width-3px br-10 fl mc-bg-color-1 space" data-bind="event:{mouseover:$parent.setTitleHover,mouseout:$parent.setTitleOut}">
+            <div class="row collapse mc-title-secondary br-t-7 event-func-list-header">
+                <div class="eleven column po">
+                    <div class="nine column">
+                        <div>
+                            <p class="pl6 middle fl" data-bind="text:Dea.htmlDecode($data.Title()),style: { textDecoration: $data.Cancel()  ? 'line-through' : 'none', lineHeight: 'initial'}"></p>
+                        </div>
+                    </div>
+                    <div class="three column po">
+                        <span class="fr event-list-datetime-label" data-bind="text:$parent.formatDateTime($data, 'DateShort', $element)"></span>
+                    </div>
+                </div>
+                <div class="one column">
+                    <!-- if we use the KO keypress binding, it swallows all keypresses -->
+                    <a tabindex="0" title="Expand" 
+                         class="mr6 event-list-expand-event icon expand pointer fr"
+                         onkeydown="mc_keypressHandlerAsButton(event, this);"
+                         data-bind="event: {
+                            click:function() { return $parent.bindAccordion('box', $data, $element); },
+                        },
+                        attr: {'aria-label':'Expand Details for ' + $data.Title()}">
+                    </a>
+                </div>
+            </div>
+
+            <div class="p10">
+                <div class="row">
+                    <!-- ko if: $data.EventImageURL() !== "" -->
+                    <div class="two column">
+                        <div class="fl mc-border-style-solid mc-border-color-5 mc-border-width-3px" style="max-width:100px">
+                            <img style="display:block" data-bind="attr: { src: $data.EventImageURL, alt: Dea.htmlDecode($data.ALTText()), title: Dea.htmlDecode($data.ALTText()) }"/>
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <div data-bind="attr: { class: $data.EventImageURL() !== '' ? 'ten column font-size-normal' : 'twelve column font-size-normal' }">
+                        <div class="font-weight-bold event-list-datetime-label"><span data-bind="text:$data.isAllDay() ? 'All day event    ' : $parent.formatDateTime($data, 'TimeShort', $element)"></span><span data-bind="    text:Dea.htmlDecode($data.Location.Name()) != '' ? ', ' +  Dea.htmlDecode($data.Location.Name()) : ''"></span></div>
+                        <div class="fl mt2" data-bind="style: { backgroundColor: $data.EventTypeColor(), display: $data.EventTypeColor() != '' ? '' : 'none',width: '10px', height: '10px' }, attr: { title: Dea.htmlDecode($data.EventTypeName()) }"></div>
+                        <div class="fl ml2 font-weight-bold" data-bind="text:Dea.htmlDecode($data.EventTypeName())"></div>
+                        <br />
+                        <div class="event-list-description" data-bind="text:$parent.setEllipsis($data,'Description', 150, $element)"></div>
+                        <span tabindex="0" class="fr" style="display:none" onkeydown="mc_keypressHandlerAsButton(event, this);"><a data-bind="attr:{'aria-label': 'Expand Details for ' + $data.Title()}">more</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Accordion-->
+        <div class="accordion box mc-border-style-solid mc-border-color-4 mc-border-width-3px br-10 fl mc-bg-color-1 space" style="display:none;"></div>
+        <!-- END Accordion-->
+    </script>
+    <!--ON event-list-description || data-bind="text:$parent.setEllipsis($data,'Description', 150, $element)" -->
+    <!-- END Event List Template-->
+    <script type="text/html" id="functional-list-template">
+        <!-- ko if: $data.Title().length > 0 -->
+        <div class="funcBox" style="clear:both">
+            <div class="row el-data-row">
+                <div class="three columns po"><div class="pl6"><span data-bind="text:$data.isAllDay() ? $parent.formatDateTime($data, 'DateShort', $element) + ' (All day)' : $parent.formatDateTime($data, 'DateTimeShort', $element)"></span></div></div>
+                <!--<div class="two columns po"><div class="pl6"><span data-bind="text:$parent.formatDateTime($data, 'TimeShort', $element)"></span></div></div>-->
+                <div class="four columns po font-weight-bold">
+                     <div class="pl4">
+                        <div class="fl mt2" data-bind="style: { backgroundColor: $data.EventTypeColor(), display: $data.EventTypeColor() != '' ? '' : 'none',width: '10px', height: '10px' }, attr: { title: Dea.htmlDecode($data.EventTypeName()) }"></div>
+                        <div class="fl ml2 font-weight-bold" data-bind="text:Dea.htmlDecode($data.Title()), style: { textDecoration: $data.Cancel()  ? 'line-through' : 'none'}"></div>
+                    </div>
+                </div>
+                <div class="two columns po"><div class="pl6" data-bind="text:Dea.htmlDecode($data.Location.Name())"></div></div>
+                <div class="two columns po"><div class="pl6" data-bind="text:Dea.htmlDecode($data.CalendarName())"></div></div>
+                <div class="one columns po">
+                    <div class="fr pr6 expand-trigger show-small">
+                        <span class="show-small fl label mt2">Expand</span>
+                        <div class="icon expand pointer fl" data-bind="click:function() { return $parent.bindAccordion('funcBox', $data, $element); }"></div>
+                    </div>
+                    <div tabindex="0" title="Expand" class="icon expand pointer expand-trigger-icon centered show-medium show-large" 
+                        data-bind="event: { click:function() { return $parent.bindAccordion('funcBox', $data, $element); }, keypress:function(data, event) { if(event.which === 13) {return $parent.bindAccordion('funcBox', $data, $element);} } }"></div>
+                        
+                </div>
+            </div>
+            <div class="row el-data-row-separator bg-color1">
+                <div class="two columns show-small show-medium show-large"></div>
+                <div class="six columns show-large show-medium"></div>
+                <div class="three columns  show-large show-medium"></div>
+                <div class="one columns show-large show-medium"></div>
+            </div>
+        </div>
+         <!-- Accordion-->
+         <div class="accordion searchBox mc-border-style-solid mc-border-color-4 mc-border-width-3px br-10 fl mc-bg-color-1 space mt5" style="display:none;min-width:100%"></div>
+        <!-- END Accordion-->
+        <!-- /ko -->
+    </script>
+    <script type="text/html" id="searchResults-list-template">
+        <!-- ko if: $data.Title().length > 0 -->
+        <div class="searchBox" style="clear:both">
+            <div class="row el-data-row">
+                <div class="three columns po"><div class="pl6"><span data-bind="text:$data.isAllDay() ? $parent.formatDateTime($data, 'DateShort', $element) + ' (All day)' : $parent.formatDateTime($data, 'DateTimeShort', $element)"></span></div></div>
+                <div class="four columns po font-weight-bold">
+                    <div class="pl4">
+                    <div class="fl mt2" data-bind="style: { backgroundColor: $data.EventTypeColor(), display: $data.EventTypeColor() != '' ? '' : 'none',width: '10px', height: '10px' }, attr: { title: Dea.htmlDecode($data.EventTypeName()) }"></div>
+                    <div class="fl ml2 font-weight-bold" data-bind="text:Dea.htmlDecode($data.Title()), style: { textDecoration: $data.Cancel()  ? 'line-through' : 'none'}"></div>
+                    </div>
+                </div>
+                <div class="two columns po"><div class="pl6" data-bind="text:Dea.htmlDecode($data.Location.Name())"></div></div>
+                <div class="two columns po"><div class="pl6" data-bind="text:Dea.htmlDecode($data.CalendarName())"></div></div>
+                <div  class="one columns po">
+                    <div class="fr pr6 expand-trigger show-small">
+                        <span class="show-small fl label mt2">Expand</span>
+                        <div class="icon expand pointer fl" data-bind="click:function() { return $parent.bindAccordion('searchBox', $data, $element); }"></div>
+                    </div>
+                    <span id="searchResultsExpandText" data-bind="text:'Select To Expand {0}    '.replace('{0}', Dea.htmlDecode($data.Title()))"class="visuallyhidden"></span>
+                    <div tabindex="0" title="Expand" aria-labelledby="searchResultsExpandText" class="icon expand pointer expand-trigger-icon centered show-medium show-large" 
+                        data-bind="event: { click:function() { return $parent.bindAccordion('searchBox', $data, $element); }, keypress:function(data, event) { if(event.which === 13 || event.which === 32) {return $parent.bindAccordion('searchBox', $data, $element);} } }"></div>
+                </div>
+            </div>
+            <div class="row el-data-row-separator bg-color1">
+                <div class="two columns show-small show-medium show-large"></div>
+                <div class="six columns show-large show-medium"></div>
+                <div class="three columns  show-large show-medium"></div>
+                <div class="one columns show-large show-medium"></div>
+            </div>
+
+        </div>
+         <!-- Accordion-->
+         <div class="accordion searchBox mc-border-style-solid mc-border-color-4 mc-border-width-3px br-10 fl mc-bg-color-1 space mt5" style="display:none;min-width:100%"></div>
+        <!-- END Accordion-->
+        <!-- /ko -->
+
+    </script>
+
+     <script type="text/html" id="specialDate-list-template">
+        <!-- ko if: $data.Title().length > 0 -->
+        <div class="searchBox" style="clear:both">
+            <div class="row el-data-row">
+                <div class="two columns po"><div class="pl6"><span data-bind="text:$parent.formatDateTime($data, 'DateShort', $element)"></span></div></div>
+                <div class="four columns po font-weight-bold"><div class="fl pl6 font-weight-bold"  data-bind="text:$data.Title()"></div></div>
+                <div class="four columns po"><div class="pl6" data-bind="text:$data.Notes()"></div></div>
+                <div class="two columns po"><div class="pl6" data-bind="text:$data.CalendarName()"></div></div>
+            </div>
+            <div class="row el-data-row-separator bg-color1">
+                <div class="two columns show-small show-medium show-large"></div>
+                <div class="six columns show-large show-medium"></div>
+                <div class="three columns  show-large show-medium"></div>
+                <div class="one columns show-large show-medium"></div>
+            </div>
+        </div>
+        <!-- /ko -->
+
+    </script>
+
+
+            <div id="PageLinksContainer" class="center">
+                <div class="centerRow">
+                 <a id="ctl00_CalendarManagersLink" href="CalendarManagers.aspx" target="_blank">Calendar Managers</a>
+                 <span id="linkSeperator">|</span>
+                 
+                 </div>
+            </div>
+            <div id="FooterContainer" class="footer">
+                
+            </div>
+            <div id="CallbackStatus" style="display: none; z-index: 2100" class="callbackStatus">
+                <img id="ctl00_LoadingImage" title="Loading" src="Images/Loading.gif" alt="Loading" style="border-width:0px;" />
+                <span id="ctl00_LoadingText">Loading</span>
+           </div>
+        </div> 
+
+        <div id='helpTextDialog' class="br-10">
+            <div class='header pl6'>
+                <span>Help Text</span></div>
+           
+            <div style="clear:both;" class="p10">
+                 <div class="fl pointer pr10 edit-Help-Link" style="display:none;">
+                    <a>Edit</a>
+                </div>
+                <span class="helpTextMessage fl"></span>
+            </div>
+        </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("ctl00_Summary"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_Summary = document.all ? document.all["ctl00_Summary"] : document.getElementById("ctl00_Summary");
+ctl00_Summary.headertext = "The following errors occurred attempting to process your request:";
+var ctl00_DefaultHelp = document.all ? document.all["ctl00_DefaultHelp"] : document.getElementById("ctl00_DefaultHelp");
+ctl00_DefaultHelp.isHelpText = "True";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var showFeaturedEvents = false;var hidefilters = false;
+WebForm_InitCallback();Dea.setDisplay("linkSeperator", "none");mc_useHelpIcon = 0;//]]>
+</script>
+</form>
+
+</div>
+<script type="text/javascript">
+    function mc_keypressHandlerAsButton(e, that) {
+        var key = e.keyCode;
+        if (key === 13 || key === 32) {
+            $(that).trigger('click');
+        }
+    }
+</script>
+</body>
+</html>

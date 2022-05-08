@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.concurrent.ArrayBlockingQueue;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -47,9 +46,19 @@ public class Crawler {
 		this.MAX_NUM_PAGES = numPages;
 	}
 	
+	public Crawler(int depth, int numPages, String seed, String output) {
+		this.seeds = new ArrayDeque<LinkNode>();
+		this.frontier = new ArrayDeque<LinkNode>();
+		this.visited = new HashSet<String>();
+		this.MAX_DEPTH = depth;
+		this.MAX_NUM_PAGES = numPages;
+		this.seedFile = seed;
+		this.dest = output;
+	}
+	
 	// create html file named as paramterized filename
 	// normalization took place: remove http/https protocol and redundant www.
-	private String createUniqueTitle(LinkNode curr) {
+	public String createUniqueTitle(LinkNode curr) {
 		String filename = curr.getLink();
 		StringBuilder address = new StringBuilder(dest);
 		// redundant http:// makes files' titles look much more dense
@@ -99,7 +108,6 @@ public class Crawler {
 	// reads in seed.txt and store URL to frontier
 	private void loadSeeds() {
 		try {
-			String seedFile = "src/seed.txt";
 			// reads seed.txt
 			File seed = new File(seedFile);
 			Scanner s = new Scanner(seed);
@@ -212,8 +220,9 @@ public class Crawler {
 	private ArrayDeque<LinkNode> seeds;
 	private ArrayDeque<LinkNode> frontier;
 	private int numPages = 0;
-	private int MAX_DEPTH = 5;
+	private int MAX_DEPTH = 3;
 	private int MAX_NUM_PAGES = 100;
-	private final String dest = "src/pages/";
+	private String dest = "src/pages/";
+	String seedFile = "src/seed.txt";
 	private HashSet<String> visited;
 }
