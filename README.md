@@ -12,3 +12,5 @@ Save the file as crawler.bat and run it again.
 Parameters: seed.txt number-of-pages max-depth output-dir  
 - seed.txt has to be a text file that contains functional links  
 - output-dir should be a directory to store downloaded htmls  
+  
+If one of parameter malfunctions(i.e. invalid data type), the crawler runs in default setting.
