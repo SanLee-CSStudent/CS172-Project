@@ -220,8 +220,8 @@ public class Crawler {
 	private ArrayDeque<LinkNode> seeds;
 	private ArrayDeque<LinkNode> frontier;
 	private int numPages = 0;
-	private int MAX_DEPTH = 3;
-	private int MAX_NUM_PAGES = 100;
+	private int MAX_DEPTH = 5;
+	private int MAX_NUM_PAGES = 1000000;
 	private String dest = "src/pages/";
 	String seedFile = "src/seed.txt";
 	private HashSet<String> visited;
